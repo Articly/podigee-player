@@ -1,13 +1,18 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="de" data-theme="dark">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Podcast Player</title>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="player.css">
 </head>
 <body>
+
+<!-- Theme toggle (fixed top-right) -->
+<button class="theme-toggle" id="themeBtn" title="Switch theme">
+  <svg id="themeIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"></svg>
+  Theme
+</button>
 
 <div class="player-wrap">
 
@@ -24,7 +29,6 @@
       </div>
     </div>
     <div class="header-info">
-      <div class="ep-label">Episode 442</div>
       <div class="ep-title">Morning Briefing Kompakt – die News von heute für Dich auf einen Blick</div>
       <div class="ep-date">12.05.2026</div>
     </div>
@@ -71,77 +75,69 @@
 
   <!-- EPISODE LIST -->
   <div class="ep-list" id="episodePanel">
-    <div class="ep-item active" onclick="selectEp(this,'442','12.05.2026','04:11')">
+    <div class="ep-item active" onclick="selectEp(this,'12.05.2026','04:11')">
       <div class="ep-play-btn">
         <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
       </div>
       <div class="ep-info">
         <div class="ep-name">12.05.2026 | Morning Briefing Kompakt – die News von heute für Dich auf einen Blick</div>
-        <div class="ep-num">#442</div>
       </div>
       <div class="ep-dur">00:04:11</div>
     </div>
-    <div class="ep-item" onclick="selectEp(this,'441','07.05.2026','08:47')">
+    <div class="ep-item" onclick="selectEp(this,'07.05.2026','08:47')">
       <div class="ep-play-btn">
         <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
       </div>
       <div class="ep-info">
         <div class="ep-name">07.05.2026 | Morning Briefing Kompakt – die News von heute für Dich auf einen Blick</div>
-        <div class="ep-num">#441</div>
       </div>
       <div class="ep-dur">00:08:47</div>
     </div>
-    <div class="ep-item" onclick="selectEp(this,'440','07.05.2026','08:46')">
+    <div class="ep-item" onclick="selectEp(this,'07.05.2026','08:46')">
       <div class="ep-play-btn">
         <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
       </div>
       <div class="ep-info">
         <div class="ep-name">07.05.2026 | Morning Briefing Kompakt – die News von heute für Dich auf einen Blick</div>
-        <div class="ep-num">#440</div>
       </div>
       <div class="ep-dur">00:08:46</div>
     </div>
-    <div class="ep-item" onclick="selectEp(this,'439','07.05.2026','08:58')">
+    <div class="ep-item" onclick="selectEp(this,'07.05.2026','08:58')">
       <div class="ep-play-btn">
         <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
       </div>
       <div class="ep-info">
         <div class="ep-name">07.05.2026 | Morning Briefing Kompakt – die News von heute für Dich auf einen Blick</div>
-        <div class="ep-num">#439</div>
       </div>
       <div class="ep-dur">00:08:58</div>
     </div>
-    <div class="ep-item" onclick="selectEp(this,'438','06.05.2026','07:22')">
+    <div class="ep-item" onclick="selectEp(this,'06.05.2026','07:22')">
       <div class="ep-play-btn">
         <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
       </div>
       <div class="ep-info">
         <div class="ep-name">06.05.2026 | Morning Briefing Kompakt – die News von heute für Dich auf einen Blick</div>
-        <div class="ep-num">#438</div>
       </div>
       <div class="ep-dur">00:07:22</div>
     </div>
   </div>
 
   <!-- INFO PANEL -->
-  <div id="infoPanel" style="display:none; padding:20px 24px 24px; background:var(--teal);">
-    <p style="font-size:13px; color:rgba(255,255,255,0.6); line-height:1.7;">
-      <strong style="color:var(--lime);">Morning Briefing Kompakt</strong> liefert dir täglich die wichtigsten Nachrichten in kompakter Form – damit du bestens informiert in den Tag startest. Schnell, präzise, relevant.
+  <div class="info-panel" id="infoPanel">
+    <p>
+      <strong>Morning Briefing Kompakt</strong> liefert dir täglich die wichtigsten Nachrichten in kompakter Form – damit du bestens informiert in den Tag startest. Schnell, präzise, relevant.
     </p>
   </div>
 
   <!-- FOOTER -->
   <div class="player-footer">
     <div class="brand">
-      <div class="brand-dot">
-        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 1a4 4 0 014 4v6a4 4 0 01-8 0V5a4 4 0 014-4z"/></svg>
-      </div>
-      podigee
+      <img src="dark_mode_icon.png" class="logo-dark" alt="Articly">
+      <img src="light_mode_icon.png" class="logo-light" alt="Articly">
     </div>
     <div class="footer-actions">
       <button class="footer-btn icon-btn">
-        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92s2.92-1.31 2.92-2.92-1.31-2.92-2.92-2.92z"/></svg>
-        Teilen
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92s2.92-1.31 2。
       </button>
       <button class="footer-btn icon-btn" title="Schließen">
         <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
