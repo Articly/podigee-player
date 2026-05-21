@@ -1,37 +1,16 @@
-// ── THEME TOGGLE ──
+// ── AUTOMATIC THEME DETECTION ──
 const root = document.documentElement;
-const themeBtn = document.getElementById('themeBtn');
-const themeIcon = document.getElementById('themeIcon');
 
-const moonSVG = `<path d="M21 12.79A9 9 0 1111.21 3a7 7 0 009.79 9.79z"/>`;
-const sunSVG  = `<circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>`;
-
-function getSystemTheme() {
-  return window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+function applySystemTheme() {
+  const isLight = window.matchMedia('(prefers-color-scheme: light)').matches;
+  root.setAttribute('data-theme', isLight ? 'light' : 'dark');
 }
 
-let currentTheme = localStorage.getItem('player-theme') || getSystemTheme();
+// Apply the correct theme immediately when the player loads
+applySystemTheme();
 
-function applyTheme(theme) {
-  root.setAttribute('data-theme', theme);
-  currentTheme = theme;
-  localStorage.setItem('player-theme', theme);
-  themeIcon.innerHTML = theme === 'dark' ? moonSVG : sunSVG;
-  themeBtn.title = theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode';
-}
-
-applyTheme(currentTheme);
-
-themeBtn.addEventListener('click', () => {
-  applyTheme(currentTheme === 'dark' ? 'light' : 'dark');
-});
-
-// Also respond to OS preference changes (only if user hasn't manually set)
-window.matchMedia('(prefers-color-scheme: light)').addEventListener('change', e => {
-  if (!localStorage.getItem('player-theme')) {
-    applyTheme(e.matches ? 'light' : 'dark');
-  }
-});
+// Listen for changes (e.g., if the user's computer switches to Dark Mode at sunset)
+window.matchMedia('(prefers-color-scheme: light)').addEventListener('change', applySystemTheme);
 
 // ── PLAY / PAUSE ──
 let playing = true;
