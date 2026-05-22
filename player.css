@@ -18,9 +18,9 @@
 
 /* ── Light theme ── */
 [data-theme="light"] {
-  --lime:         #DCFF4D;
-  --lime-text:    #5a6e00;
-  --bg-primary:   #ECEEED;
+  --lime:         #1B282D;
+  --lime-text:    #1B282D;
+  --bg-primary:   #eff5f4;
   --bg-surface:   #FFFFFF;
   --bg-raised:    #DADEDA;
   --fg-primary:   #0A0F0A;
@@ -35,9 +35,9 @@
 /* ── OS light preference (no manual override) ── */
 @media (prefers-color-scheme: light) {
   :root:not([data-theme="dark"]) {
-    --lime:         #DCFF4D;
-    --lime-text:    #5a6e00;
-    --bg-primary:   #ECEEED;
+    --lime:         #1B282D;
+    --lime-text:    #1B282D;
+    --bg-primary:   #eff5f4;
     --bg-surface:   #FFFFFF;
     --bg-raised:    #DADEDA;
     --fg-primary:   #0A0F0A;
@@ -48,6 +48,15 @@
     --scroll-thumb: #C0C8C0;
     --logo-filter:  brightness(0) saturate(0) opacity(0.50);
   }
+}
+
+/* Fix text contrast since the main accent color is now dark */
+[data-theme="light"] .cover-text,
+[data-theme="light"] .ctrl-btn.play-btn {
+  color: #FFFFFF;
+}
+[data-theme="light"] .ep-item.active .ep-play-btn svg {
+  color: #FFFFFF;
 }
 
 /* ══════════════════════════════════════════
