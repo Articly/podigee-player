@@ -10,12 +10,11 @@
 
 <div class="player-wrap">
   
-  <audio id="podcastAudio" src="{{ episode.media_url }}"></audio>
+  <audio id="podcastAudio" pp-src="media.mp3"></audio>
 
-  <!-- HEADER -->
   <div class="player-header">
     <div class="cover">
-      <div class="cover-text">{{ podcast.title }}</div>
+      <div class="cover-text">{ podcast.title }</div>
       <div class="cover-badge">
         <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M12 1a4 4 0 014 4v6a4 4 0 01-8 0V5a4 4 0 014-4z" fill="#fff"/>
@@ -25,8 +24,8 @@
       </div>
     </div>
     <div class="header-info">
-      <div class="ep-title">{{ episode.title }}</div>
-      <div class="ep-date">{{ episode.published_at | date: "%d.%m.%Y" }}</div>
+      <div class="ep-title">{ title }</div>
+      <div class="ep-date">{ subtitle }</div> 
     </div>
   </div>
 
