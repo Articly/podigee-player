@@ -9,11 +9,13 @@
 <body>
 
 <div class="player-wrap">
+  
+  <audio id="podcastAudio" src="{{ episode.media_url }}"></audio>
 
   <!-- HEADER -->
   <div class="player-header">
     <div class="cover">
-      <div class="cover-text">DUMMY<br>TEST<br>PODCAST</div>
+      <div class="cover-text">{{ podcast.title }}</div>
       <div class="cover-badge">
         <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M12 1a4 4 0 014 4v6a4 4 0 01-8 0V5a4 4 0 014-4z" fill="#fff"/>
@@ -23,8 +25,8 @@
       </div>
     </div>
     <div class="header-info">
-      <div class="ep-title">Morning Briefing Kompakt – die News von heute für Dich auf einen Blick</div>
-      <div class="ep-date">12.05.2026</div>
+      <div class="ep-title">{{ episode.title }}</div>
+      <div class="ep-date">{{ episode.published_at | date: "%d.%m.%Y" }}</div>
     </div>
   </div>
 
@@ -138,9 +140,35 @@ const playIcon = document.getElementById('playIcon');
 const playPath  = '<path d="M8 5v14l11-7z"/>';
 const pausePath = '<path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>';
 
+const audio = document.getElementById('podcastAudio');
+
 playBtn.addEventListener('click', () => {
-  playing = !playing;
+  if (audio.paused) {
+    audio.play();
+    playing = true;
+  } else {
+    audio.pause();
+    playing = false;
+  }
   playIcon.innerHTML = playing ? pausePath : playPath;
+});
+
+// Update time text
+audio.addEventListener('timeupdate', () => {
+  // Format time (e.g., 01:47)
+  const formatTime = (time) => {
+    if (isNaN(time)) return "00:00";
+    const min = Math.floor(time / 60).toString().padStart(2, '0');
+    const sec = Math.floor(time % 60).toString().padStart(2, '0');
+    return `${min}:${sec}`;
+  };
+  
+  document.getElementById('currentTime').textContent = formatTime(audio.currentTime);
+  document.getElementById('totalTime').textContent = formatTime(audio.duration);
+
+  // Update progress bar
+  const pct = (audio.currentTime / audio.duration) * 100 || 0;
+  document.getElementById('progressFill').style.width = pct + '%';
 });
 
 // ── SPEED ──
@@ -154,8 +182,8 @@ document.getElementById('speedBtn').addEventListener('click', function() {
 // ── PROGRESS BAR ──
 document.getElementById('progressBar').addEventListener('click', function(e) {
   const rect = this.getBoundingClientRect();
-  const pct  = Math.max(0, Math.min(100, (e.clientX - rect.left) / rect.width * 100));
-  document.getElementById('progressFill').style.width = pct + '%';
+  const pct  = Math.max(0, Math.min(1, (e.clientX - rect.left) / rect.width));
+  audio.currentTime = pct * audio.duration; // Jump to point in audio
 });
 
 // ── TABS ──

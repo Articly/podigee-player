@@ -47,12 +47,12 @@
 ══════════════════════════════════════════ */
 body {
   background: var(--bg-primary);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 100vh;
+  display: block; /* Removed flex centering */
+  min-height: 100%; /* Changed from 100vh to fit the iframe */
+  width: 100%;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  padding: 24px;
+  padding: 16px; /* Reduced padding for embeds */
+  margin: 0;
   transition: background 0.25s;
 }
 
@@ -61,7 +61,7 @@ body {
 ══════════════════════════════════════════ */
 .player-wrap {
   width: 100%;
-  max-width: 560px;
+  max-width: 100%; /* Let the host website control the max-width */
   background: var(--bg-surface);
   border-radius: 20px;
   overflow: hidden;
