@@ -8,12 +8,6 @@
 </head>
 <body>
 
-<!-- Theme toggle (fixed top-right) -->
-<!-- <button class="theme-toggle" id="themeBtn" title="Switch theme">
-  <svg id="themeIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"></svg>
-  Theme
-</button> -->
-
 <div class="player-wrap">
 
   <!-- HEADER -->
@@ -22,9 +16,9 @@
       <div class="cover-text">DUMMY<br>TEST<br>PODCAST</div>
       <div class="cover-badge">
         <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M12 1a4 4 0 014 4v6a4 4 0 01-8 0V5a4 4 0 014-4z" fill="#DCFF4D"/>
-          <path d="M6 10a6 6 0 0012 0" stroke="#DCFF4D" stroke-width="2" stroke-linecap="round"/>
-          <line x1="12" y1="16" x2="12" y2="20" stroke="#DCFF4D" stroke-width="2" stroke-linecap="round"/>
+          <path d="M12 1a4 4 0 014 4v6a4 4 0 01-8 0V5a4 4 0 014-4z" fill="#fff"/>
+          <path d="M6 10a6 6 0 0012 0" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
+          <line x1="12" y1="16" x2="12" y2="20" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
         </svg>
       </div>
     </div>
@@ -51,14 +45,14 @@
       </button>
       <button class="ctrl-btn skip" title="-10s">
         <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 5V1L7 6l5 5V7c3.31 0 6 2.69 6 6s-2.69 6-6 6-6-2.69-6-6H4c0 4.42 3.58 8 8 8s8-3.58 8-8-3.58-8-8-8z"/></svg>
-        <span class="skip-num" style="bottom:6px">10</span>
+        <span class="skip-num">10</span>
       </button>
       <button class="ctrl-btn play-btn" id="playBtn" title="Play/Pause">
         <svg id="playIcon" viewBox="0 0 24 24" fill="currentColor"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
       </button>
       <button class="ctrl-btn skip" title="+30s">
         <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 5V1l5 5-5 5V7c-3.31 0-6 2.69-6 6s2.69 6 6 6 6-2.69 6-6h2c0 4.42-3.58 8-8 8s-8-3.58-8-8 3.58-8 8-8z"/></svg>
-        <span class="skip-num" style="bottom:6px">30</span>
+        <span class="skip-num">30</span>
       </button>
       <button class="ctrl-btn skip" title="Nächstes">
         <svg viewBox="0 0 24 24" fill="currentColor"><path d="M6 18l8.5-6L6 6v12zm2-8.14L11.03 12 8 14.14V9.86zM16 6h2v12h-2z"/></svg>
@@ -76,68 +70,49 @@
   <!-- EPISODE LIST -->
   <div class="ep-list" id="episodePanel">
     <div class="ep-item active" onclick="selectEp(this,'12.05.2026','04:11')">
-      <div class="ep-play-btn">
-        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
-      </div>
-      <div class="ep-info">
-        <div class="ep-name">12.05.2026 | Morning Briefing Kompakt – die News von heute für Dich auf einen Blick</div>
-      </div>
+      <div class="ep-play-btn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></div>
+      <div class="ep-info"><div class="ep-name">12.05.2026 | Morning Briefing Kompakt – die News von heute für Dich auf einen Blick</div></div>
       <div class="ep-dur">00:04:11</div>
     </div>
     <div class="ep-item" onclick="selectEp(this,'07.05.2026','08:47')">
-      <div class="ep-play-btn">
-        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
-      </div>
-      <div class="ep-info">
-        <div class="ep-name">07.05.2026 | Morning Briefing Kompakt – die News von heute für Dich auf einen Blick</div>
-      </div>
+      <div class="ep-play-btn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></div>
+      <div class="ep-info"><div class="ep-name">07.05.2026 | Morning Briefing Kompakt – die News von heute für Dich auf einen Blick</div></div>
       <div class="ep-dur">00:08:47</div>
     </div>
     <div class="ep-item" onclick="selectEp(this,'07.05.2026','08:46')">
-      <div class="ep-play-btn">
-        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
-      </div>
-      <div class="ep-info">
-        <div class="ep-name">07.05.2026 | Morning Briefing Kompakt – die News von heute für Dich auf einen Blick</div>
-      </div>
+      <div class="ep-play-btn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></div>
+      <div class="ep-info"><div class="ep-name">07.05.2026 | Morning Briefing Kompakt – die News von heute für Dich auf einen Blick</div></div>
       <div class="ep-dur">00:08:46</div>
     </div>
     <div class="ep-item" onclick="selectEp(this,'07.05.2026','08:58')">
-      <div class="ep-play-btn">
-        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
-      </div>
-      <div class="ep-info">
-        <div class="ep-name">07.05.2026 | Morning Briefing Kompakt – die News von heute für Dich auf einen Blick</div>
-      </div>
+      <div class="ep-play-btn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></div>
+      <div class="ep-info"><div class="ep-name">07.05.2026 | Morning Briefing Kompakt – die News von heute für Dich auf einen Blick</div></div>
       <div class="ep-dur">00:08:58</div>
     </div>
     <div class="ep-item" onclick="selectEp(this,'06.05.2026','07:22')">
-      <div class="ep-play-btn">
-        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
-      </div>
-      <div class="ep-info">
-        <div class="ep-name">06.05.2026 | Morning Briefing Kompakt – die News von heute für Dich auf einen Blick</div>
-      </div>
+      <div class="ep-play-btn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></div>
+      <div class="ep-info"><div class="ep-name">06.05.2026 | Morning Briefing Kompakt – die News von heute für Dich auf einen Blick</div></div>
       <div class="ep-dur">00:07:22</div>
     </div>
   </div>
 
   <!-- INFO PANEL -->
   <div class="info-panel" id="infoPanel">
-    <p>
-      <strong>Morning Briefing Kompakt</strong> liefert dir täglich die wichtigsten Nachrichten in kompakter Form – damit du bestens informiert in den Tag startest. Schnell, präzise, relevant.
-    </p>
+    <p><strong>Morning Briefing Kompakt</strong> liefert dir täglich die wichtigsten Nachrichten in kompakter Form – damit du bestens informiert in den Tag startest. Schnell, präzise, relevant.</p>
   </div>
 
   <!-- FOOTER -->
   <div class="player-footer">
     <div class="brand">
-      <img src="dark_mode_icon.png" class="logo-dark" alt="Articly">
+      <img src="dark_mode_icon.png"  class="logo-dark"  alt="Articly">
       <img src="light_mode_icon.png" class="logo-light" alt="Articly">
     </div>
     <div class="footer-actions">
       <button class="footer-btn icon-btn">
-        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92s2.92-1.31 2。
+        <svg viewBox="0 0 24 24" fill="currentColor">
+          <path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92s2.92-1.31 2.92-2.92-1.31-2.92-2.92-2.92z"/>
+        </svg>
+        Teilen
       </button>
       <button class="footer-btn icon-btn" title="Schließen">
         <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
@@ -147,6 +122,61 @@
 
 </div>
 
-<script src="player.js"></script>
+<script>
+// ── THEME — follows OS preference automatically ──
+const root = document.documentElement;
+function applyTheme(theme) { root.setAttribute('data-theme', theme); }
+applyTheme(window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+window.matchMedia('(prefers-color-scheme: light)').addEventListener('change', e => {
+  applyTheme(e.matches ? 'light' : 'dark');
+});
+
+// ── PLAY / PAUSE ──
+let playing = true;
+const playBtn  = document.getElementById('playBtn');
+const playIcon = document.getElementById('playIcon');
+const playPath  = '<path d="M8 5v14l11-7z"/>';
+const pausePath = '<path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>';
+
+playBtn.addEventListener('click', () => {
+  playing = !playing;
+  playIcon.innerHTML = playing ? pausePath : playPath;
+});
+
+// ── SPEED ──
+const speeds = ['1×', '1.25×', '1.5×', '2×', '0.75×'];
+let speedIdx = 0;
+document.getElementById('speedBtn').addEventListener('click', function() {
+  speedIdx = (speedIdx + 1) % speeds.length;
+  this.textContent = speeds[speedIdx];
+});
+
+// ── PROGRESS BAR ──
+document.getElementById('progressBar').addEventListener('click', function(e) {
+  const rect = this.getBoundingClientRect();
+  const pct  = Math.max(0, Math.min(100, (e.clientX - rect.left) / rect.width * 100));
+  document.getElementById('progressFill').style.width = pct + '%';
+});
+
+// ── TABS ──
+function switchTab(el, panel) {
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  el.classList.add('active');
+  document.getElementById('episodePanel').style.display = panel === 'episodes' ? 'block' : 'none';
+  document.getElementById('infoPanel').style.display    = panel === 'info'     ? 'block' : 'none';
+}
+
+// ── EPISODE SELECT ──
+function selectEp(el, date, dur) {
+  document.querySelectorAll('.ep-item').forEach(i => i.classList.remove('active'));
+  el.classList.add('active');
+  document.querySelector('.ep-date').textContent      = date;
+  document.getElementById('totalTime').textContent    = dur;
+  document.getElementById('currentTime').textContent  = '00:00';
+  document.getElementById('progressFill').style.width = '0%';
+  playing = true;
+  playIcon.innerHTML = pausePath;
+}
+</script>
 </body>
 </html>
