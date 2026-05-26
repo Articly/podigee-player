@@ -3,32 +3,35 @@ body {
 
   margin: 0;
 
-  padding: 0;
+  padding: 24px;
 
   background: #040506;
+
+  font-family: Inter, sans-serif;
 }
 
-/* wrapper around the injected player */
+.player-wrapper {
 
-body {
+  border-radius: 28px;
 
-  padding: 24px;
-}
-
-/* iframe/container only */
-
-iframe,
-.podigee-podcast-player {
-
-  border-radius: 28px !important;
-
-  overflow: hidden !important;
+  overflow: hidden;
 
   box-shadow:
     0 20px 60px rgba(0,0,0,.45);
 }
 
-/* automatic light mode */
+/* dark mode */
+
+@media (prefers-color-scheme: dark) {
+
+  html,
+  body {
+
+    background: #040506;
+  }
+}
+
+/* light mode */
 
 @media (prefers-color-scheme: light) {
 
@@ -37,5 +40,4 @@ iframe,
 
     background: #edf0ef;
   }
-
 }
