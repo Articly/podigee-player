@@ -38,21 +38,16 @@
 [data-theme="light"] .progress-thumb      { box-shadow: 0 0 0 3px rgba(27,40,45,0.2); }
 
 /* ══════════════════════════════════════════
-   RESET
+   RESET & PAGE (Fixed for Podigee iFrame)
 ══════════════════════════════════════════ */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-/* ══════════════════════════════════════════
-   PAGE
-══════════════════════════════════════════ */
-body {
+html, body {
   background: var(--bg-primary);
-  display: block; /* Removed flex centering */
-  /* min-height: 100%; /* Changed from 100vh to fit the iframe */
-  width: 100%;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  padding: 16px; /* Reduced padding for embeds */
-  margin: 0;
+  width: 100%;
+  height: auto; /* Forces Podigee to read the real height */
+  overflow-x: hidden;
   transition: background 0.25s;
 }
 
@@ -61,7 +56,8 @@ body {
 ══════════════════════════════════════════ */
 .player-wrap {
   width: 100%;
-  max-width: 100%; /* Let the host website control the max-width */
+  max-width: 560px;
+  margin: 16px auto; /* Centers it perfectly inside the embed */
   background: var(--bg-surface);
   border-radius: 20px;
   overflow: hidden;
