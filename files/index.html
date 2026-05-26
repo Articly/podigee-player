@@ -1,14 +1,26 @@
-<div class="custom-player">
+<div class="player-shell">
 
-  <div class="header">
-    ...
+  <div class="player-header">
+
+    <div class="cover">
+      {{ podcast.cover }}
+    </div>
+
+    <div class="meta">
+
+      <h1>{{ episode.title }}</h1>
+
+      <p>{{ podcast.title }}</p>
+
+    </div>
+
   </div>
 
   <div class="player-controls">
     {{ player }}
   </div>
 
-  <div class="playlist">
+  <div class="player-playlist">
     {{ playlist }}
   </div>
 
