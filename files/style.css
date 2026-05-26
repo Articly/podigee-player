@@ -48,7 +48,7 @@
 body {
   background: var(--bg-primary);
   display: block; /* Removed flex centering */
-  min-height: 100%; /* Changed from 100vh to fit the iframe */
+  /* min-height: 100%; /* Changed from 100vh to fit the iframe */
   width: 100%;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   padding: 16px; /* Reduced padding for embeds */
