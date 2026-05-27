@@ -1,5 +1,12 @@
 /* ══════════════════════════════════════════
-   TOKENS — Dark (default)
+   HIDE PODIGEE'S UGLY INJECTED HTML
+══════════════════════════════════════════ */
+.panels-tabs, .panels.single-panel, .more-menu, .subscribe-menu, .share-menu, .splash-button {
+  display: none !important;
+}
+
+/* ══════════════════════════════════════════
+   TOKENS — Dark
 ══════════════════════════════════════════ */
 :root {
   --lime:         #DCFF4D;
@@ -19,7 +26,7 @@
    RESET & SHELL
 ══════════════════════════════════════════ */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-.articly-theme { font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; background: var(--bg-primary); width: 100%; }
+.articly-theme { font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; background: var(--bg-primary); transition: background 0.25s; }
 .player-wrap { width: 100%; background: var(--bg-surface); border-radius: 20px; overflow: hidden; box-shadow: 0 0 0 1px var(--border), 0 32px 80px rgba(0,0,0,0.22); }
 button { outline: none; }
 
@@ -32,19 +39,17 @@ button { outline: none; }
 .header-info { flex: 1; padding: 0 16px 16px; display: flex; flex-direction: column; justify-content: flex-end; gap: 4px; }
 .ep-title { font-size: 14px; font-weight: 700; color: var(--fg-primary); line-height: 1.35; }
 .ep-title a { color: inherit; text-decoration: none; }
+.ep-title a:hover { text-decoration: underline; }
 .ep-subtitle { font-size: 11px; color: var(--fg-muted); letter-spacing: 0.2px; }
-.splash-button { display: none !important; } /* Hide default giant play button */
 
 /* ══════════════════════════════════════════
-   CONTROLS
+   CONTROLS & PROGRESS BAR
 ══════════════════════════════════════════ */
 .controls-zone { background: var(--bg-primary); padding: 20px 24px 24px; }
-
-/* Podigee Native Progress Bar Overrides */
 .progress-bar-wrap { margin-bottom: 20px; cursor: pointer; }
 .progress-bar { position: relative; height: 4px; background: var(--bg-raised); border-radius: 2px; }
 .progress-bar-loaded { position: absolute; left: 0; top: 0; height: 100%; background: var(--border); border-radius: 2px; }
-.progress-bar-played { position: absolute; left: 0; top: 0; height: 100%; background: var(--lime); border-radius: 2px; }
+.progress-bar-played { position: absolute; left: 0; top: 0; height: 100%; background: var(--lime); border-radius: 2px; transition: width 0.1s linear; }
 .progress-bar-played::after { content: ''; position: absolute; right: -6px; top: 50%; transform: translateY(-50%); width: 12px; height: 12px; background: var(--lime); border-radius: 50%; box-shadow: 0 0 0 3px rgba(220,255,77,0.3); }
 
 /* Buttons */
@@ -56,49 +61,47 @@ button { outline: none; }
 .skip-num { position: absolute; font-size: 7px; font-weight: 700; color: inherit; bottom: 6px; }
 
 /* Play/Pause specific */
-.play-btn { background: var(--lime) !important; color: #000002 !important; width: 52px !important; height: 52px !important; margin: 0 8px; box-shadow: 0 0 24px rgba(220,255,77,0.35); border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: transform 0.15s; }
+.play-btn { background: var(--lime) !important; color: #000002 !important; width: 52px !important; height: 52px !important; margin: 0 8px; box-shadow: 0 0 24px rgba(220,255,77,0.35); transition: transform 0.15s; }
 .play-btn:hover { transform: scale(1.07); }
 .play-btn svg { width: 22px; height: 22px; }
 .play-btn svg.stop { display: none; }
 .playing .play-btn svg.play { display: none; }
 .playing .play-btn svg.stop { display: block; }
-
-/* Speed Select */
 .speed-btn { background: var(--bg-raised); border: none; color: var(--fg-primary); font-size: 11px; font-weight: 700; padding: 5px 10px; border-radius: 20px; cursor: pointer; margin-left: 4px; }
-.speed-btn:hover { background: var(--lime); color: #000002; }
 
 /* ══════════════════════════════════════════
-   PODIGEE PANELS (Injected Tabs & Content)
+   CUSTOM TABS & PANELS
 ══════════════════════════════════════════ */
-.panels { background: var(--bg-surface); padding-bottom: 8px; }
+.custom-tabs { display: flex; border-bottom: 1px solid var(--border); padding: 0 24px; background: var(--bg-surface); }
+.custom-tab { font-size: 12px; font-weight: 600; letter-spacing: 0.3px; color: var(--fg-muted); padding: 14px 0; margin-right: 28px; cursor: pointer; border-bottom: 2px solid transparent; margin-bottom: -1px; transition: color 0.15s, border-color 0.15s; }
+.custom-tab.active { color: var(--lime-text); border-bottom-color: var(--lime-text); }
 
-/* Injected Tabs */
-.panels nav ul { display: flex; border-bottom: 1px solid var(--border); padding: 0 24px; list-style: none; }
-.panels nav ul li { font-size: 12px; font-weight: 600; color: var(--fg-muted); padding: 14px 0; margin-right: 28px; cursor: pointer; border-bottom: 2px solid transparent; margin-bottom: -1px; }
-.panels nav ul li.active { color: var(--lime-text); border-bottom-color: var(--lime-text); }
-.panels nav ul li a { color: inherit; text-decoration: none; }
+.custom-panels-wrapper { background: var(--bg-surface); }
 
-/* Injected Playlist */
-.panels .playlist { max-height: 260px; overflow-y: auto; scrollbar-width: thin; scrollbar-color: var(--scroll-thumb) transparent; padding: 0; margin: 0; list-style: none; }
-.panels .playlist li { display: flex; align-items: center; gap: 14px; padding: 12px 24px; cursor: pointer; border-bottom: 1px solid var(--border); color: var(--fg-muted); }
-.panels .playlist li:hover { background: var(--border); }
-.panels .playlist li.active { background: rgba(220,255,77,0.08); color: var(--fg-primary); font-weight: bold; }
-.panels .playlist li a { color: inherit; text-decoration: none; font-size: 12px; }
+/* Playlist */
+.custom-playlist { padding: 8px 0; max-height: 260px; overflow-y: auto; scrollbar-width: thin; scrollbar-color: var(--scroll-thumb) transparent; }
+.custom-playlist::-webkit-scrollbar { width: 4px; }
+.custom-playlist::-webkit-scrollbar-track { background: transparent; }
+.custom-playlist::-webkit-scrollbar-thumb { background: var(--scroll-thumb); border-radius: 2px; }
 
-/* Play icon injected inside playlist */
-.panels .playlist li .play-icon { width: 30px; height: 30px; background: var(--bg-raised); border-radius: 50%; display: flex; align-items: center; justify-content: center; }
-.panels .playlist li.active .play-icon { background: var(--lime); color: #000; }
+.custom-playlist-item { display: flex; align-items: center; gap: 14px; padding: 12px 24px; cursor: pointer; transition: background 0.15s; border-bottom: 1px solid var(--border); color: var(--fg-muted); }
+.custom-playlist-item:hover { background: var(--border); }
 
-/* Injected Info / Text */
-.panels .episode-info, .panels .tab-panel { padding: 20px 24px; color: var(--fg-muted); font-size: 13px; line-height: 1.7; }
-.panels .episode-info a { color: var(--lime-text); }
+.custom-play-icon { width: 30px; height: 30px; flex-shrink: 0; background: var(--bg-raised); border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: background 0.15s; }
+.custom-play-icon svg { width: 12px; height: 12px; color: var(--fg-icon); fill: currentColor; }
+.custom-playlist-item:hover .custom-play-icon { background: var(--lime); }
+.custom-playlist-item:hover .custom-play-icon svg { color: #000002; }
+
+.custom-item-title { font-size: 12px; font-weight: 500; color: inherit; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; line-height: 1.35; text-decoration: none; flex: 1; }
+.custom-playlist-item:hover .custom-item-title { color: var(--fg-primary); }
+
+/* Episode Info */
+.custom-episode-info { padding: 20px 24px 24px; font-size: 13px; color: var(--fg-muted); line-height: 1.7; }
+.custom-episode-info p { margin-bottom: 12px; }
+.custom-episode-info strong { color: var(--fg-primary); }
+.custom-episode-info a { color: var(--lime-text); text-decoration: none; }
 
 /* ══════════════════════════════════════════
    FOOTER
 ══════════════════════════════════════════ */
 .player-footer { display: flex; align-items: center; justify-content: space-between; padding: 14px 24px; background: var(--bg-primary); border-top: 1px solid var(--border); }
-.footer-actions { display: flex; gap: 8px; }
-.footer-btn { background: var(--bg-raised); border: none; color: var(--fg-muted); font-size: 11px; font-weight: 600; padding: 6px 14px; border-radius: 20px; cursor: pointer; }
-.footer-btn:hover { background: var(--lime); color: #000002; }
-.footer-btn.icon-btn { padding: 6px 10px; display: flex; align-items: center; gap: 5px; }
-.footer-btn svg { width: 12px; height: 12px; }
