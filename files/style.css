@@ -297,7 +297,7 @@
 }
 
 /* ══════════════════════════════════════════
-   PLAYLIST TAB & ANIMATION MODULE
+   PLAYLIST TAB CONTAINER DECK
    ══════════════════════════════════════════ */
 .panels-tabs-menu {
   background: rgba(0, 0, 0, 0.15) !important;
@@ -333,12 +333,11 @@
   border-bottom: 2px solid var(--accent-lime) !important;
 }
 
-.panels,
-.single-panel {
+.panels {
   background: var(--bg-dark-surface) !important;
   display: block !important;
   margin: 0 !important;
-  padding: 0 !important; /* Wipes out side cuts completely */
+  padding: 0 !important;
 }
 
 /* Smooth fade-in keyframes when switching tabs */
@@ -347,18 +346,31 @@
   to { opacity: 1; transform: translateY(0); }
 }
 
+/* ISOLATE CONFIGURATION TARGETS: RESTORE CONDITIONAL DISPLAY SWITCHES */
 .single-panel {
+  background: var(--bg-dark-surface) !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  display: none !important; /* Hides panel contents globally by default */
+}
+
+/* Only forces display rules when Podigee attaches active state context flags */
+.playlist-open .single-panel.playlist,
+.episode-info-open .single-panel.episode-info {
+  display: block !important;
   animation: panelFadeIn 0.25s ease-out forwards !important;
 }
 
-/* FORCE SYSTEM TO RUN EDGE-TO-EDGE WITH NO DEFAULT LIST OFFSETS */
+/* ══════════════════════════════════════════
+   PLAYLIST CONTENT VIEW
+   ══════════════════════════════════════════ */
 .single-panel.playlist ul {
   list-style: none !important;
   height: 230px !important;
   max-height: 230px !important;
   overflow-y: auto !important;
-  margin: 0 !important;  /* Wipes out browser default margins */
-  padding: 0 !important; /* Wipes out browser default indentation */
+  margin: 0 !important;  
+  padding: 0 !important; 
   width: 100% !important;
 }
 
@@ -393,7 +405,7 @@
   display: flex !important;
   justify-content: space-between !important;
   align-items: center !important;
-  padding: 16px 24px !important; /* Holds inner padding while background runs wide */
+  padding: 16px 24px !important; 
   width: 100% !important;
   border-bottom: 1px solid var(--ui-border) !important;
   background: transparent !important;
@@ -514,4 +526,11 @@
 .footer-right .buttons .share-menu-button:hover {
   background: var(--accent-lime) !important;
   color: var(--bg-dark-base) !important;
+}
+
+/* ══════════════════════════════════════════
+   REMOVE COLORED TIMER OVERLAY
+   ══════════════════════════════════════════ */
+.progress-tooltip {
+  display: none !important;
 }
