@@ -406,3 +406,10 @@
   background: var(--accent-lime) !important;
   color: var(--bg-dark-base) !important;
 }
+
+/* ══════════════════════════════════════════
+   REMOVE COLORED TIMER OVERLAY
+   ══════════════════════════════════════════ */
+.progress-tooltip {
+  display: none !important;
+}
