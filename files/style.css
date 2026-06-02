@@ -297,7 +297,7 @@
 }
 
 /* ══════════════════════════════════════════
-   PLAYLIST TAB & ANIMATION FIX MODULE
+   PLAYLIST TAB & ANIMATION MODULE
    ══════════════════════════════════════════ */
 .panels-tabs-menu {
   background: rgba(0, 0, 0, 0.15) !important;
@@ -310,6 +310,7 @@
   display: flex !important;
   list-style: none !important;
   padding-left: 24px !important;
+  margin: 0 !important;
 }
 
 .panels-tab-button {
@@ -332,9 +333,12 @@
   border-bottom: 2px solid var(--accent-lime) !important;
 }
 
-.panels {
+.panels,
+.single-panel {
   background: var(--bg-dark-surface) !important;
   display: block !important;
+  margin: 0 !important;
+  padding: 0 !important; /* Wipes out side cuts completely */
 }
 
 /* Smooth fade-in keyframes when switching tabs */
@@ -347,12 +351,15 @@
   animation: panelFadeIn 0.25s ease-out forwards !important;
 }
 
-/* LOCK VERTICAL VIEWS TO MATCH PERFECTLY (STOPS THE BOUNCE) */
+/* FORCE SYSTEM TO RUN EDGE-TO-EDGE WITH NO DEFAULT LIST OFFSETS */
 .single-panel.playlist ul {
   list-style: none !important;
   height: 230px !important;
   max-height: 230px !important;
   overflow-y: auto !important;
+  margin: 0 !important;  /* Wipes out browser default margins */
+  padding: 0 !important; /* Wipes out browser default indentation */
+  width: 100% !important;
 }
 
 .single-panel.playlist ul::-webkit-scrollbar,
@@ -370,9 +377,9 @@
   color: var(--text-muted) !important;
   font-size: 13px !important;
   line-height: 1.6 !important;
-  height: 230px !important;      /* Forces text container to match playlist height perfectly */
+  height: 230px !important;      
   max-height: 230px !important;
-  overflow-y: auto !important;   /* Let text scroll inside cleanly if it is long */
+  overflow-y: auto !important;   
 }
 
 .single-panel.episode-info a {
@@ -380,13 +387,14 @@
 }
 
 /* ══════════════════════════════════════════
-   PLAYLIST ROW FORMATTING
+   PLAYLIST ROW FORMATTING (EDGE-TO-EDGE SECTOR)
    ══════════════════════════════════════════ */
 .single-playlist-episode {
   display: flex !important;
   justify-content: space-between !important;
   align-items: center !important;
-  padding: 16px 24px !important;
+  padding: 16px 24px !important; /* Holds inner padding while background runs wide */
+  width: 100% !important;
   border-bottom: 1px solid var(--ui-border) !important;
   background: transparent !important;
   transition: background 0.15s ease !important;
