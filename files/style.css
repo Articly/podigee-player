@@ -316,23 +316,47 @@
 }
 
 /* ══════════════════════════════════════════
-   FIX PLAY/PAUSE DUAL ICON GLITCH
+   NUKES ALL GHOST/DOUBLE ICONS FROM PODIGEE
+   ══════════════════════════════════════════ */
+.play-button::before, 
+.play-button::after,
+.backward-button::before,
+.backward-button::after,
+.forward-button::before,
+.forward-button::after,
+.previous-button::before,
+.previous-button::after,
+.next-button::before,
+.next-button::after {
+  content: none !important;
+  display: none !important;
+  background: none !important;
+  border: none !important;
+  width: 0 !important;
+  height: 0 !important;
+}
+
+/* ══════════════════════════════════════════
+   MANAGES YOUR CUSTOM HTML SVG VISIBILITY
    ══════════════════════════════════════════ */
 
-/* 1. Hide the pause/stop icon by default when the player is idle */
-.play-button .stop {
+/* Hide the stop/pause icon by default when the player is idle */
+.play-button svg.stop {
   display: none !important;
 }
-
-/* 2. When the player state is active (playing), flip the visibility flags */
-.playing .play-button .play {
-  display: none !important;
-}
-.playing .play-button .stop {
+.play-button svg.play {
   display: block !important;
 }
 
-/* 3. Ensure the active icon scales and sits dead-center inside the circle */
+/* When Podigee changes state to playing, swap them cleanly */
+.playing .play-button svg.play {
+  display: none !important;
+}
+.playing .play-button svg.stop {
+  display: block !important;
+}
+
+/* Center your HTML SVGs perfectly inside the green circle */
 .play-button {
   display: inline-flex !important;
   align-items: center !important;
@@ -345,7 +369,7 @@
   margin: 0 !important;
 }
 
-/* Optically balance the play triangle so it looks perfectly centered */
-.play-button .play {
-  margin-left: 2px !important;
+/* Optically adjust the play triangle so it looks perfectly centered */
+.play-button svg.play {
+  margin-left: 3px !important;
 }
