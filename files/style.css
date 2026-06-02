@@ -297,7 +297,7 @@
 }
 
 /* ══════════════════════════════════════════
-   MULTILINGUAL TAB NAVIGATION CONTROLS
+   PLAYLIST NAVIGATION TAB GERMAN OVERRIDES
    ══════════════════════════════════════════ */
 .panels-tabs-menu {
   background: rgba(0, 0, 0, 0.15) !important;
@@ -326,21 +326,21 @@
   transition: color 0.2s ease, border-color 0.2s ease !important;
 }
 
-/* ── DEFAULT BASE STRINGS (ENGLISH) ── */
+/* AUTOMATIC TAB TRANSLATION ENGINE (DEFAULTS TO GERMAN) */
 .all-episodes-tab-button { font-size: 0 !important; }
-.all-episodes-tab-button::after { content: "All episodes" !important; font-size: 12px !important; }
+.all-episodes-tab-button::after { content: "Alle Folgen" !important; font-size: 12px !important; }
 
 .episode-info-tab-button { font-size: 0 !important; }
-.episode-info-tab-button::after { content: "Episode information" !important; font-size: 12px !important; }
+.episode-info-tab-button::after { content: "Beschreibung" !important; font-size: 12px !important; }
 
-/* ── GERMAN TRANSLATION REPLACEMENTS ── */
-html[lang^="de"] .all-episodes-tab-button::after,
-[lang^="de"] .all-episodes-tab-button::after,
-:lang(de) .all-episodes-tab-button::after { content: "Alle Folgen" !important; }
+/* ENGLISH SYSTEM AUTO-DETECTION SWITCHES */
+html[lang^="en"] .all-episodes-tab-button::after,
+[lang^="en"] .all-episodes-tab-button::after,
+:lang(en) .all-episodes-tab-button::after { content: "All episodes" !important; }
 
-html[lang^="de"] .episode-info-tab-button::after,
-[lang^="de"] .episode-info-tab-button::after,
-:lang(de) .episode-info-tab-button::after { content: "Beschreibung" !important; }
+html[lang^="en"] .episode-info-tab-button::after,
+[lang^="en"] .episode-info-tab-button::after,
+:lang(en) .episode-info-tab-button::after { content: "Episode information" !important; }
 
 .playlist-open .all-episodes-tab-button,
 .episode-info-open .episode-info-tab-button {
@@ -404,12 +404,12 @@ html[lang^="de"] .episode-info-tab-button::after,
 }
 
 /* ══════════════════════════════════════════
-   PERMANENT FOOTER BLACK BOX BUTTON ALIGNMENT
+   PERMANENT FOOTER BLACK BOX GERMAN ALIGNMENT
    ══════════════════════════════════════════ */
 .share-menu {
   display: flex !important;
   position: absolute !important;
-  bottom: -53px !important;      /* FIXED: Locks perfectly parallel in your original black bar layout area */
+  bottom: -53px !important;      
   right: 24px !important;        
   background: transparent !important; 
   border: none !important;
@@ -428,7 +428,6 @@ html[lang^="de"] .episode-info-tab-button::after,
   display: none !important;      
 }
 
-/* Clean normalization layout flow configurations */
 .share-menu .copy-episode.flex-item {
   border: none !important;
   background: transparent !important;
@@ -437,7 +436,6 @@ html[lang^="de"] .episode-info-tab-button::after,
   display: flex !important;
 }
 
-/* Styles your permanent high-visibility lime green copy button pill */
 .share-menu button.share-copy-url-btn {
   position: relative !important; 
   background: var(--accent-lime) !important;
@@ -463,29 +461,30 @@ html[lang^="de"] .episode-info-tab-button::after,
   display: block !important;
 }
 
-/* ── MULTILINGUAL COPY TRIDGERS ── */
+/* AUTOMATIC BUTTON LOCALIZATION ENGINE (DEFAULTS TO GERMAN) */
 .share-menu button.share-copy-url-btn span {
   font-size: 0 !important;
   line-height: 0 !important;
   display: inline-block !important;
 }
 .share-menu button.share-copy-url-btn span::after {
-  content: "Copy episode link" !important; /* Default fallback string */
+  content: "Link kopieren" !important;
   font-size: 11px !important;
   font-weight: 600 !important;
   line-height: 1.2 !important;
   display: inline-block !important;
 }
 
-html[lang^="de"] .share-menu button.share-copy-url-btn span::after,
-[lang^="de"] .share-menu button.share-copy-url-btn span::after,
-:lang(de) .share-menu button.share-copy-url-btn span::after {
-  content: "Link kopieren" !important; /* German translation override string */
+/* ENGLISH SYSTEM AUTO-DETECTION OVERRIDE */
+html[lang^="en"] .share-menu button.share-copy-url-btn span::after,
+[lang^="en"] .share-menu button.share-copy-url-btn span::after,
+:lang(en) .share-menu button.share-copy-url-btn span::after {
+  content: "Copy episode link" !important;
 }
 
-/* PURE CSS FEEDBACK SLIDE OVERLAY WITH EXTENDED VISIBILITY HOLD TIME */
+/* AUTOMATIC HOVER FEEDBACK LOCALIZATION (DEFAULTS TO GERMAN) */
 .share-menu button.share-copy-url-btn::after {
-  content: "Copied! ✓" !important; /* Default fallback banner string */
+  content: "Kopiert! ✓" !important; 
   position: absolute !important;
   top: 0 !important;
   left: 0 !important;
@@ -504,10 +503,11 @@ html[lang^="de"] .share-menu button.share-copy-url-btn span::after,
   transition: opacity 0.2s ease 2s, transform 0.2s cubic-bezier(0.4, 0, 0.2, 1) 2s, visibility 0.2s ease 2s !important;
 }
 
-html[lang^="de"] .share-menu button.share-copy-url-btn::after,
-[lang^="de"] .share-menu button.share-copy-url-btn::after,
-:lang(de) .share-menu button.share-copy-url-btn::after {
-  content: "Kopiert! ✓" !important; /* German translation banner string */
+/* ENGLISH SYSTEM AUTO-DETECTION OVERRIDE */
+html[lang^="en"] .share-menu button.share-copy-url-btn::after,
+[lang^="en"] .share-menu button.share-copy-url-btn::after,
+:lang(en) .share-menu button.share-copy-url-btn::after {
+  content: "Copied! ✓" !important;
 }
 
 .share-menu button.share-copy-url-btn:active::after,
@@ -611,7 +611,7 @@ html[lang^="de"] .share-menu button.share-copy-url-btn::after,
 }
 
 /* ══════════════════════════════════════════
-   LOAD MORE DYNAMIC TRANSLATION BUTTON
+   LOAD MORE AUTOMATIC TRANSLATION CONTROL
    ══════════════════════════════════════════ */
 .load-more,
 .load-more-button {
@@ -629,19 +629,21 @@ html[lang^="de"] .share-menu button.share-copy-url-btn::after,
   transition: background 0.2s ease, color 0.2s ease !important;
   text-transform: none !important;
   box-shadow: none !important;
+  
   font-size: 0 !important;
 }
-
+/* DEFAULTS TO GERMAN */
 .load-more::after,
 .load-more-button::after {
-  content: "Load more episodes" !important; /* Default fallback string */
+  content: "Mehr Folgen laden" !important;
   font-size: 12px !important;
 }
 
-html[lang^="de"] .load-more::after, html[lang^="de"] .load-more-button::after,
-[lang^="de"] .load-more::after, [lang^="de"] .load-more-button::after,
-:lang(de) .load-more::after, :lang(de) .load-more-button::after {
-  content: "Mehr Folgen laden" !important; /* German translation override string */
+/* ENGLISH SYSTEM AUTO-DETECTION OVERRIDE */
+html[lang^="en"] .load-more::after, html[lang^="en"] .load-more-button::after,
+[lang^="en"] .load-more::after, [lang^="en"] .load-more-button::after,
+:lang(en) .load-more::after, :lang(en) .load-more-button::after { 
+  content: "Load more episodes" !important; 
 }
 
 .load-more:hover,
