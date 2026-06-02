@@ -389,21 +389,20 @@
 }
 
 /* ══════════════════════════════════════════
-   PERMANENT CORNER GREEN COPY BUTTON ENGINE
+   PERMANENT FOOTER BLACK BOX BUTTON ALIGNMENT
    ══════════════════════════════════════════ */
-/* Snaps the container perfectly to the exact bottom edge of the player frame box structure */
+/* Forces the element deep down into the existing native black footer box container grid */
 .share-menu {
   display: flex !important;
   position: absolute !important;
-  bottom: 0 !important;          /* Pin directly onto the bottom edge boundary */
-  height: 48px !important;       /* Matches the exact structural vertical dimension of the footer bar */
-  align-items: center !important; /* PERFECT VERTICAL CENTERING INTERACTION FOR BUTTON */
+  bottom: -43px !important;      /* Drops it directly down into the vertical center of the footer bar */
   right: 24px !important;        /* Aligns perfectly to the right side layout grid padding edge */
   background: transparent !important; /* Blends context natively into the underlying black footer bar */
   border: none !important;
   padding: 0 !important;
   margin: 0 !important;
   width: auto !important;
+  height: auto !important;
   z-index: 999999 !important;    
 }
 
