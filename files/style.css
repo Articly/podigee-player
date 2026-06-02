@@ -12,14 +12,19 @@
   --ui-border:       rgba(255, 255, 255, 0.08);
 }
 
-/* Eliminate system conflict overlays */
-.splash-button, .single-panel-title, .load-more, .time-reader,
-.close-menu-button, .more-menu-button, .single-playlist-episode .waveform-icon { 
+/* Safely eliminate unused structural elements without crashing the javascript engine */
+.splash-button, 
+.single-panel-title, 
+.load-more, 
+.time-reader,
+.close-menu-button, 
+.more-menu-button,
+.single-playlist-episode .waveform-icon { 
   display: none !important; 
 }
 
 /* ══════════════════════════════════════════
-   CORE WRAPPER FRAMEWORK RESETS
+   CORE WRAPPER RESETS
    ══════════════════════════════════════════ */
 .podcast-player-redesign,
 .podcast-player-redesign *,
@@ -88,7 +93,7 @@
 }
 
 /* ══════════════════════════════════════════
-   PURE CSS SHAPE CONTROLS (BULLETPROOF CONFIG)
+   BUTTON ACTIONS DECK (RESETS ALL 5 BUTTONS)
    ══════════════════════════════════════════ */
 .controls {
   display: flex !important;
@@ -107,6 +112,8 @@
   border: none !important;
   outline: none !important;
   box-shadow: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
   cursor: pointer !important;
   width: 32px !important;
   height: 32px !important;
@@ -114,106 +121,57 @@
   align-items: center !important;
   justify-content: center !important;
   border-radius: 50% !important;
-  font-size: 0 !important;
-  color: transparent !important;
 }
 
 .controls button:hover {
   background: rgba(255, 255, 255, 0.05) !important;
 }
 
-/* Render Vector Shapes via Pseudo-Elements to Prevent Script Drops */
-.controls button::before {
-  content: "" !important;
+.controls button svg {
   display: block !important;
-  font-family: inherit !important;
+  width: 14px !important;
+  height: 14px !important;
+  fill: var(--text-muted) !important;
 }
 
-/* Skip Previous Icon */
-.previous-button::before {
-  width: 0; height: 0;
-  border-style: solid;
-  border-width: 5px 8px 5px 0;
-  border-color: transparent var(--text-muted) transparent transparent;
-  box-shadow: -2px 0 0 var(--text-muted);
-}
-.previous-button:hover::before {
-  border-color: transparent var(--text-main) transparent transparent;
-  box-shadow: -2px 0 0 var(--text-main);
+.controls button:hover svg {
+  fill: var(--text-main) !important;
 }
 
-/* Skip Backward 10s Gylph */
-.backward-button::before {
-  content: "⟲10" !important;
-  font-size: 11px !important;
-  color: var(--text-muted) !important;
-  font-weight: 700 !important;
-}
-.backward-button:hover::before { color: var(--text-main) !important; }
-
-/* Skip Forward 30s Glyph */
-.forward-button::before {
-  content: "⟳30" !important;
-  font-size: 11px !important;
-  color: var(--text-muted) !important;
-  font-weight: 700 !important;
-}
-.forward-button:hover::before { color: var(--text-main) !important; }
-
-/* Skip Next Icon */
-.next-button::before {
-  width: 0; height: 0;
-  border-style: solid;
-  border-width: 5px 0 5px 8px;
-  border-color: transparent transparent transparent var(--text-muted);
-  box-shadow: 2px 0 0 var(--text-muted);
-}
-.next-button:hover::before {
-  border-color: transparent transparent transparent var(--text-main);
-  box-shadow: 2px 0 0 var(--text-main);
-}
-
-/* Primary Play Circle Engine Specs */
 .controls button.play-button {
   background: var(--accent-lime) !important;
   width: 48px !important;
   height: 48px !important;
   box-shadow: 0 0 15px rgba(220, 255, 77, 0.25) !important;
 }
-.controls button.play-button:hover { transform: scale(1.05) !important; }
 
-/* Triangle Play Shape */
-.play-button::before {
-  width: 0 !important; height: 0 !important;
-  border-style: solid !important;
-  border-width: 7px 0 7px 12px !important;
-  border-color: transparent transparent transparent var(--bg-dark-base) !important;
-  margin-left: 2px !important;
+.controls button.play-button svg {
+  width: 18px !important;
+  height: 18px !important;
+  fill: var(--bg-dark-base) !important;
 }
 
-/* Target Running State Changes Natively via Podigee Class Toggles */
-.playing .play-button::before {
-  border: none !important;
-  width: 10px !important;
-  height: 12px !important;
-  background: linear-gradient(to right, var(--bg-dark-base) 35%, transparent 35%, transparent 65%, var(--bg-dark-base) 65%) !important;
-  margin-left: 0 !important;
+.controls button.play-button:hover {
+  transform: scale(1.05) !important;
 }
 
 /* ══════════════════════════════════════════
-   TIMELINE DECK TRACK (FIXES VISIBILITY & BLOCKS)
+   TIMELINE SECTOR MODULE (CLEANS HIGHLIGHT BOXES)
    ══════════════════════════════════════════ */
+.main-player > .progress-bar,
 .progress-bar-player {
   display: flex !important;
   flex-direction: row !important;
   align-items: center !important;
   gap: 12px !important;
   background: transparent !important;
-  margin: 12px 0 4px !important;
+  background-color: transparent !important;
+  margin: 8px 0 !important;
   padding: 0 !important;
   height: auto !important;
   width: 100% !important;
   position: relative !important;
+  box-shadow: none !important;
 }
 
 .progress-bar-rail {
@@ -231,8 +189,10 @@
   border-radius: 2px !important;
 }
 
-/* Wipe highlight container panels background overlays on digital timers */
-.progress-bar-time-played {
+/* Complete reset of digital timers to remove high contrast background shapes */
+.progress-bar-time-played,
+.progress-bar .time-played,
+.progress-bar .time-remaining {
   color: var(--text-muted) !important;
   background: transparent !important;
   background-color: transparent !important;
@@ -252,8 +212,6 @@
 .time-played { order: 1 !important; }
 .time-remaining { order: 3 !important; }
 
-.progress-bar-time-played[style*="display: none"] { display: none !important; }
-
 .speed-select {
   background: var(--bg-dark-raised) !important;
   color: var(--text-main) !important;
@@ -265,7 +223,7 @@
 }
 
 /* ══════════════════════════════════════════
-   PLAYLIST RUNTIME MAPPING & SELECTION TRACK
+   PLAYLIST ROW FORMATTING & SIDE-BY-SIDE FIXED
    ══════════════════════════════════════════ */
 .panels-tabs-menu {
   background: rgba(0, 0, 0, 0.15) !important;
@@ -322,15 +280,15 @@
   transition: background 0.15s ease !important;
 }
 
-/* Sync visual execution variables across selected tracks row targets */
 .single-playlist-episode.active {
   background: rgba(220, 255, 77, 0.04) !important;
 }
+
 .single-playlist-episode:hover {
   background: rgba(255, 255, 255, 0.02) !important;
 }
 
-/* Force container holding icon and title row directly into a single horizontal block */
+/* FORCE TEXT CONTAINER TO SIT DIRECTLY NEXT TO THE PLAY ICON CIRCLE */
 .playlist-episode-info {
   display: flex !important;
   flex-direction: row !important;
@@ -340,8 +298,9 @@
   min-width: 0 !important;
 }
 
-/* Strip native index serial counters strings metrics */
-.playlist-episode-number { display: none !important; }
+.playlist-episode-number {
+  display: none !important;
+}
 
 .playlist-episode-title {
   color: var(--text-muted) !important;
@@ -358,7 +317,6 @@
   font-weight: 700 !important;
 }
 
-/* Build crisp inner circle layout vectors indicators */
 .list-play-icon {
   background: var(--bg-dark-raised) !important;
   border-radius: 50% !important;
@@ -375,9 +333,18 @@
   background: var(--accent-lime) !important;
 }
 
-.list-play-icon svg { width: 11px !important; height: 11px !important; }
-.list-play-icon svg path { fill: var(--text-muted) !important; }
-.single-playlist-episode.active .list-play-icon svg path { fill: var(--bg-dark-base) !important; }
+.list-play-icon svg { 
+  width: 11px !important; 
+  height: 11px !important; 
+}
+
+.list-play-icon svg path {
+  fill: var(--text-muted) !important;
+}
+
+.single-playlist-episode.active .list-play-icon svg path { 
+  fill: var(--bg-dark-base) !important; 
+}
 
 .playlist-episode-duration {
   color: var(--text-subtle) !important;
@@ -386,6 +353,7 @@
   margin-left: 12px !important;
   flex-shrink: 0 !important;
 }
+
 .single-playlist-episode.active .playlist-episode-duration {
   color: var(--accent-lime) !important;
   font-weight: 600 !important;
@@ -397,7 +365,10 @@
   font-size: 13px !important;
   line-height: 1.6 !important;
 }
-.single-panel.episode-info a { color: var(--accent-lime) !important; }
+
+.single-panel.episode-info a {
+  color: var(--accent-lime) !important;
+}
 
 /* ══════════════════════════════════════════
    FOOTER BLOCK DECK
@@ -430,6 +401,7 @@
   text-transform: none !important;
   display: inline-block !important;
 }
+
 .footer-right .buttons .share-menu-button:hover {
   background: var(--accent-lime) !important;
   color: var(--bg-dark-base) !important;
