@@ -389,24 +389,25 @@
 }
 
 /* ══════════════════════════════════════════
-   PERFECT CORNER FOOTER BUTTON SHIFT ENGINE
+   PERMANENT CORNER GREEN COPY BUTTON ENGINE
    ══════════════════════════════════════════ */
-/* Forces the inner menu to break parent bounds and snap perfectly into the black footer row background */
+/* Snaps the container perfectly to the exact bottom edge of the player frame box structure */
 .share-menu {
   display: flex !important;
   position: absolute !important;
-  bottom: -38px !important;      /* Drops the absolute layout container straight into the black footer bar */
-  right: 24px !important;        /* Aligns perfectly to the right edge matching footer grids */
-  background: transparent !important; 
+  bottom: 0 !important;          /* Pin directly onto the bottom edge boundary */
+  height: 48px !important;       /* Matches the exact structural vertical dimension of the footer bar */
+  align-items: center !important; /* PERFECT VERTICAL CENTERING INTERACTION FOR BUTTON */
+  right: 24px !important;        /* Aligns perfectly to the right side layout grid padding edge */
+  background: transparent !important; /* Blends context natively into the underlying black footer bar */
   border: none !important;
   padding: 0 !important;
   margin: 0 !important;
   width: auto !important;
-  height: auto !important;
   z-index: 999999 !important;    
 }
 
-/* Wipe out sub-menus, lists, timestamp wrappers, and close icons completely */
+/* Wipe out layout clutter, embed lists, close icons and grids completely */
 .share-menu .copy-embed,
 .share-menu .share-buttons,
 .share-menu .start-at-wrap,
@@ -423,7 +424,7 @@
   display: flex !important;
 }
 
-/* Styles your lone permanent lime green link trigger button pill */
+/* Styles your permanent high-visibility lime green copy button pill */
 .share-menu button.share-copy-url-btn {
   background: var(--accent-lime) !important;
   color: var(--bg-dark-base) !important;
