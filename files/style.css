@@ -32,8 +32,6 @@
 .single-panel-title, 
 .playlist-title,
 .panels-title,
-.load-more, 
-.load-more-button,
 .time-reader,
 .main-player > .progress-bar,
 .close-menu-button, 
@@ -348,7 +346,6 @@
   to { opacity: 1; transform: translateY(0); }
 }
 
-/* Let Podigee naturally handle show/hide toggles. We only inject the clean transitions */
 .single-panel {
   background: var(--bg-dark-surface) !important;
   margin: 0 !important;
@@ -482,6 +479,35 @@
 .single-playlist-episode.active .playlist-episode-duration {
   color: var(--accent-lime) !important;
   font-weight: 600 !important;
+}
+
+/* ══════════════════════════════════════════
+   LOAD MORE EPISODES CONTROLS
+   ══════════════════════════════════════════ */
+.load-more,
+.load-more-button {
+  display: block !important;
+  width: calc(100% - 48px) !important;
+  margin: 16px auto !important;
+  padding: 10px !important;
+  text-align: center !important;
+  background: var(--bg-dark-raised) !important;
+  color: var(--text-main) !important;
+  border: 1px solid var(--ui-border) !important;
+  border-radius: 12px !important;
+  font-size: 12px !important;
+  font-weight: 600 !important;
+  cursor: pointer !important;
+  transition: background 0.2s ease, color 0.2s ease !important;
+  text-transform: none !important;
+  box-shadow: none !important;
+}
+
+.load-more:hover,
+.load-more-button:hover {
+  background: var(--accent-lime) !important;
+  color: var(--bg-dark-base) !important;
+  border-color: transparent !important;
 }
 
 /* ══════════════════════════════════════════
