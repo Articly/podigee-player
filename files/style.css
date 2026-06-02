@@ -735,3 +735,17 @@
   font-size: 26px !important;       /* Crisp scale for the main action trigger */
   line-height: 1 !important;
 }
+
+
+/**
+mobile safety check
+*/
+@media (max-width: 480px) {
+  .controls {
+    justify-content: center !important;
+    gap: 12px !important;
+    
+    /* Reset the left shift on mobile so it stays centered when stacked */
+    margin: 4px 0 0 0 !important; 
+  }
+}
