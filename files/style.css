@@ -68,7 +68,7 @@
   border: 1px solid var(--ui-border) !important;
   border-radius: 20px !important;
   overflow: hidden !important;
-  position: relative !important;     /* Base anchor to align share tray over footer space */
+  position: relative !important;     /* Anchor alignment for the bottom footer swap */
 }
 
 .cover-image-player-wrap {
@@ -367,7 +367,7 @@
 .single-panel.episode-info::-webkit-scrollbar { 
   width: 4px; 
 }
-.single-panel.playlist ul::-webkit-scrollbar-thumb,
+.single-playlist-episode::-webkit-scrollbar-thumb,
 .single-panel.episode-info::-webkit-scrollbar-thumb { 
   background: var(--bg-dark-raised); 
   border-radius: 2px; 
@@ -388,7 +388,7 @@
 }
 
 /* ══════════════════════════════════════════
-   FOOTER LEVEL OVERLAY ACTION ENGINE (FIXED)
+   FOOTER LEVEL OVERLAY ACTION ENGINE 
    ══════════════════════════════════════════ */
 /* Snaps the copy block directly over the footer bar so panels remain fully visible above */
 .share-menu {
@@ -408,25 +408,38 @@
   margin: 0 !important;
 }
 
-/* Strip layout clutter completely from view */
+/* Natively reproduces the high-contrast branding label on the left side of the row */
+.share-menu::before {
+  content: "ARTICLY" !important;
+  font-size: 13px !important;
+  font-weight: 800 !important;
+  letter-spacing: 1px !important;
+  color: var(--text-main) !important;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+  order: 1 !important;
+}
+
+/* Strip extra unneeded options entirely from view */
 .share-menu .copy-embed,
 .share-menu .share-buttons,
 .share-menu .start-at-wrap {
   display: none !important;
 }
 
-/* Un-style the native wrapper blocks to utilize modern row metrics */
+/* Formats the active copy button block to snap beautifully on the right hand side */
 .share-menu .copy-episode.flex-item {
   border: none !important;
   background: transparent !important;
   padding: 0 !important;
-  margin: 0 !important;
+  margin: 0 0 0 auto !important; 
   display: flex !important;
-  flex: 1 !important;
-  justify-content: flex-end !important; /* Forces the copy block over to the right hand side */
+  flex-direction: row !important;
+  align-items: center !important;
+  width: auto !important;
+  order: 2 !important;
 }
 
-/* Format copy trigger button cleanly inside the footer context wrapper */
+/* Styles your standalone green trigger button */
 .share-menu button.share-copy-url-btn {
   background: var(--accent-lime) !important;
   color: var(--bg-dark-base) !important;
@@ -452,37 +465,30 @@
   display: block !important;
 }
 
-/* Styles the cancel toggle on the left to handle quick dismiss operations instantly */
+/* Formats the cancel trigger as a clean standalone "X" on the far right */
 .share-menu button.close-button {
+  order: 3 !important;
   position: static !important;
   background: transparent !important;
   border: none !important;
   padding: 0 !important;
-  margin: 0 !important;
-  display: inline-flex !important;
+  margin: 0 0 0 16px !important; /* Space separation gap from the copy button */
+  width: 24px !important;
+  height: 24px !important;
+  display: flex !important;
   align-items: center !important;
+  justify-content: center !important;
   cursor: pointer !important;
-  color: var(--text-muted) !important;
-  font-size: 11px !important;
-  font-weight: 500 !important;
 }
 
 .share-menu button.close-button svg {
-  width: 10px !important;
-  height: 10px !important;
+  width: 12px !important;
+  height: 12px !important;
   fill: var(--text-muted) !important;
-  margin-right: 6px !important;
 }
 
-.share-menu button.close-button::after {
-  content: "Cancel" !important;
-  color: var(--text-muted) !important;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
-}
-
-.share-menu button.close-button:hover svg,
-.share-menu button.close-button:hover::after {
-  color: var(--text-main) !important;
+.share-menu button.close-button:hover svg {
+  fill: var(--text-main) !important;
 }
 
 /* ══════════════════════════════════════════
