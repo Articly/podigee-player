@@ -68,7 +68,7 @@
   border: 1px solid var(--ui-border) !important;
   border-radius: 20px !important;
   overflow: hidden !important;
-  position: relative !important;     /* Important base anchor for our absolute overlay window */
+  position: relative !important;     /* Base anchor to align share tray over footer space */
 }
 
 .cover-image-player-wrap {
@@ -388,104 +388,101 @@
 }
 
 /* ══════════════════════════════════════════
-   MINIMALIST SINGLE-BUTTON SHARE MODAL OVERLAY
+   FOOTER LEVEL OVERLAY ACTION ENGINE (FIXED)
    ══════════════════════════════════════════ */
-/* Forces the container into a full-height solid block overlaying the base components cleanly */
+/* Snaps the copy block directly over the footer bar so panels remain fully visible above */
 .share-menu {
+  display: flex !important;
   position: absolute !important;
-  top: 0 !important;
+  bottom: 0 !important;
   left: 0 !important;
   width: 100% !important;
-  height: 100% !important;
-  background: var(--bg-dark-surface) !important;
-  z-index: 99999 !important;
-  display: flex !important;
-  flex-direction: column !important;
+  height: 47px !important;       /* Exact vertical dimension matching the footer layout */
+  background: var(--bg-dark-base) !important; 
+  border-top: 1px solid var(--ui-border) !important;
+  padding: 0 24px !important;
+  flex-direction: row !important;
   align-items: center !important;
-  justify-content: center !important;
-  padding: 24px !important;
+  justify-content: space-between !important;
+  z-index: 99999 !important;
+  margin: 0 !important;
 }
 
-/* Hide everything except the Copy Episode Link button block */
+/* Strip layout clutter completely from view */
 .share-menu .copy-embed,
 .share-menu .share-buttons,
 .share-menu .start-at-wrap {
   display: none !important;
 }
 
-/* Center-align the copy wrapper layout flat lines */
+/* Un-style the native wrapper blocks to utilize modern row metrics */
 .share-menu .copy-episode.flex-item {
   border: none !important;
   background: transparent !important;
   padding: 0 !important;
   margin: 0 !important;
   display: flex !important;
-  justify-content: center !important;
-  align-items: center !important;
-  width: auto !important;
+  flex: 1 !important;
+  justify-content: flex-end !important; /* Forces the copy block over to the right hand side */
 }
 
-/* Styles your unique standalone action button */
+/* Format copy trigger button cleanly inside the footer context wrapper */
 .share-menu button.share-copy-url-btn {
   background: var(--accent-lime) !important;
   color: var(--bg-dark-base) !important;
   border: none !important;
-  border-radius: 30px !important;
-  padding: 14px 28px !important;
-  font-size: 13px !important;
-  font-weight: 700 !important;
+  border-radius: 20px !important;
+  padding: 6px 14px !important;
+  font-size: 11px !important;
+  font-weight: 600 !important;
   display: inline-flex !important;
   align-items: center !important;
-  gap: 10px !important;
+  gap: 6px !important;
   cursor: pointer !important;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2) !important;
-  transition: transform 0.15s ease, background-color 0.2s !important;
   text-transform: none !important;
+  box-shadow: none !important;
 }
 
-.share-menu button.share-copy-url-btn:hover {
-  transform: scale(1.03) !important;
-}
-
-/* Scales the copy button's vector illustration graphics down to proportion */
 .share-menu button.share-copy-url-btn svg,
 .share-menu button.share-copy-url-btn svg path {
-  width: 16px !important;
-  height: 16px !important;
+  width: 12px !important;
+  height: 12px !important;
   fill: var(--bg-dark-base) !important;
   stroke: none !important;
   display: block !important;
 }
 
-/* Restores perfect layout click precedence to the 'X' button */
+/* Styles the cancel toggle on the left to handle quick dismiss operations instantly */
 .share-menu button.close-button {
-  position: absolute !important;
-  top: 20px !important;
-  right: 20px !important;
-  background: rgba(255, 255, 255, 0.05) !important;
-  border: 1px solid var(--ui-border) !important;
+  position: static !important;
+  background: transparent !important;
+  border: none !important;
   padding: 0 !important;
   margin: 0 !important;
-  width: 36px !important;
-  height: 36px !important;
-  display: flex !important;
+  display: inline-flex !important;
   align-items: center !important;
-  justify-content: center !important;
-  border-radius: 50% !important;
   cursor: pointer !important;
-  z-index: 100001 !important; /* Forces layout layer priority */
+  color: var(--text-muted) !important;
+  font-size: 11px !important;
+  font-weight: 500 !important;
 }
 
-.share-menu button.close-button svg,
-.share-menu button.close-button svg path {
-  width: 12px !important;
-  height: 12px !important;
-  fill: var(--text-main) !important;
-  stroke: none !important;
+.share-menu button.close-button svg {
+  width: 10px !important;
+  height: 10px !important;
+  fill: var(--text-muted) !important;
+  margin-right: 6px !important;
 }
 
-.share-menu button.close-button:hover {
-  background: rgba(255, 255, 255, 0.1) !important;
+.share-menu button.close-button::after {
+  content: "Cancel" !important;
+  color: var(--text-muted) !important;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+}
+
+.share-menu button.close-button:hover svg,
+.share-menu button.close-button:hover::after {
+  color: var(--text-main) !important;
 }
 
 /* ══════════════════════════════════════════
