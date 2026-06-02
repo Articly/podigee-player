@@ -23,5 +23,3 @@ Ensure your latest production code is pushed to your public stylesheet asset fil
 2. Navigate to your custom player layout settings pane:  
    `Web-Player` ➡️ `Konfiguriere deinen Web-Player für Website und Embedding`.
 3. Locate the **External Stylesheet URL** link input field.
-4. HTML: https://cdn.jsdelivr.net/gh/Articly/podigee-player@<use hash commit here>/files/index.html
-5. CSS: https://cdn.jsdelivr.net/gh/Articly/podigee-player@<use hash commit here>/files/style.css
