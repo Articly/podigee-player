@@ -12,26 +12,29 @@
   --ui-border:       rgba(255, 255, 255, 0.08);
 }
 
-/* Eliminate native unstyled floating configurations */
+/* Eliminate native unstyled floating configuration flags */
 .splash-button, 
 .single-panel-title, 
 .load-more, 
 .time-reader,
-.main-player > .progress-bar { 
+.main-player > .progress-bar,
+.close-menu-button, 
+.more-menu-button,
+.single-playlist-episode .waveform-icon { 
   display: none !important; 
 }
 
 /* ══════════════════════════════════════════
-   CORE WRAPPER STRUCTURAL CONFIGURATIONS
+   CORE CONTAINMENT RESETS
    ══════════════════════════════════════════ */
-.articly-dark-player,
-.articly-dark-player *,
-.articly-dark-player *::before,
-.articly-dark-player *::after {
+.podcast-player-redesign,
+.podcast-player-redesign *,
+.podcast-player-redesign *::before,
+.podcast-player-redesign *::after {
   box-sizing: border-box !important;
 }
 
-.articly-dark-player {
+.podcast-player-redesign {
   background: var(--bg-dark-base) !important;
   color: var(--text-main) !important;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif !important;
@@ -113,8 +116,8 @@
   padding: 0 !important;
   margin: 0 !important;
   cursor: pointer !important;
-  width: 34px !important;
-  height: 34px !important;
+  width: 32px !important;
+  height: 32px !important;
   display: inline-flex !important;
   align-items: center !important;
   justify-content: center !important;
@@ -125,7 +128,6 @@
   background: rgba(255, 255, 255, 0.05) !important;
 }
 
-/* Strictly strip default system graphics properties from native button loops */
 .controls button::before,
 .controls button::after {
   content: none !important;
@@ -134,8 +136,8 @@
 
 .controls button svg {
   display: block !important;
-  width: 15px !important;
-  height: 15px !important;
+  width: 14px !important;
+  height: 14px !important;
   fill: var(--text-muted) !important;
 }
 
@@ -143,7 +145,6 @@
   fill: var(--text-main) !important;
 }
 
-/* Center lime execution trigger styling configuration specs */
 .controls button.play-button {
   background: var(--accent-lime) !important;
   width: 48px !important;
@@ -161,13 +162,12 @@
   transform: scale(1.05) !important;
 }
 
-/* Manage vector visibility tracking directly on our custom template blocks */
 .play-button svg.stop { display: none !important; }
 .playing .play-button svg.play { display: none !important; }
 .playing .play-button svg.stop { display: block !important; }
 
 /* ══════════════════════════════════════════
-   TIMELINE SECTOR MODULE (CLEANS HIGH CONTRAST COLLISIONS)
+   TIMELINE SECTOR MODULE (CLEANS HIGHLIGHT BOXES)
    ══════════════════════════════════════════ */
 .progress-bar-player {
   display: flex !important;
@@ -197,7 +197,6 @@
   border-radius: 2px !important;
 }
 
-/* Absolute reset pattern on digital tracking clocks to eliminate background block boxes */
 .progress-bar-time-played {
   color: var(--text-muted) !important;
   background: transparent !important;
@@ -218,7 +217,6 @@
 .time-played { order: 1 !important; }
 .time-remaining { order: 3 !important; }
 
-/* Handle default template directives safely */
 .progress-bar-time-played[style*="display: none"] {
   display: none !important;
 }
@@ -234,7 +232,7 @@
 }
 
 /* ══════════════════════════════════════════
-   NATIVE COMPONENT PANELS SYSTEM OVERRIDES
+   PLAYLIST ROW FORMATTING (MATCHES IMAGE 1)
    ══════════════════════════════════════════ */
 .panels-tabs-menu {
   background: rgba(0, 0, 0, 0.15) !important;
@@ -274,65 +272,87 @@
 
 .single-panel.playlist ul {
   list-style: none !important;
-  max-height: 240px !important;
+  max-height: 250px !important;
   overflow-y: auto !important;
 }
 
 .single-panel.playlist ul::-webkit-scrollbar { width: 4px; }
 .single-panel.playlist ul::-webkit-scrollbar-thumb { background: var(--bg-dark-raised); border-radius: 2px; }
 
+/* Enforce crisp borders and full width item layouts */
 .single-playlist-episode {
   display: flex !important;
   justify-content: space-between !important;
   align-items: center !important;
-  padding: 12px 24px !important;
+  padding: 16px 24px !important;
   border-bottom: 1px solid var(--ui-border) !important;
+  background: transparent !important;
+  transition: background 0.15s ease !important;
 }
 
+/* Row active container background highlight lookup */
 .single-playlist-episode.active {
   background: rgba(220, 255, 77, 0.04) !important;
 }
 
-/* STRIP DEFAULT NUMERIC PREFIX LABELS FROM LIST VIEWS */
+.single-playlist-episode:hover {
+  background: rgba(255, 255, 255, 0.02) !important;
+}
+
+/* Wipes out the auto-generated numeric indexes prefix digits strings */
 .playlist-episode-number {
   display: none !important;
 }
 
 .playlist-episode-title {
   color: var(--text-muted) !important;
-  font-size: 12px !important;
+  font-size: 13px !important;
+  font-weight: 400 !important;
 }
 
 .single-playlist-episode.active .playlist-episode-title {
   color: var(--text-main) !important;
-  font-weight: 600 !important;
+  font-weight: 700 !important;
 }
 
+/* Rebuild track circular layout block */
 .list-play-icon {
   background: var(--bg-dark-raised) !important;
   border-radius: 50% !important;
-  width: 26px !important;
-  height: 26px !important;
+  width: 32px !important;
+  height: 32px !important;
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
+  margin-right: 4px !important;
 }
 
 .single-playlist-episode.active .list-play-icon {
   background: var(--accent-lime) !important;
 }
 
-.list-play-icon svg { width: 10px !important; height: 10px !important; }
-.single-playlist-episode.active .list-play-icon svg path { fill: var(--bg-dark-base) !important; }
-.single-playlist-episode .waveform-icon { display: none !important; }
+.list-play-icon svg { 
+  width: 11px !important; 
+  height: 11px !important; 
+}
+
+.list-play-icon svg path {
+  fill: var(--text-muted) !important;
+}
+
+.single-playlist-episode.active .list-play-icon svg path { 
+  fill: var(--bg-dark-base) !important; 
+}
 
 .playlist-episode-duration {
   color: var(--text-subtle) !important;
   font-size: 11px !important;
+  font-weight: 500 !important;
 }
 
 .single-playlist-episode.active .playlist-episode-duration {
   color: var(--accent-lime) !important;
+  font-weight: 600 !important;
 }
 
 .single-panel.episode-info {
@@ -347,7 +367,7 @@
 }
 
 /* ══════════════════════════════════════════
-   FOOTER BLOCK DECK (CLEANS SHARE MENU BUTTON OVERLAPS)
+   FOOTER BLOCK DECK
    ══════════════════════════════════════════ */
 .footer {
   background: var(--bg-dark-base) !important;
@@ -356,7 +376,6 @@
   display: flex !important;
   justify-content: space-between !important;
   align-items: center !important;
-  height: auto !important;
 }
 
 .articly-brand-label {
@@ -377,16 +396,9 @@
   cursor: pointer !important;
   text-transform: none !important;
   display: inline-block !important;
-  height: auto !important;
-  width: auto !important;
 }
 
 .footer-right .buttons .share-menu-button:hover {
   background: var(--accent-lime) !important;
   color: var(--bg-dark-base) !important;
-}
-
-/* Kill generic auto generated secondary dot buttons paths inside buttons wrapping classes */
-.close-menu-button, .more-menu-button {
-  display: none !important;
 }
