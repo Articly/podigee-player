@@ -388,32 +388,41 @@
 }
 
 /* ══════════════════════════════════════════
-   TRANSPARENT INLINE SHARE BUTTON ENGINE
+   INTEGRATED BOTTOM SHARE BUTTON MECHANICS
    ══════════════════════════════════════════ */
-/* Strips away background colors and layout extensions to blend into the frame naturally */
+/* Hides the default footer action block options entirely when share is active to prevent item stacking */
+.podcast-player-inside:has(.share-menu[style*="display: block"]) .footer-right {
+  display: none !important;
+}
+
+/* Snaps the copy setup directly inside the bottom-right corner of the original footer bar layout area */
 .share-menu {
   display: flex !important;
-  background: transparent !important; 
+  position: absolute !important;
+  bottom: 0 !important;
+  left: 0 !important;
+  width: 100% !important;
+  height: 47px !important;       /* Maps onto the footer grid frame exactly */
+  background: transparent !important; /* Lets the original black bar and ARTICLY brand show through */
   border: none !important;
-  padding: 12px 24px !important;
+  padding: 0 24px !important;
   flex-direction: row !important;
   align-items: center !important;
-  justify-content: flex-end !important; /* Aligns the single action setup cleanly to the right */
-  width: 100% !important;
-  height: auto !important;
+  justify-content: flex-end !important; 
+  z-index: 99999 !important;
   margin: 0 !important;
-  box-shadow: none !important;
-  position: static !important;
+  box-sizing: border-box !important;
 }
 
 /* Strip structural clutter entirely from the viewport wrapper */
 .share-menu .copy-embed,
 .share-menu .share-buttons,
-.share-menu .start-at-wrap {
-  display: none !important;
+.share-menu .start-at-wrap,
+.share-menu button.close-button {
+  display: none !important;      /* Removes the close icon box entirely */
 }
 
-/* Normalize flex containers to utilize standard row metrics */
+/* Normalize content layout frameworks inside the footer area safely */
 .share-menu .copy-episode.flex-item {
   border: none !important;
   background: transparent !important;
@@ -449,33 +458,6 @@
   fill: var(--bg-dark-base) !important;
   stroke: none !important;
   display: block !important;
-}
-
-/* Resets the cancel action into a clean right-aligned standalone "X" trigger */
-.share-menu button.close-button {
-  position: static !important;
-  background: transparent !important;
-  border: none !important;
-  padding: 0 !important;
-  margin: 0 0 0 12px !important; /* Space gap separation from the copy action pill */
-  width: 24px !important;
-  height: 24px !important;
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  cursor: pointer !important;
-  color: transparent !important; /* Hides the native "Cancel" text completely */
-  font-size: 0 !important;
-}
-
-.share-menu button.close-button svg {
-  width: 12px !important;
-  height: 12px !important;
-  fill: var(--text-muted) !important;
-}
-
-.share-menu button.close-button:hover svg {
-  fill: var(--text-main) !important;
 }
 
 /* ══════════════════════════════════════════
