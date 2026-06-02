@@ -152,8 +152,8 @@
 
 .controls button svg {
   display: block !important;
-  width: 14px !important;
-  height: 14px !important;
+  width: 18px !important;
+  height: 18px !important;
   fill: var(--text-muted) !important;
 }
 
@@ -164,8 +164,8 @@
 /* HIGH-CONTRAST CENTER PLAY BUTTON ENGINE */
 .controls button.play-button {
   background: var(--accent-lime) !important;
-  width: 48px !important;
-  height: 48px !important;
+  width: 44px !important;
+  height: 44px !important;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
 }
 
