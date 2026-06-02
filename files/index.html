@@ -21,7 +21,7 @@
         </div>
 
         <div class="main-player">
-          <div class="controls">
+          <div class="controls-row">
             <button class="previous-button skip-backward-button" pp-title="translations.previous" pp-aria-label="translations.previous">
               <svg viewBox="0 0 20 17" xmlns="http://www.w3.org/2000/svg">
                 <path d="M1 17C0.447715 17 0 16.4563 0 15.7857V1.21429C0 0.543654 0.447715 6.91937e-08 1 6.91937e-08C1.55228 6.91937e-08 2 0.543654 2 1.21429V15.7857C2 16.4563 1.55228 17 1 17Z"/>
@@ -53,21 +53,16 @@
             <button class="next-button skip-forward-button" pp-title="translations.next" pp-aria-label="translations.next">
               <svg viewBox="0 0 20 17" xmlns="http://www.w3.org/2000/svg">
                 <path d="M19 0C19.5523 0 20 0.543654 20 1.21429V15.7857C20 16.4563 19.5523 17 19 17C18.4477 17 18 16.4563 18 15.7857V1.21429C18 0.543654 18.4477 0 19 0Z"/>
-                <path d="M14.6637 7.21766C14.4431 6.82424 14.1245 6.49084 13.737 6.24793L3.74996 0.341197C3.37366 0.116664 2.94038 -0.00148742 2.49878 1.42064e-05C2.05718 0.00151583 1.62476 0.122611 1.25009 0.349698C0.863033 0.589872 0.545227 0.921758 0.326566 1.31413C0.107905 1.70651 -0.00442357 2.14648 0.000146738 2.59266V14.4061C-0.00463645 14.8525 0.10759 15.2927 0.326261 15.6853C0.544932 16.0779 0.862852 16.41 1.25009 16.6503C1.62476 16.8774 2.05718 16.9985 2.49878 17C2.94038 17.0015 3.37366 16.8833 3.74996 16.6588L13.7345 10.7521Z"/>
+                <path d="M14.6637 7.21766C14.4431 6.82424 14.1245 6.49084 13.737 6.24793L3.74996 0.341197C3.37366 0.116664 2.94038 -0.00148742 2.49878 1.42064e-05C2.05718 0.00151583 1.62476 0.122611 1.25009 0.349698C0.863033 0.589872 0.545227 0.921758 0.326566 1.31413C0.107905 1.70651 -0.00442357 2.14648 0.000146738 2.59266V14.4061C-0.00463645 14.8525 0.10759 15.2927 0.326261 15.6853C0.544932 16.0779 0.862852 16.41 1.25009 16.6503C1.62476 16.8774 2.05718 16.9985 2.49878 17C2.94038 17.0015 3.37366 16.8833 3.74996 16.6588L13.737 10.7521Z"/>
               </svg>
             </button>
           </div>
 
-          <div class="progress-bar progress-bar-player">
-            <time class="progress-bar-time-played time-remaining" pp-show="timeCountdown" tabindex="0" role="button"></time>
-            <time class="progress-bar-time-played time-played" pp-show="timeCountup" tabindex="0" role="button"></time>
-            <button class="time-reader" tabindex="-1" aria-hidden="true"></button>
-            <div class="progress-bar-rail">
-              <span class="progress-bar-loaded"></span>
-              <span class="progress-bar-buffering"></span>
-              <span class="progress-bar-played">
-                <span class="progress-tooltip">00:00</span>
-              </span>
+          <div class="progress-timeline-container">
+            <progressbar></progressbar>
+            <div class="time-row-display">
+              <time class="progress-bar-time-played time-played" pp-show="timeCountup" tabindex="0" role="button">00:00</time>
+              <time class="progress-bar-time-played time-remaining" pp-show="timeCountdown" tabindex="0" role="button">-00:00</time>
             </div>
           </div>
 
@@ -88,7 +83,7 @@
 
     <div class="footer">
       <div class="footer-left">
-        <span class="articly-brand-logo">ARTICLY</span>
+        <span class="articly-brand-label">ARTICLY</span>
       </div>
       <div class="footer-right">
         <div class="buttons"></div>
