@@ -411,7 +411,7 @@
 .share-menu {
   display: flex !important;
   position: absolute !important;
-  bottom: -55px !important;      /* FIXED BOUNDS: Locks perfectly inline inside the footer bar layout */
+  bottom: -53px !important;      /* FIXED BOUNDS: Locks perfectly inline inside the footer bar layout */
   right: 24px !important;        
   background: transparent !important; 
   border: none !important;
@@ -454,13 +454,18 @@
   overflow: hidden !important;   
 }
 
+/* Hide the old SVG vector icon entirely */
 .share-menu button.share-copy-url-btn svg,
 .share-menu button.share-copy-url-btn svg path {
-  width: 12px !important;
-  height: 12px !important;
-  fill: var(--bg-dark-base) !important;
-  stroke: none !important;
-  display: block !important;
+  display: none !important;
+}
+
+/* Inject the customized emoji link chain icon cleanly */
+.share-menu button.share-copy-url-btn::before {
+  content: "🔗" !important;
+  font-size: 11px !important;
+  display: inline-block !important;
+  line-height: 1 !important;
 }
 
 /* Hardcoded German Default: Link kopieren */
