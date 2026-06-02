@@ -297,7 +297,7 @@
 }
 
 /* ══════════════════════════════════════════
-   PLAYLIST NAVIGATION TAB MENU TRACKS
+   PLAYLIST NAVIGATION TAB GERMAN TRANSLATIONS
    ══════════════════════════════════════════ */
 .panels-tabs-menu {
   background: rgba(0, 0, 0, 0.15) !important;
@@ -317,7 +317,6 @@
   background: none !important;
   border: none !important;
   color: var(--text-muted) !important;
-  font-size: 12px !important;
   font-weight: 600 !important;
   padding: 14px 0 !important;
   margin-right: 24px !important;
@@ -325,6 +324,24 @@
   cursor: pointer !important;
   border-bottom: 2px solid transparent !important;
   transition: color 0.2s ease, border-color 0.2s ease !important;
+}
+
+/* German Translation: All episodes -> Alle Folgen */
+.all-episodes-tab-button {
+  font-size: 0 !important;
+}
+.all-episodes-tab-button::after {
+  content: "Alle Folgen" !important;
+  font-size: 12px !important;
+}
+
+/* German Translation: Episode information -> Beschreibung */
+.episode-info-tab-button {
+  font-size: 0 !important;
+}
+.episode-info-tab-button::after {
+  content: "Beschreibung" !important;
+  font-size: 12px !important;
 }
 
 .playlist-open .all-episodes-tab-button,
@@ -389,13 +406,12 @@
 }
 
 /* ══════════════════════════════════════════
-   PERMANENT FOOTER BLACK BOX BUTTON ALIGNMENT
+   PERMANENT FOOTER BLACK BOX GERMAN TRIGGER
    ══════════════════════════════════════════ */
-/* Forces the element deep down into the vertical center grid of the black footer bar wrapper */
 .share-menu {
   display: flex !important;
   position: absolute !important;
-  bottom: -53px !important;      
+  bottom: -53px !important;      /* EXACT CORNER VALUE MATCH REQUESTED */
   right: 24px !important;        
   background: transparent !important; 
   border: none !important;
@@ -406,7 +422,6 @@
   z-index: 999999 !important;    
 }
 
-/* Wipe out layout clutter, embed lists, close icons and grids completely */
 .share-menu .copy-embed,
 .share-menu .share-buttons,
 .share-menu .start-at-wrap,
@@ -414,7 +429,6 @@
   display: none !important;      
 }
 
-/* Clean normalization layout flow configurations */
 .share-menu .copy-episode.flex-item {
   border: none !important;
   background: transparent !important;
@@ -423,7 +437,6 @@
   display: flex !important;
 }
 
-/* Styles your permanent high-visibility lime green copy button pill */
 .share-menu button.share-copy-url-btn {
   position: relative !important; 
   background: var(--accent-lime) !important;
@@ -431,8 +444,6 @@
   border: none !important;
   border-radius: 20px !important;
   padding: 6px 14px !important;
-  font-size: 11px !important;
-  font-weight: 600 !important;
   display: inline-flex !important;
   align-items: center !important;
   gap: 6px !important;
@@ -451,15 +462,29 @@
   display: block !important;
 }
 
-/* PURE CSS FEEDBACK SLIDE OVERLAY WITH EXTENDED VISIBILITY HOLD TIME */
+/* German Translation: Copy episode link -> Link kopieren */
+.share-menu button.share-copy-url-btn span {
+  font-size: 0 !important;
+  line-height: 0 !important;
+  display: inline-block !important;
+}
+.share-menu button.share-copy-url-btn span::after {
+  content: "Link kopieren" !important;
+  font-size: 11px !important;
+  font-weight: 600 !important;
+  line-height: 1.2 !important;
+  display: inline-block !important;
+}
+
+/* German Translation: Copied! ✓ -> Kopiert! ✓ */
 .share-menu button.share-copy-url-btn::after {
-  content: "Copied! ✓" !important;
+  content: "Kopiert! ✓" !important;
   position: absolute !important;
   top: 0 !important;
   left: 0 !important;
   right: 0 !important;
   bottom: 0 !important;
-  background: #10B981 !important; /* Premium system success green feedback banner color */
+  background: #10B981 !important; 
   color: #FFFFFF !important;
   font-size: 11px !important;
   font-weight: 700 !important;
@@ -469,17 +494,14 @@
   opacity: 0 !important;
   visibility: hidden !important;
   transform: translateY(100%) !important; 
-  /* LONG TRANSITION-OUT DELAY: Waits 2 seconds before smoothly hiding the banner again */
   transition: opacity 0.2s ease 2s, transform 0.2s cubic-bezier(0.4, 0, 0.2, 1) 2s, visibility 0.2s ease 2s !important;
 }
 
-/* Swaps button into success mode immediately upon click focus input state */
 .share-menu button.share-copy-url-btn:active::after,
 .share-menu button.share-copy-url-btn:focus::after {
   opacity: 1 !important;
   visibility: visible !important;
   transform: translateY(0) !important; 
-  /* ZERO DELAY ON TRANSITION-IN: Ensures the green success banner shows up instantly on click */
   transition: opacity 0s ease 0s, transform 0s ease 0s, visibility 0s ease 0s !important;
 }
 
@@ -505,7 +527,6 @@
   background: rgba(255, 255, 255, 0.02) !important;
 }
 
-/* FORCE TEXT CONTAINER TO SIT DIRECTLY NEXT TO THE PLAY ICON CIRCLE */
 .playlist-episode-info {
   display: flex !important;
   flex-direction: row !important;
@@ -577,7 +598,7 @@
 }
 
 /* ══════════════════════════════════════════
-   LOAD MORE EPISODES CONTROLS
+   LOAD MORE GERMAN TRANSLATION CONTROL
    ══════════════════════════════════════════ */
 .load-more,
 .load-more-button {
@@ -590,12 +611,19 @@
   color: var(--text-main) !important;
   border: 1px solid var(--ui-border) !important;
   border-radius: 12px !important;
-  font-size: 12px !important;
   font-weight: 600 !important;
   cursor: pointer !important;
   transition: background 0.2s ease, color 0.2s ease !important;
   text-transform: none !important;
   box-shadow: none !important;
+  
+  /* German Translation: Load more episodes -> Mehr Folgen laden */
+  font-size: 0 !important;
+}
+.load-more::after,
+.load-more-button::after {
+  content: "Mehr Folgen laden" !important;
+  font-size: 12px !important;
 }
 
 .load-more:hover,
