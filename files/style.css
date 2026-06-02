@@ -157,6 +157,14 @@
   fill: var(--text-muted) !important;
 }
 
+
+.controls button.play-button svg {
+  width: 22px !important;           /* Scales up the icon container */
+  height: 22px !important;
+  transform: scale(1.4) !important; /* Forces the inner vector shape to grow */
+  transform-origin: center !important;
+}
+
 .controls button:hover svg {
   fill: var(--text-main) !important;
 }
