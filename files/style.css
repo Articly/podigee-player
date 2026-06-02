@@ -1,58 +1,63 @@
 /* ══════════════════════════════════════════
-   BRAND COLOR VARIABLES
+   BRAND PALETTE DEFINITIONS
    ══════════════════════════════════════════ */
 :root {
-  --bg-dark-base:    #000002;
-  --bg-dark-surface: #1B282D;
-  --bg-dark-raised:  #2e4550;
-  --accent-lime:     #DCFF4D;
-  --text-main:       #FFFFFF;
-  --text-muted:      rgba(255, 255, 255, 0.60);
-  --text-subtle:     rgba(255, 255, 255, 0.35);
-  --ui-border:       rgba(255, 255, 255, 0.08);
+  --bg-primary:   #000002;
+  --bg-surface:   #1B282D;
+  --bg-raised:    #2e4550;
+  --lime-green:   #DCFF4D;
+  --text-primary: #FFFFFF;
+  --text-muted:   rgba(255, 255, 255, 0.60);
+  --text-subtle:  rgba(255, 255, 255, 0.35);
+  --border-line:  rgba(255, 255, 255, 0.08);
 }
 
-/* Hide raw layout elements we don't want */
+/* Nuke absolute positioning metrics generated outside our viewport wrapper context */
 .splash-button, .single-panel-title, .load-more {
   display: none !important;
 }
 
 /* ══════════════════════════════════════════
-   SHELL STRUCTURE
+   RESET SHELL ENFORCEMENTS
    ══════════════════════════════════════════ */
-.articly-dark-theme, 
-.articly-dark-theme *, 
-.articly-dark-theme *::before, 
-.articly-dark-theme *::after {
-  box-sizing: border-box;
+.podcast-player-redesign,
+.podcast-player-redesign *,
+.podcast-player-redesign *::before,
+.podcast-player-redesign *::after {
+  box-sizing: border-box !important;
 }
 
-.articly-dark-theme {
-  background: var(--bg-dark-base) !important;
-  color: var(--text-main) !important;
+.podcast-player-redesign {
+  background: var(--bg-primary) !important;
+  color: var(--text-primary) !important;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
   padding: 6px !important;
+  width: 100% !important;
+  min-width: 100% !important;
 }
 
 .podcast-player-inside {
-  background: var(--bg-dark-surface) !important;
-  border: 1px solid var(--ui-border) !important;
+  background: var(--bg-surface) !important;
+  border: 1px solid var(--border-line) !important;
   border-radius: 20px !important;
   overflow: hidden !important;
 }
 
+/* ══════════════════════════════════════════
+   PLAYER BODY & AUDIO BLOCK
+   ══════════════════════════════════════════ */
 .cover-image-player-wrap {
-  display: flex;
-  padding: 24px;
-  gap: 20px;
+  display: flex !important;
+  padding: 24px !important;
+  gap: 20px !important;
 }
 
 .cover-image-wrap {
-  width: 100px;
-  height: 100px;
-  border-radius: 12px;
-  overflow: hidden;
-  flex-shrink: 0;
+  width: 100px !important;
+  height: 100px !important;
+  border-radius: 12px !important;
+  overflow: hidden !important;
+  flex-shrink: 0 !important;
 }
 
 .cover-image {
@@ -62,39 +67,51 @@
 }
 
 .player-info-wrap {
-  flex: 1;
-  min-width: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
+  flex: 1 !important;
+  min-width: 0 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 12px !important;
 }
 
-.episode-title h1 a, .episode-title h1 {
+.episode-title h1 a, 
+.episode-title h1 {
   font-size: 15px !important;
-  color: var(--text-main) !important;
+  color: var(--text-primary) !important;
   font-weight: 700 !important;
   text-decoration: none !important;
+  line-height: 1.4 !important;
 }
 
 .episode-subtitle h2 {
   font-size: 11px !important;
   color: var(--text-muted) !important;
+  font-weight: 400 !important;
 }
 
 /* ══════════════════════════════════════════
-   PLAYER BUTTONS & TIMELINE
+   ISOLATED CONTROL HANDLERS
    ══════════════════════════════════════════ */
 .controls {
-  display: flex;
-  align-items: center;
-  gap: 14px;
+  display: flex !important;
+  align-items: center !important;
+  gap: 14px !important;
 }
 
-/* Base button styling */
 .controls button {
   background: none !important;
   border: none !important;
   cursor: pointer !important;
+  width: 32px !important;
+  height: 32px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  border-radius: 50% !important;
+}
+
+.controls button:hover {
+  background: rgba(255, 255, 255, 0.05) !important;
 }
 
 .controls button svg {
@@ -104,59 +121,76 @@
 }
 
 .controls button:hover svg {
-  fill: var(--text-main) !important;
+  fill: var(--text-primary) !important;
 }
 
-/* Play button isolation styling */
+/* Structural enforcement configurations targeting play button node precisely */
 .controls button.play-button {
-  background: var(--accent-lime) !important;
-  width: 46px !important;
-  height: 46px !important;
-  border-radius: 50% !important;
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
+  background: var(--lime-green) !important;
+  width: 48px !important;
+  height: 48px !important;
   box-shadow: 0 0 15px rgba(220, 255, 77, 0.25) !important;
 }
 
 .controls button.play-button svg {
   width: 18px !important;
   height: 18px !important;
-  fill: var(--bg-dark-base) !important;
+  fill: var(--bg-primary) !important;
 }
 
-/* Native timeline styling overrides */
+.controls button.play-button:hover {
+  transform: scale(1.05) !important;
+}
+
+/* Handle playback mode dynamic toggling conditions explicitly */
+.play-button svg.stop { display: none !important; }
+.playing .play-button svg.play { display: none !important; }
+.playing .play-button svg.stop { display: block !important; }
+
+/* ══════════════════════════════════════════
+   TIMELINE SECTOR STRUCTURAL COMPONENT OVERRIDES
+   ══════════════════════════════════════════ */
+.progress-bar-player {
+  display: flex !important;
+  align-items: center !important;
+  gap: 12px !important;
+  margin-bottom: 4px !important;
+}
+
 .progress-bar-rail {
   background: var(--bg-dark-raised) !important;
   height: 4px !important;
   border-radius: 2px !important;
+  flex: 1 !important;
 }
 
 .progress-bar-played {
-  background: var(--accent-lime) !important;
+  background: var(--lime-green) !important;
 }
 
 .progress-bar-time-played {
   color: var(--text-muted) !important;
   font-size: 11px !important;
+  font-family: inherit !important;
 }
 
 .speed-select {
   background: var(--bg-dark-raised) !important;
-  color: var(--text-main) !important;
-  border: 1px solid var(--ui-border) !important;
+  color: var(--text-primary) !important;
+  border: 1px solid var(--border-line) !important;
   border-radius: 6px !important;
   font-size: 11px !important;
   padding: 2px 6px !important;
+  cursor: pointer !important;
 }
 
 /* ══════════════════════════════════════════
-   NATIVE PANELS & EPISODE LISTS
+   NATIVE PANELS MAPPING ADAPTATION OVERRIDES
    ══════════════════════════════════════════ */
 .panels-tabs-menu {
   background: rgba(0, 0, 0, 0.2) !important;
-  border-top: 1px solid var(--ui-border) !important;
-  border-bottom: 1px solid var(--ui-border) !important;
+  border-top: 1px solid var(--border-line) !important;
+  border-bottom: 1px solid var(--border-line) !important;
 }
 
 .panels-tabs-menu ul {
@@ -171,20 +205,18 @@
   color: var(--text-muted) !important;
   font-size: 12px !important;
   font-weight: 600 !important;
-  padding: 12px 0 !important;
+  padding: 14px 0 !important;
   margin-right: 24px !important;
   text-transform: none !important;
   cursor: pointer !important;
 }
 
-/* Target active tabs state */
 .playlist-open .all-episodes-tab-button,
 .episode-info-open .episode-info-tab-button {
-  color: var(--accent-lime) !important;
-  border-bottom: 2px solid var(--accent-lime) !important;
+  color: var(--lime-green) !important;
+  border-bottom: 2px solid var(--lime-green) !important;
 }
 
-/* Target text content/lists inside panels */
 .panels {
   background: var(--bg-dark-surface) !important;
 }
@@ -195,17 +227,20 @@
   overflow-y: auto !important;
 }
 
+/* Custom platform-native tracking layout configurations */
+.single-panel.playlist ul::-webkit-scrollbar { width: 4px; }
+.single-panel.playlist ul::-webkit-scrollbar-thumb { background: var(--bg-dark-raised); border-radius: 2px; }
+
 .single-playlist-episode {
   display: flex !important;
   justify-content: space-between !important;
   align-items: center !important;
   padding: 12px 24px !important;
-  border-bottom: 1px solid var(--ui-border) !important;
-  background: transparent !important;
+  border-bottom: 1px solid var(--border-line) !important;
 }
 
 .single-playlist-episode.active {
-  background: rgba(220, 255, 77, 0.05) !important;
+  background: rgba(220, 255, 77, 0.04) !important;
 }
 
 .playlist-episode-title {
@@ -214,21 +249,31 @@
 }
 
 .single-playlist-episode.active .playlist-episode-title {
-  color: var(--text-main) !important;
+  color: var(--text-primary) !important;
   font-weight: 600 !important;
 }
 
 .list-play-icon {
   background: var(--bg-dark-raised) !important;
   border-radius: 50% !important;
+  width: 26px !important;
+  height: 26px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
 }
 
 .single-playlist-episode.active .list-play-icon {
-  background: var(--accent-lime) !important;
+  background: var(--lime-green) !important;
+}
+
+.list-play-icon svg {
+  width: 10px !important;
+  height: 10px !important;
 }
 
 .single-playlist-episode.active .list-play-icon svg path {
-  fill: var(--bg-dark-base) !important;
+  fill: var(--bg-primary) !important;
 }
 
 .playlist-episode-duration {
@@ -237,7 +282,7 @@
 }
 
 .single-playlist-episode.active .playlist-episode-duration {
-  color: var(--accent-lime) !important;
+  color: var(--lime-green) !important;
 }
 
 .single-panel.episode-info {
@@ -247,21 +292,25 @@
   line-height: 1.6 !important;
 }
 
+.single-panel.episode-info a {
+  color: var(--lime-green) !important;
+}
+
 /* ══════════════════════════════════════════
-   FOOTER STRIP
+   FOOTER LAYER
    ══════════════════════════════════════════ */
 .footer {
-  background: var(--bg-dark-base) !important;
-  border-top: 1px solid var(--ui-border) !important;
-  padding: 12px 24px !important;
+  background: var(--bg-primary) !important;
+  border-top: 1px solid var(--border-line) !important;
+  padding: 14px 24px !important;
   display: flex !important;
   justify-content: space-between !important;
   align-items: center !important;
 }
 
-.articly-logo-text {
+.articly-brand-label {
   font-size: 13px;
   font-weight: 800;
   letter-spacing: 1px;
-  color: var(--text-main);
+  color: var(--text-primary);
 }
