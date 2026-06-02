@@ -123,7 +123,7 @@
   flex-direction: row !important;
   align-items: center !important;
   justify-content: flex-start !important;
-  gap: 20px !important;
+  gap: 16px !important;
   width: 100% !important;
   background: transparent !important;
   margin: 0 !important;
@@ -138,100 +138,96 @@
   padding: 0 !important;
   margin: 0 !important;
   cursor: pointer !important;
+  width: 32px !important;
+  height: 32px !important;
   display: inline-flex !important;
   align-items: center !important;
   justify-content: center !important;
   border-radius: 50% !important;
-  transition: background 0.15s ease !important;
 }
 
-/* ══════════════════════════════════════════
-   BULLETPROOF CONTROL ICON SCALING ENGINE
-   ══════════════════════════════════════════ */
-.previous-button, 
-.backward-button, 
-.forward-button, 
-.next-button {
-  width: 44px !important;
-  height: 44px !important;
+.controls button:hover {
+  background: rgba(255, 255, 255, 0.05) !important;
 }
 
-.controls button:not(.play-button):hover {
-  background: rgba(255, 255, 255, 0.08) !important;
+.controls button svg {
+  display: block !important;
+  width: 14px !important;
+  height: 14px !important;
+  fill: var(--text-muted) !important;
 }
 
-@media (prefers-color-scheme: light) {
-  .controls button:not(.play-button):hover {
-    background: rgba(0, 0, 0, 0.05) !important;
-  }
+.controls button:hover svg {
+  fill: var(--text-main) !important;
 }
 
-/* Deep-targets every possible inner icon element to force the correct large size */
-.previous-button *, 
-.backward-button *, 
-.forward-button *, 
-.next-button * {
-  width: 24px !important;
-  height: 24px !important;
-  min-width: 24px !important;
-  min-height: 24px !important;
-  font-size: 24px !important;
-  line-height: 1 !important;
-  transform: scale(1.6) !important; /* Wipes out tiny icons completely */
-  transform-origin: center !important;
-  opacity: 1 !important;
-  fill: #FFFFFF !important;
-  stroke: #FFFFFF !important;
-  color: #FFFFFF !important;
-  transition: all 0.15s ease !important;
-}
-
-/* Light Mode visibility correction */
-@media (prefers-color-scheme: light) {
-  .previous-button *, 
-  .backward-button *, 
-  .forward-button *, 
-  .next-button * {
-    fill: #111827 !important;
-    stroke: #111827 !important;
-    color: #111827 !important;
-  }
-}
-
-/* ══════════════════════════════════════════
-   HIGH-CONTRAST CENTER PLAY BUTTON CONSOLE
-   ══════════════════════════════════════════ */
+/* HIGH-CONTRAST CENTER PLAY BUTTON ENGINE */
 .controls button.play-button {
   background: var(--accent-lime) !important;
-  width: 54px !important;
-  height: 54px !important;
+  width: 48px !important;
+  height: 48px !important;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
 }
 
-.controls button.play-button svg,
-.controls button.play-button svg path,
-.controls button.play-button svg polygon {
-  width: 18px !important;
-  height: 18px !important;
-  transform: scale(1.2) !important;
-  fill: #000002 !important;
-  stroke: #000002 !important;
-  color: #000002 !important;
+/* Aggressively forces the inner arrow to be white in Light Mode, dark in Dark Mode */
+.controls button.play-button,
+.controls button.play-button *,
+.controls button.play-button::before,
+.controls button.play-button::after {
+  color: var(--bg-dark-base) !important;
+  fill: var(--bg-dark-base) !important;
+  stroke: var(--bg-dark-base) !important;
 }
 
-@media (prefers-color-scheme: light) {
-  .controls button.play-button svg,
-  .controls button.play-button svg path,
-  .controls button.play-button svg polygon {
-    fill: #FFFFFF !important;
-    stroke: #FFFFFF !important;
-    color: #FFFFFF !important;
-  }
+.controls button.play-button:hover {
+  transform: scale(1.05) !important;
 }
 
 .play-button svg.stop { display: none !important; }
 .playing .play-button svg.play { display: none !important; }
 .playing .play-button svg.stop { display: block !important; }
+
+/* ══════════════════════════════════════════
+   SCALE ALL OTHER CONTROL BUTTONS
+   ══════════════════════════════════════════ */
+.previous-button, 
+.backward-button, 
+.forward-button, 
+.next-button {
+  width: 40px !important;
+  height: 40px !important;
+  font-size: 20px !important; 
+  color: var(--text-muted) !important; 
+}
+
+/* Forces them to scale up if they are inline vector graphics */
+.previous-button svg, 
+.backward-button svg, 
+.forward-button svg, 
+.next-button svg {
+  width: 22px !important;
+  height: 22px !important;
+  fill: var(--text-muted) !important; 
+  stroke: var(--text-muted) !important; 
+}
+
+/* Enhances the hover effect for clarity */
+.previous-button:hover, 
+.backward-button:hover, 
+.forward-button:hover, 
+.next-button:hover {
+  background: rgba(255, 255, 255, 0.1) !important;
+  color: var(--text-main) !important; 
+}
+
+/* Brightens SVG icons to white on hover */
+.previous-button:hover svg, 
+.backward-button:hover svg, 
+.forward-button:hover svg, 
+.next-button:hover svg {
+  fill: var(--text-main) !important;
+  stroke: var(--text-main) !important;
+}
 
 /* ══════════════════════════════════════════
    TIMELINE SECTOR MODULE (CLEANS HIGHLIGHT BOXES)
@@ -301,7 +297,7 @@
 }
 
 /* ══════════════════════════════════════════
-   PLAYLIST NAVIGATION TAB GERMAN OVERRIDES
+   PLAYLIST NAVIGATION TAB MENU TRACKS
    ══════════════════════════════════════════ */
 .panels-tabs-menu {
   background: rgba(0, 0, 0, 0.15) !important;
@@ -321,6 +317,7 @@
   background: none !important;
   border: none !important;
   color: var(--text-muted) !important;
+  font-size: 12px !important;
   font-weight: 600 !important;
   padding: 14px 0 !important;
   margin-right: 24px !important;
@@ -328,24 +325,6 @@
   cursor: pointer !important;
   border-bottom: 2px solid transparent !important;
   transition: color 0.2s ease, border-color 0.2s ease !important;
-}
-
-/* Hardcoded German Default: Alle Folgen */
-.all-episodes-tab-button {
-  font-size: 0 !important;
-}
-.all-episodes-tab-button::after {
-  content: "Alle Folgen" !important;
-  font-size: 12px !important;
-}
-
-/* Hardcoded German Default: Beschreibung */
-.episode-info-tab-button {
-  font-size: 0 !important;
-}
-.episode-info-tab-button::after {
-  content: "Beschreibung" !important;
-  font-size: 12px !important;
 }
 
 .playlist-open .all-episodes-tab-button,
@@ -410,12 +389,13 @@
 }
 
 /* ══════════════════════════════════════════
-   PERMANENT FOOTER BLACK BOX GERMAN ALIGNMENT
+   PERMANENT FOOTER BLACK BOX BUTTON ALIGNMENT
    ══════════════════════════════════════════ */
+/* Forces the element deep down into the vertical center grid of the black footer bar wrapper */
 .share-menu {
   display: flex !important;
   position: absolute !important;
-  bottom: -53px !important;      /* FIXED BOUNDS: Locks perfectly inline inside the footer bar layout */
+  bottom: -53px !important;      
   right: 24px !important;        
   background: transparent !important; 
   border: none !important;
@@ -434,6 +414,7 @@
   display: none !important;      
 }
 
+/* Clean normalization layout flow configurations */
 .share-menu .copy-episode.flex-item {
   border: none !important;
   background: transparent !important;
@@ -442,71 +423,43 @@
   display: flex !important;
 }
 
+/* Styles your permanent high-visibility lime green copy button pill */
 .share-menu button.share-copy-url-btn {
-  position: relative !important; 
+  position: relative !important; /* Context anchor layer for the copied visual overlay */
   background: var(--accent-lime) !important;
   color: var(--bg-dark-base) !important;
   border: none !important;
   border-radius: 20px !important;
   padding: 6px 14px !important;
+  font-size: 11px !important;
+  font-weight: 600 !important;
   display: inline-flex !important;
   align-items: center !important;
   gap: 6px !important;
   cursor: pointer !important;
   text-transform: none !important;
   box-shadow: none !important;
-  overflow: hidden !important;   
+  overflow: hidden !important;   /* Clips the absolute expansion inside the button frame rounded corners */
 }
 
-/* Hide the native element vector graphics completely */
 .share-menu button.share-copy-url-btn svg,
 .share-menu button.share-copy-url-btn svg path {
-  display: none !important;
-}
-
-/* Razor Sharp Solid Black Link Vector Icon for Dark Mode Lime Button */
-.share-menu button.share-copy-url-btn::before {
-  content: "" !important;
-  display: inline-block !important;
   width: 12px !important;
   height: 12px !important;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000002' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71'%3E%3C/path%3E%3Cpath d='M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71'%3E%3C/path%3E%3C/svg%3E") !important;
-  background-repeat: no-repeat !important;
-  background-position: center !important;
-  background-size: contain !important;
-  vertical-align: middle !important;
+  fill: var(--bg-dark-base) !important;
+  stroke: none !important;
+  display: block !important;
 }
 
-/* Sweeps light theme parameters down the line to render solid white graphic layout frames natively */
-@media (prefers-color-scheme: light) {
-  .share-menu button.share-copy-url-btn::before {
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23FFFFFF' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71'%3E%3C/path%3E%3Cpath d='M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71'%3E%3C/path%3E%3C/svg%3E") !important;
-  }
-}
-
-/* Hardcoded German Default: Link kopieren */
-.share-menu button.share-copy-url-btn span {
-  font-size: 0 !important;
-  line-height: 0 !important;
-  display: inline-block !important;
-}
-.share-menu button.share-copy-url-btn span::after {
-  content: "Link kopieren" !important;
-  font-size: 11px !important;
-  font-weight: 600 !important;
-  line-height: 1.2 !important;
-  display: inline-block !important;
-}
-
-/* Hardcoded German Default Feedback: Kopiert! ✓ */
+/* PURE CSS FEEDBACK SLIDE OVERLAY: Injects the "Copied!" feedback card on active click */
 .share-menu button.share-copy-url-btn::after {
-  content: "Kopiert! ✓" !important; 
+  content: "Copied! ✓" !important;
   position: absolute !important;
   top: 0 !important;
   left: 0 !important;
   right: 0 !important;
   bottom: 0 !important;
-  background: #10B981 !important; 
+  background: #10B981 !important; /* Premium system success green feedback banner color */
   color: #FFFFFF !important;
   font-size: 11px !important;
   font-weight: 700 !important;
@@ -515,16 +468,16 @@
   justify-content: center !important;
   opacity: 0 !important;
   visibility: hidden !important;
-  transform: translateY(100%) !important; 
-  transition: opacity 0.2s ease 2s, transform 0.2s cubic-bezier(0.4, 0, 0.2, 1) 2s, visibility 0.2s ease 2s !important;
+  transform: translateY(100%) !important; /* Keeps the overlay stacked right out of view below the button */
+  transition: opacity 0.15s ease, transform 0.15s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.15s !important;
 }
 
+/* Swaps button into success mode immediately upon click focus input state */
 .share-menu button.share-copy-url-btn:active::after,
 .share-menu button.share-copy-url-btn:focus::after {
   opacity: 1 !important;
   visibility: visible !important;
-  transform: translateY(0) !important; 
-  transition: opacity 0s ease 0s, transform 0s ease 0s, visibility 0s ease 0s !important;
+  transform: translateY(0) !important; /* Slides into place seamlessly covering original text and vectors */
 }
 
 /* ══════════════════════════════════════════
@@ -549,6 +502,7 @@
   background: rgba(255, 255, 255, 0.02) !important;
 }
 
+/* FORCE TEXT CONTAINER TO SIT DIRECTLY NEXT TO THE PLAY ICON CIRCLE */
 .playlist-episode-info {
   display: flex !important;
   flex-direction: row !important;
@@ -620,7 +574,7 @@
 }
 
 /* ══════════════════════════════════════════
-   LOAD MORE GERMAN OVERRIDE CONTROL
+   LOAD MORE EPISODES CONTROLS
    ══════════════════════════════════════════ */
 .load-more,
 .load-more-button {
@@ -633,19 +587,12 @@
   color: var(--text-main) !important;
   border: 1px solid var(--ui-border) !important;
   border-radius: 12px !important;
+  font-size: 12px !important;
   font-weight: 600 !important;
   cursor: pointer !important;
   transition: background 0.2s ease, color 0.2s ease !important;
   text-transform: none !important;
   box-shadow: none !important;
-  
-  /* Hardcoded German Default: Mehr Folgen laden */
-  font-size: 0 !important;
-}
-.load-more::after,
-.load-more-button::after {
-  content: "Mehr Folgen laden" !important;
-  font-size: 12px !important;
 }
 
 .load-more:hover,
