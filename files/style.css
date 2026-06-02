@@ -43,6 +43,14 @@
 }
 
 /* ══════════════════════════════════════════
+   DYNAMIC FOOTER REPLACEMENT ENGINE
+   ══════════════════════════════════════════ */
+/* Hides the native static Share button instantly whenever the copy overlay state is active */
+.podcast-player-inside:has(.share-menu[style*="display: block"]) .share-menu-button {
+  display: none !important;
+}
+
+/* ══════════════════════════════════════════
    CORE CONTAINMENT RESETS (ROUNDED LAYOUT)
    ══════════════════════════════════════════ */
 .podcast-player-redesign,
@@ -68,7 +76,7 @@
   border: 1px solid var(--ui-border) !important;
   border-radius: 20px !important;
   overflow: hidden !important;
-  position: relative !important;     
+  position: relative !important;     /* Required anchor point for absolute footer button mapping */
 }
 
 .cover-image-player-wrap {
@@ -339,6 +347,7 @@
   background: var(--bg-dark-surface) !important;
   margin: 0 !important;
   padding: 0 !important;
+  position: static !important; /* Strips layout resets so absolute positions bypass this node */
 }
 
 @keyframes panelFadeIn {
@@ -351,6 +360,7 @@
   margin: 0 !important;
   padding: 0 !important;
   animation: panelFadeIn 0.2s ease-out forwards !important;
+  position: static !important;
 }
 
 .single-panel.playlist ul {
@@ -388,53 +398,44 @@
 }
 
 /* ══════════════════════════════════════════
-   INTEGRATED BOTTOM SHARE BUTTON MECHANICS
+   PERFECT CORNER FOOTER BUTTON ALIGNMENT ENGINE
    ══════════════════════════════════════════ */
-/* Hides the default footer action block options entirely when share is active to prevent item stacking */
-.podcast-player-inside:has(.share-menu[style*="display: block"]) .footer-right {
-  display: none !important;
-}
-
-/* Snaps the copy setup directly inside the bottom-right corner of the original footer bar layout area */
+/* Positions the link menu directly inside the base right corner padding row of the player box frame */
 .share-menu {
   display: flex !important;
   position: absolute !important;
-  bottom: 0 !important;
-  left: 0 !important;
-  width: 100% !important;
-  height: 47px !important;       /* Maps onto the footer grid frame exactly */
-  background: transparent !important; /* Lets the original black bar and ARTICLY brand show through */
+  bottom: 11px !important;       /* Matches vertical tracking alignment perfectly */
+  right: 24px !important;        /* Lines up exactly where the old Share trigger was placed */
+  top: auto !important;
+  left: auto !important;
+  width: auto !important;
+  height: auto !important;
+  background: transparent !important; /* Blends context natively into the underlying black footer bar */
   border: none !important;
-  padding: 0 24px !important;
-  flex-direction: row !important;
-  align-items: center !important;
-  justify-content: flex-end !important; 
-  z-index: 99999 !important;
+  padding: 0 !important;
   margin: 0 !important;
-  box-sizing: border-box !important;
+  box-shadow: none !important;
+  z-index: 999999 !important;    /* Locks rendering layer above all baseline containers */
 }
 
-/* Strip structural clutter entirely from the viewport wrapper */
+/* Wipe out layout clutter entirely from the active drawer viewport array */
 .share-menu .copy-embed,
 .share-menu .share-buttons,
 .share-menu .start-at-wrap,
 .share-menu button.close-button {
-  display: none !important;      /* Removes the close icon box entirely */
+  display: none !important;      /* Destroys the close icon block entirely from the runtime engine */
 }
 
-/* Normalize content layout frameworks inside the footer area safely */
+/* Normalize content nodes safely */
 .share-menu .copy-episode.flex-item {
   border: none !important;
   background: transparent !important;
   padding: 0 !important;
   margin: 0 !important; 
   display: flex !important;
-  flex-direction: row !important;
-  align-items: center !important;
-  width: auto !important;
 }
 
-/* Styles your lone lime green target operation button */
+/* Styles your unified standalone lime green link trigger button */
 .share-menu button.share-copy-url-btn {
   background: var(--accent-lime) !important;
   color: var(--bg-dark-base) !important;
