@@ -68,7 +68,7 @@
   border: 1px solid var(--ui-border) !important;
   border-radius: 20px !important;
   overflow: hidden !important;
-  position: relative !important;     /* Anchor for the absolute share overlay box */
+  position: relative !important;     
 }
 
 .cover-image-player-wrap {
@@ -364,11 +364,13 @@
 }
 
 .single-panel.playlist ul::-webkit-scrollbar,
-.single-panel.episode-info::-webkit-scrollbar { 
+.single-panel.episode-info::-webkit-scrollbar,
+.share-menu::-webkit-scrollbar { 
   width: 4px; 
 }
 .single-panel.playlist ul::-webkit-scrollbar-thumb,
-.single-panel.episode-info::-webkit-scrollbar-thumb { 
+.single-panel.episode-info::-webkit-scrollbar-thumb,
+.share-menu::-webkit-scrollbar-thumb { 
   background: var(--bg-dark-raised); 
   border-radius: 2px; 
 }
@@ -388,117 +390,127 @@
 }
 
 /* ══════════════════════════════════════════
-   TARGETED CODENAME DECK FOR THE SHARE POPUP 
+   HYPER-TARGETED SHARE DRAWER INTERACTIVE DECK
    ══════════════════════════════════════════ */
-/* Forces the container to span smoothly right over the parent layout window boundaries */
+/* Mounts the share screen safely in the exact same workspace area as other list tabs */
 .share-menu {
-  position: absolute !important;
-  top: 0 !important;
-  left: 0 !important;
-  width: 100% !important;
-  height: 100% !important;
+  display: block !important;
   background: var(--bg-dark-surface) !important;
-  z-index: 99999 !important;
-  padding: 32px 24px !important;
-  border-radius: 20px !important;
-  display: flex !important;
-  flex-direction: column !important;
-  justify-content: flex-start !important;
-  gap: 16px !important;
+  padding: 36px 24px 20px 24px !important; /* Generous top padding keeps content clear of the X click path */
+  color: var(--text-main) !important;
+  font-size: 13px !important;
+  height: 230px !important;      
+  max-height: 230px !important;
+  overflow-y: auto !important;
+  position: relative !important;
+  border-top: 1px solid var(--ui-border) !important;
+  box-sizing: border-box !important;
+  width: 100% !important;
 }
 
-/* Sets formatting layout configurations for rows */
+/* Format content structures into horizontal lines */
 .share-menu .flex-item {
   display: flex !important;
   flex-direction: row !important;
   align-items: center !important;
   justify-content: space-between !important;
   width: 100% !important;
-  padding-bottom: 14px !important;
+  padding: 12px 0 !important;
   border-bottom: 1px solid var(--ui-border) !important;
+  background: transparent !important;
 }
 
-/* Separate layout mechanics for the social row deck pinned down below */
 .share-menu .share-buttons.flex-item {
   border-bottom: none !important;
-  margin-top: auto !important;
   padding-bottom: 0 !important;
+  margin-top: 8px !important;
 }
 
-/* Standardizes copy URL and embed triggers */
-.share-menu button.share-copy-url-btn,
-.share-menu button.share-embed-url-btn {
+/* Force standard text values to map cleanly to global color metrics */
+.share-menu span,
+.share-menu div,
+.share-menu p {
+  color: var(--text-main) !important;
+  font-size: 13px !important;
+}
+
+/* Standardizes general triggers and action links */
+.share-menu button:not(.close-button) {
   background: var(--bg-dark-raised) !important;
   border: 1px solid var(--ui-border) !important;
   color: var(--text-main) !important;
   border-radius: 20px !important;
-  padding: 8px 16px !important;
+  padding: 6px 14px !important;
   font-size: 12px !important;
   font-weight: 600 !important;
   display: inline-flex !important;
   align-items: center !important;
   gap: 8px !important;
   cursor: pointer !important;
-  transition: background 0.2s, color 0.2s !important;
+  text-transform: none !important;
+  box-shadow: none !important;
+  transition: background 0.2s ease, color 0.2s ease !important;
 }
 
-.share-menu button.share-copy-url-btn:hover,
-.share-menu button.share-embed-url-btn:hover {
+.share-menu button:not(.close-button):hover {
   background: var(--accent-lime) !important;
   color: var(--bg-dark-base) !important;
+  border-color: transparent !important;
 }
 
-/* COMPRESS MASSSIVE VECTORS: Shrinks all internal icons explicitly down to 18px */
+/* Formats the inner active/inactive list pills for JavaScript and iFrame states */
+.share-menu .button-active {
+  background: var(--accent-lime) !important;
+  color: var(--bg-dark-base) !important;
+  border-color: transparent !important;
+}
+
+/* COMPRESS MASSSIVE VECTORS: Downscales all sharing assets cleanly to 16px boxes */
 .share-menu svg,
 .share-menu svg path {
   width: 16px !important;
   height: 16px !important;
   min-width: 16px !important;
   min-height: 16px !important;
-  fill: var(--text-muted) !important;
+  fill: currentColor !important; /* Forces path colors to follow their text wrapper layer changes */
   stroke: none !important;
-  transition: fill 0.2s !important;
+  display: block !important;
 }
 
-.share-menu button:hover svg,
-.share-menu button:hover svg path {
-  fill: var(--bg-dark-base) !important;
-}
-
-/* Custom position resets for absolute close window button */
+/* SOLID ABSOLUTE FIX: Safely positions the X clear of all fields on its own priority layer */
 .share-menu button.close-button {
   position: absolute !important;
-  top: 20px !important;
-  right: 20px !important;
+  top: 12px !important;
+  right: 16px !important;
   background: transparent !important;
   border: none !important;
   padding: 0 !important;
   margin: 0 !important;
-  width: 32px !important;
-  height: 32px !important;
+  width: 24px !important;
+  height: 24px !important;
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
   cursor: pointer !important;
+  z-index: 100000 !important; /* Commands maximum top-layer precedence to stay fully clickable */
 }
 
 .share-menu button.close-button svg {
   width: 14px !important;
   height: 14px !important;
-  fill: var(--text-main) !important;
+  fill: var(--text-muted) !important;
 }
 
 .share-menu button.close-button:hover svg {
   fill: var(--accent-lime) !important;
 }
 
-/* Formatting layout metrics for timestamp (Start at 00:00:00) */
+/* Style digital timestamp controls (Start at 00:00:00) */
 .share-menu .start-at-wrap {
   display: flex !important;
   flex-direction: row !important;
   align-items: center !important;
   gap: 8px !important;
-  font-size: 12px !important;
   color: var(--text-muted) !important;
 }
 
@@ -506,62 +518,31 @@
   background: var(--bg-dark-raised) !important;
   color: var(--text-main) !important;
   border: 1px solid var(--ui-border) !important;
-  padding: 4px 10px !important;
+  padding: 4px 12px !important;
   border-radius: 6px !important;
   font-family: monospace !important;
   font-weight: 600 !important;
 }
 
-/* Wipes out bullet layouts for JavaScript and iFrame toggles */
-.share-menu ul.embed-list {
-  display: flex !important;
-  flex-direction: row !important;
-  gap: 6px !important;
-  margin: 0 !important;
-  padding: 0 !important;
-  list-style: none !important;
-}
-
-.share-menu ul.embed-list li {
-  list-style: none !important;
-  margin: 0 !important;
-  padding: 0 !important;
-}
-
-.share-menu .list-button {
-  background: var(--bg-dark-raised) !important;
-  color: var(--text-muted) !important;
-  border: 1px solid var(--ui-border) !important;
-  border-radius: 6px !important;
-  padding: 5px 12px !important;
-  font-size: 11px !important;
-  font-weight: 600 !important;
-  cursor: pointer !important;
-  transition: all 0.2s !important;
-}
-
-.share-menu .list-button.button-active {
-  background: var(--accent-lime) !important;
-  color: var(--bg-dark-base) !important;
-  border-color: transparent !important;
-}
-
-/* Organizes social layout anchors across a clean base grid line */
-.share-menu .share-buttons ul {
+/* Removes bullet lists from embedded toggle grids */
+.share-menu ul {
   display: flex !important;
   flex-direction: row !important;
   align-items: center !important;
-  gap: 14px !important;
+  gap: 12px !important;
   list-style: none !important;
   margin: 0 !important;
   padding: 0 !important;
 }
 
-.share-menu .share-buttons li {
+.share-menu li {
   list-style: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
 }
 
-.share-menu .share-buttons li a {
+/* Formats round social circular icons neatly across the baseline footer row */
+.share-menu .share-buttons ul li a {
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
@@ -570,22 +551,14 @@
   background: var(--bg-dark-raised) !important;
   border: 1px solid var(--ui-border) !important;
   border-radius: 50% !important;
-  transition: background 0.2s, transform 0.15s !important;
+  color: var(--text-main) !important;
+  transition: background 0.2s ease, transform 0.15s ease !important;
 }
 
-.share-menu .share-buttons li a svg {
-  width: 16px !important;
-  height: 16px !important;
-  fill: var(--text-main) !important;
-}
-
-.share-menu .share-buttons li a:hover {
+.share-menu .share-buttons ul li a:hover {
   background: var(--accent-lime) !important;
+  color: var(--bg-dark-base) !important;
   transform: scale(1.05) !important;
-}
-
-.share-menu .share-buttons li a:hover svg {
-  fill: var(--bg-dark-base) !important;
 }
 
 /* ══════════════════════════════════════════
