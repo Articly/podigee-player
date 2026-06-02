@@ -29,17 +29,7 @@
             <button class="next-button skip-forward-button" pp-title="translations.next" pp-aria-label="translations.next"></button>
           </div>
 
-          <div class="progress-bar progress-bar-player">
-            <time class="progress-bar-time-played time-played" pp-show="timeCountup" tabindex="0" role="button">00:00</time>
-            <div class="progress-bar-rail">
-              <span class="progress-bar-loaded"></span>
-              <span class="progress-bar-buffering" style="display: none;"></span>
-              <span class="progress-bar-played">
-                <span class="progress-tooltip">00:00</span>
-              </span>
-            </div>
-            <time class="progress-bar-time-played time-remaining" pp-show="timeCountdown" tabindex="0" role="button">-00:00</time>
-          </div>
+          <progressbar></progressbar>
 
           <div class="controls-bottom">
             <select class="speed-select" pp-title="translations.changePlaybackSpeed" pp-aria-label="translations.changePlaybackSpeed">
@@ -53,8 +43,8 @@
       </div>
     </div>
 
-    <div class="panels-tabs single-panel playlist-open"></div>
-    <div class="panels single-panel playlist-open"></div>
+    <div class="panels-tabs"></div>
+    <div class="panels"></div>
 
     <div class="footer">
       <div class="footer-left">
