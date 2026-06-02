@@ -123,7 +123,7 @@
   flex-direction: row !important;
   align-items: center !important;
   justify-content: flex-start !important;
-  gap: 16px !important;
+  gap: 18px !important;
   width: 100% !important;
   background: transparent !important;
   margin: 0 !important;
@@ -138,8 +138,8 @@
   padding: 0 !important;
   margin: 0 !important;
   cursor: pointer !important;
-  width: 32px !important;
-  height: 32px !important;
+  width: 36px !important;
+  height: 36px !important;
   display: inline-flex !important;
   align-items: center !important;
   justify-content: center !important;
@@ -147,18 +147,7 @@
 }
 
 .controls button:hover {
-  background: rgba(255, 255, 255, 0.05) !important;
-}
-
-.controls button svg {
-  display: block !important;
-  width: 14px !important;
-  height: 14px !important;
-  fill: var(--text-muted) !important;
-}
-
-.controls button:hover svg {
-  fill: var(--text-main) !important;
+  background: rgba(255, 255, 255, 0.08) !important;
 }
 
 /* HIGH-CONTRAST CENTER PLAY BUTTON ENGINE */
@@ -188,45 +177,45 @@
 .playing .play-button svg.stop { display: block !important; }
 
 /* ══════════════════════════════════════════
-   SCALE ALL OTHER CONTROL BUTTONS
+   EXPLICIT MEDIA CONTROL ICON SCALING UP
    ══════════════════════════════════════════ */
 .previous-button, 
 .backward-button, 
 .forward-button, 
 .next-button {
-  width: 40px !important;
-  height: 40px !important;
-  font-size: 20px !important; 
-  color: var(--text-muted) !important; 
+  width: 44px !important;
+  height: 44px !important;
 }
 
-/* Forces them to scale up if they are inline vector graphics */
-.previous-button svg, 
-.backward-button svg, 
-.forward-button svg, 
-.next-button svg {
-  width: 22px !important;
-  height: 22px !important;
-  fill: var(--text-muted) !important; 
-  stroke: var(--text-muted) !important; 
+/* Dynamically resizes SVGs, text tracks and font layers to a high-contrast format */
+.previous-button svg, .backward-button svg, .forward-button svg, .next-button svg,
+.previous-button *, .backward-button *, .forward-button *, .next-button * {
+  width: 24px !important;  /* Expanded dimension tracking width metrics */
+  height: 24px !important; /* Expanded dimension tracking height metrics */
+  font-size: 24px !important;
+  fill: rgba(255, 255, 255, 0.85) !important;   /* High-contrast visibility upgrade */
+  stroke: rgba(255, 255, 255, 0.85) !important; /* High-contrast visibility upgrade */
+  color: rgba(255, 255, 255, 0.85) !important;
+  transition: all 0.15s ease !important;
 }
 
-/* Enhances the hover effect for clarity */
-.previous-button:hover, 
-.backward-button:hover, 
-.forward-button:hover, 
-.next-button:hover {
-  background: rgba(255, 255, 255, 0.1) !important;
-  color: var(--text-main) !important; 
+/* Adaptive inversion swaps for the structural background modes */
+@media (prefers-color-scheme: light) {
+  .previous-button svg, .backward-button svg, .forward-button svg, .next-button svg,
+  .previous-button *, .backward-button *, .forward-button *, .next-button * {
+    fill: rgba(17, 24, 39, 0.85) !important;
+    stroke: rgba(17, 24, 39, 0.85) !important;
+    color: rgba(17, 24, 39, 0.85) !important;
+  }
 }
 
-/* Brightens SVG icons to white on hover */
-.previous-button:hover svg, 
-.backward-button:hover svg, 
-.forward-button:hover svg, 
-.next-button:hover svg {
+/* Solid full-color illumination response frames triggered on hover */
+.previous-button:hover svg, .backward-button:hover svg, .forward-button:hover svg, .next-button:hover svg,
+.previous-button:hover *, .backward-button:hover *, .forward-button:hover *, .next-button:hover * {
   fill: var(--text-main) !important;
   stroke: var(--text-main) !important;
+  color: var(--text-main) !important;
+  opacity: 1 !important;
 }
 
 /* ══════════════════════════════════════════
@@ -411,7 +400,7 @@
 .share-menu {
   display: flex !important;
   position: absolute !important;
-  bottom: -54px !important;      /* FIXED BOUNDS: Locks perfectly inline inside the footer bar layout */
+  bottom: -53px !important;      /* FIXED BOUNDS: Locks perfectly inline inside the footer bar layout */
   right: 24px !important;        
   background: transparent !important; 
   border: none !important;
@@ -460,7 +449,7 @@
   display: none !important;
 }
 
-/* FIXED: Razor Sharp Solid Black Link Vector Icon for Dark Mode Lime Button */
+/* Razor Sharp Solid Black Link Vector Icon for Dark Mode Lime Button */
 .share-menu button.share-copy-url-btn::before {
   content: "" !important;
   display: inline-block !important;
@@ -473,7 +462,7 @@
   vertical-align: middle !important;
 }
 
-/* CRITICAL CASCADE FIX: Sweeps light theme parameters down the line to render solid white graphic layout frames natively */
+/* Sweeps light theme parameters down the line to render solid white graphic layout frames natively */
 @media (prefers-color-scheme: light) {
   .share-menu button.share-copy-url-btn::before {
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23FFFFFF' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71'%3E%3C/path%3E%3Cpath d='M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71'%3E%3C/path%3E%3C/svg%3E") !important;
