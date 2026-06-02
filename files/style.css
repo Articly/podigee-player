@@ -68,6 +68,7 @@
   border: 1px solid var(--ui-border) !important;
   border-radius: 20px !important;
   overflow: hidden !important;
+  position: relative !important;     /* Locks the absolute share window right inside the player shell */
 }
 
 .cover-image-player-wrap {
@@ -194,8 +195,8 @@
 .next-button {
   width: 40px !important;
   height: 40px !important;
-  font-size: 20px !important; /* Scales them if they are icon fonts */
-  color: var(--text-muted) !important; /* FORCES LIGHT COLOR FOR FONT ICONS */
+  font-size: 20px !important; 
+  color: var(--text-muted) !important; 
 }
 
 /* Forces them to scale up if they are inline vector graphics */
@@ -205,8 +206,8 @@
 .next-button svg {
   width: 22px !important;
   height: 22px !important;
-  fill: var(--text-muted) !important; /* FORCES LIGHT FILL FOR SVG ICONS */
-  stroke: var(--text-muted) !important; /* FORCES LIGHT STROKE IF USED */
+  fill: var(--text-muted) !important; 
+  stroke: var(--text-muted) !important; 
 }
 
 /* Enhances the hover effect for clarity */
@@ -215,7 +216,7 @@
 .forward-button:hover, 
 .next-button:hover {
   background: rgba(255, 255, 255, 0.1) !important;
-  color: var(--text-main) !important; /* BRIGHTENS FONT ICONS ON HOVER */
+  color: var(--text-main) !important; 
 }
 
 /* Brightens SVG icons to white on hover */
@@ -326,8 +327,7 @@
 }
 
 .playlist-open .all-episodes-tab-button,
-.episode-info-open .episode-info-tab-button,
-.share-open .share-tab-button {
+.episode-info-open .episode-info-tab-button {
   color: var(--accent-lime) !important;
   border-bottom: 2px solid var(--accent-lime) !important;
 }
@@ -341,7 +341,6 @@
   padding: 0 !important;
 }
 
-/* Smooth fade-in keyframes when switching tabs */
 @keyframes panelFadeIn {
   from { opacity: 0; transform: translateY(4px); }
   to { opacity: 1; transform: translateY(0); }
@@ -354,7 +353,6 @@
   animation: panelFadeIn 0.2s ease-out forwards !important;
 }
 
-/* LOCK VERTICAL HEIGHT SIZES TO PREVENT BOX JUMPING BOUNCES */
 .single-panel.playlist ul {
   list-style: none !important;
   height: 230px !important;
@@ -366,13 +364,11 @@
 }
 
 .single-panel.playlist ul::-webkit-scrollbar,
-.single-panel.episode-info::-webkit-scrollbar,
-.single-panel.share::-webkit-scrollbar { 
+.single-panel.episode-info::-webkit-scrollbar { 
   width: 4px; 
 }
 .single-panel.playlist ul::-webkit-scrollbar-thumb,
-.single-panel.episode-info::-webkit-scrollbar-thumb,
-.single-panel.share::-webkit-scrollbar-thumb { 
+.single-panel.episode-info::-webkit-scrollbar-thumb { 
   background: var(--bg-dark-raised); 
   border-radius: 2px; 
 }
@@ -392,97 +388,123 @@
 }
 
 /* ══════════════════════════════════════════
-   GLOBAL SHARE OVERLAY MODAL WILDCARD ENGINE
+   SAFE HYPER-SPECIFIC OVERLAY FIX FOR SHARE POPUP
    ══════════════════════════════════════════ */
-/* Forces any absolute modal card, popup box, or overlay panel to match our colors */
-[class*="modal"],
-[class*="overlay"],
-[class*="share"],
-.share-overlay {
+/* Forces Podigee's hidden window to mount as a solid absolute card right over everything */
+.share-overlay,
+[class*="share-overlay"] {
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
   background: var(--bg-dark-surface) !important;
   background-color: var(--bg-dark-surface) !important;
-  color: var(--text-main) !important;
-  border-radius: 16px !important;
-  border: 1px solid var(--ui-border) !important;
+  z-index: 99999 !important;
+  padding: 32px 24px !important;
+  border-radius: 20px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 16px !important;
+  box-sizing: border-box !important;
 }
 
-/* Force all social list triggers into flat rows to avoid vertical text cascades */
-[class*="share"] ul,
-[class*="modal"] ul,
-[class*="overlay"] ul {
+/* Clean formatting layout for inputs, forms, and blocks inside the window */
+.share-overlay div,
+.share-overlay p,
+.share-overlay form,
+.share-overlay .field-wrap {
   display: flex !important;
   flex-direction: row !important;
   align-items: center !important;
   justify-content: flex-start !important;
+  gap: 12px !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  width: 100% !important;
+  background: transparent !important;
+}
+
+/* Strip native list offsets and vertical bullets completely */
+.share-overlay ul,
+.share-overlay li {
+  list-style: none !important;
+  list-style-type: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
   gap: 16px !important;
-  list-style: none !important;
-  margin: 0 !important;
-  padding: 0 !important;
-  flex-wrap: wrap !important;
 }
 
-[class*="share"] li,
-[class*="modal"] li,
-[class*="overlay"] li {
-  list-style: none !important;
-  margin: 0 !important;
-  padding: 0 !important;
-}
-
-/* AGGRESSIVE RESIZE OVERRIDE: Shrinks the giant vector graphics to a clean 20px layout */
-[class*="share"] svg,
-[class*="share"] svg *,
-[class*="modal"] svg,
-[class*="modal"] svg *,
-[class*="overlay"] svg,
-[class*="overlay"] svg *,
-[class*="share"] img,
-[class*="modal"] img,
-[class*="overlay"] img,
-[class*="share"] i,
-[class*="modal"] i,
-[class*="overlay"] i {
+/* Target and shrink down the massive vector code graphics */
+.share-overlay svg,
+.share-overlay svg *,
+.share-overlay img,
+.share-overlay i,
+.share-overlay .icon,
+.share-overlay [class*="icon"] svg {
   width: 20px !important;
   height: 20px !important;
   min-width: 20px !important;
   min-height: 20px !important;
   max-width: 20px !important;
   max-height: 20px !important;
-  font-size: 20px !important;
-  line-height: 1 !important;
   fill: var(--text-muted) !important;
   stroke: none !important;
 }
 
-/* Keeps labels, links, and headers inside modal states perfectly visible */
-[class*="share"] a,
-[class*="modal"] a,
-[class*="overlay"] a,
-[class*="share"] span,
-[class*="modal"] span,
-[class*="overlay"] span,
-[class*="share"] p,
-[class*="modal"] p,
-[class*="overlay"] p,
-[class*="share"] label,
-[class*="modal"] label,
-[class*="overlay"] label {
+/* Fix the unstyled native browser option buttons */
+.share-overlay button,
+.share-overlay a.copy-button {
+  background: var(--bg-dark-raised) !important;
+  border: 1px solid var(--ui-border) !important;
+  border-radius: 6px !important;
+  padding: 4px 10px !important;
+  font-size: 11px !important;
   color: var(--text-main) !important;
+  cursor: pointer !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+}
+
+/* Hyper-specific clean reset for the absolute X close icon wrapper box */
+.share-overlay [class*="close"],
+.share-overlay a[href="#"],
+.share-overlay button:has(svg[class*="close"]) {
+  position: absolute !important;
+  top: 20px !important;
+  right: 20px !important;
+  background: transparent !important;
+  border: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  width: 24px !important;
+  height: 24px !important;
+}
+
+.share-overlay [class*="close"] svg,
+.share-overlay a[href="#"] svg {
+  width: 14px !important;
+  height: 14px !important;
+  fill: var(--text-main) !important;
+}
+
+/* Force standard text strings inside overlay to match system variables */
+.share-overlay span,
+.share-overlay p,
+.share-overlay label,
+.share-overlay a {
+  color: var(--text-main) !important;
+  font-size: 13px !important;
   text-decoration: none !important;
 }
 
-/* Brightens social graphics on user hover triggers */
-[class*="share"] button:hover svg,
-[class*="share"] a:hover svg,
-[class*="modal"] button:hover svg,
-[class*="modal"] a:hover svg {
-  fill: var(--accent-lime) !important;
-}
-
-/* Formats native input text boxes (e.g., timestamp configurations) */
-[class*="share"] input,
-[class*="modal"] input,
-[class*="overlay"] input {
+/* Format time stamp selection fields cleanly */
+.share-overlay input[type="text"],
+.share-overlay input {
   background: var(--bg-dark-raised) !important;
   color: var(--text-main) !important;
   border: 1px solid var(--ui-border) !important;
@@ -490,8 +512,35 @@
   padding: 4px 10px !important;
   font-size: 12px !important;
   font-family: monospace !important;
-  outline: none !important;
+  width: 85px !important;
   text-align: center !important;
+  outline: none !important;
+}
+
+/* Push social options elegantly to a clean grid line at the base */
+.share-overlay .social-share,
+.share-overlay .share-links,
+.share-overlay ul:last-of-type {
+  margin-top: auto !important;
+  display: flex !important;
+  justify-content: flex-start !important;
+  gap: 20px !important;
+  width: 100% !important;
+}
+
+.share-overlay button:hover,
+.share-overlay a.copy-button:hover {
+  background: var(--accent-lime) !important;
+  color: var(--bg-dark-base) !important;
+}
+
+.share-overlay button:hover svg {
+  fill: var(--bg-dark-base) !important;
+}
+
+.share-overlay ul:last-of-type a:hover svg,
+.share-overlay .social-share a:hover svg {
+  fill: var(--accent-lime) !important;
 }
 
 /* ══════════════════════════════════════════
