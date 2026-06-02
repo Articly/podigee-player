@@ -454,18 +454,28 @@
   overflow: hidden !important;   
 }
 
-/* Hide the old SVG vector icon entirely */
+/* Hide the native element vector graphics completely */
 .share-menu button.share-copy-url-btn svg,
 .share-menu button.share-copy-url-btn svg path {
   display: none !important;
 }
 
-/* Inject the customized emoji link chain icon cleanly */
+/* ADAPTIVE VECTOR LINK ICON DECK (AUTO-COLORS TO TEXT VIA CURRENTCOLOR MASK) */
 .share-menu button.share-copy-url-btn::before {
-  content: "🔗" !important;
-  font-size: 11px !important;
+  content: "" !important;
   display: inline-block !important;
-  line-height: 1 !important;
+  width: 12px !important;
+  height: 12px !important;
+  background-color: currentColor !important; /* Tint automatically shifts color based on active dark/light font colors */
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='currentColor'%3E%3Cpath d='M4.93 11.07a3 3 0 0 1 0-4.24l1.24-1.24a.75.75 0 1 1 1.06 1.06L6 7.89a1.5 1.5 0 0 0 0 2.12l2.47 2.48a1.5 1.5 0 0 0 2.12 0l1.24-1.24a.75.75 0 1 1 1.06 1.06l-1.24 1.24a3 3 0 0 1-4.24 0zm5.14-6.14a.75.75 0 0 1 1.06 0l1.24 1.24a3 3 0 0 1 0 4.24l-1.24 1.24a.75.75 0 1 1-1.06-1.06L11.31 9.1a1.5 1.5 0 0 0 0-2.12L8.84 4.5a1.5 1.5 0 0 0-2.12 0L5.48 5.74a.75.75 0 1 1-1.06-1.06l1.24-1.24a3 3 0 0 1 4.24 0z'/%3E%3C/svg%3E") !important;
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='currentColor'%3E%3Cpath d='M4.93 11.07a3 3 0 0 1 0-4.24l1.24-1.24a.75.75 0 1 1 1.06 1.06L6 7.89a1.5 1.5 0 0 0 0 2.12l2.47 2.48a1.5 1.5 0 0 0 2.12 0l1.24-1.24a.75.75 0 1 1 1.06 1.06l-1.24 1.24a3 3 0 0 1-4.24 0zm5.14-6.14a.75.75 0 0 1 1.06 0l1.24 1.24a3 3 0 0 1 0 4.24l-1.24 1.24a.75.75 0 1 1-1.06-1.06L11.31 9.1a1.5 1.5 0 0 0 0-2.12L8.84 4.5a1.5 1.5 0 0 0-2.12 0L5.48 5.74a.75.75 0 1 1-1.06-1.06l1.24-1.24a3 3 0 0 1 4.24 0z'/%3E%3C/svg%3E") !important;
+  -webkit-mask-size: contain !important;
+  mask-size: contain !important;
+  -webkit-mask-repeat: no-repeat !important;
+  mask-repeat: no-repeat !important;
+  -webkit-mask-position: center !important;
+  mask-position: center !important;
+  vertical-align: middle !important;
 }
 
 /* Hardcoded German Default: Link kopieren */
