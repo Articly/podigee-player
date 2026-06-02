@@ -413,3 +413,29 @@
 .progress-tooltip {
   display: none !important;
 }
+
+/* ══════════════════════════════════════════
+   FIX CONTROL ICON COLORS FOR DARK MODE
+   ══════════════════════════════════════════ */
+/* Targets fonts, text glyphs, and icon shapes */
+.controls button:not(.play-button) {
+  color: var(--text-muted) !important;
+}
+
+/* Targets SVG vector graphics explicitly */
+.controls button:not(.play-button) svg,
+.controls button:not(.play-button) svg path,
+.controls button:not(.play-button) svg use {
+  fill: var(--text-muted) !important;
+}
+
+/* Brightens icons to pure white on hover */
+.controls button:not(.play-button):hover {
+  color: var(--text-main) !important;
+  background: rgba(255, 255, 255, 0.08) !important;
+}
+
+.controls button:not(.play-button):hover svg,
+.controls button:not(.play-button):hover svg path {
+  fill: var(--text-main) !important;
+}
