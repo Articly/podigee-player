@@ -391,11 +391,11 @@
 /* ══════════════════════════════════════════
    PERMANENT FOOTER BLACK BOX BUTTON ALIGNMENT
    ══════════════════════════════════════════ */
-/* Forces the element deep down into the existing native black footer box container grid */
+/* Forces the element deep down into the vertical center grid of the black footer bar wrapper */
 .share-menu {
   display: flex !important;
   position: absolute !important;
-  bottom: -43px !important;      /* Drops it directly down into the vertical center of the footer bar */
+  bottom: -46px !important;      /* Adjusted downward for perfect dead-center alignment inside the footer */
   right: 24px !important;        /* Aligns perfectly to the right side layout grid padding edge */
   background: transparent !important; /* Blends context natively into the underlying black footer bar */
   border: none !important;
