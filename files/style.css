@@ -678,3 +678,36 @@
   letter-spacing: 1px;
   color: var(--text-main);
 }
+
+/* ══════════════════════════════════════════
+   MOBILE RESPONSIVE ZONE (VIEWPORT SNAPPING)
+   ══════════════════════════════════════════ */
+
+/* Bulletproof fix: Stop the controls from ever squishing into ovals */
+.controls button {
+  flex-shrink: 0 !important;
+}
+
+@media (max-width: 480px) {
+  /* Stack the cover image vertically above the text to open up horizontal space */
+  .cover-image-player-wrap {
+    flex-direction: column !important;
+    align-items: center !important;
+    padding: 20px 16px !important;
+    gap: 16px !important;
+  }
+
+  /* Center the title alignments for clean mobile presentation scales */
+  .player-info-wrap {
+    align-items: center !important;
+    text-align: center !important;
+    width: 100% !important;
+  }
+
+  /* Center the button tray completely across the newly opened width layer */
+  .controls {
+    justify-content: center !important;
+    gap: 12px !important; /* Tighter padding gaps so all 5 buttons look balanced on narrow viewports */
+    margin-top: 4px !important;
+  }
+}
