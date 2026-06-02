@@ -1,5 +1,5 @@
 /* ══════════════════════════════════════════
-   DESIGN TOKENS — ARTICLY DARK SYSTEM
+   DESIGN SYSTEM TOKENS — ARTICLY DARK
    ══════════════════════════════════════════ */
 :root {
   --bg-dark-base:    #000002;
@@ -12,17 +12,14 @@
   --ui-border:       rgba(255, 255, 255, 0.08);
 }
 
-/* Force delete duplicate unstyled floating markup engines nodes */
-.splash-button, 
-.single-panel-title, 
-.load-more,
-.time-reader,
-.main-player > .progress-bar { 
+/* Force delete ghost control layout nodes */
+.splash-button, .single-panel-title, .load-more, .time-reader,
+.close-menu-button, .more-menu-button { 
   display: none !important; 
 }
 
 /* ══════════════════════════════════════════
-   SHELL LAYOUT ENFORCEMENTS
+   CORE WRAPPER RESETS
    ══════════════════════════════════════════ */
 .podcast-player-redesign,
 .podcast-player-redesign *,
@@ -87,51 +84,37 @@
 .episode-subtitle h2 {
   font-size: 11px !important;
   color: var(--text-muted) !important;
-  font-weight: 400 !important;
 }
 
 /* ══════════════════════════════════════════
-   BUTTON RESET DECK (ELIMINATES GHOST LAYERS)
+   CONTROL DECK ACTIONS (CLEANS DOUBLE ICONS)
    ══════════════════════════════════════════ */
 .controls {
   display: flex !important;
-  flex-direction: row !important;
   align-items: center !important;
-  justify-content: flex-start !important;
-  gap: 16px !important;
-  width: 100% !important;
-  height: auto !important;
+  gap: 14px !important;
   background: transparent !important;
-  margin: 0 !important;
   padding: 0 !important;
+  margin: 0 !important;
 }
 
 .controls button {
   background: transparent !important;
   border: none !important;
-  outline: none !important;
-  box-shadow: none !important;
-  padding: 0 !important;
-  margin: 0 !important;
   cursor: pointer !important;
-  width: 34px !important;
-  height: 34px !important;
+  width: 32px !important;
+  height: 32px !important;
   display: inline-flex !important;
   align-items: center !important;
   justify-content: center !important;
   border-radius: 50% !important;
-  
-  /* Kill inherited backgrounds or labels formatting */
-  font-size: 0 !important;
-  color: transparent !important;
-  background-image: none !important;
 }
 
 .controls button:hover {
   background: rgba(255, 255, 255, 0.05) !important;
 }
 
-/* Force strip pseudo elements glyph counters completely */
+/* Clear native icon generation sheets */
 .controls button::before,
 .controls button::after {
   content: none !important;
@@ -140,8 +123,8 @@
 
 .controls button svg {
   display: block !important;
-  width: 15px !important;
-  height: 15px !important;
+  width: 14px !important;
+  height: 14px !important;
   fill: var(--text-muted) !important;
 }
 
@@ -149,7 +132,7 @@
   fill: var(--text-main) !important;
 }
 
-/* Main action dial module configuration overrides */
+/* Center circle play trigger override configuration */
 .controls button.play-button {
   background: var(--accent-lime) !important;
   width: 48px !important;
@@ -163,37 +146,32 @@
   fill: var(--bg-dark-base) !important;
 }
 
-.controls button.play-button:hover {
-  transform: scale(1.05) !important;
-}
-
-/* Precise dual markup state switching controls mapping */
+/* Clean track toggling loops flags */
 .play-button svg.stop { display: none !important; }
 .playing .play-button svg.play { display: none !important; }
 .playing .play-button svg.stop { display: block !important; }
 
 /* ══════════════════════════════════════════
-   TIMELINE SECTOR STRIP (FIXES THE BLOB)
+   TIMELINE DECK (CLEANS THE YELLOW TIMERS)
    ══════════════════════════════════════════ */
-.progress-timeline-wrapper {
+.main-player > .progress-bar {
   display: flex !important;
-  flex-direction: column !important;
-  gap: 8px !important;
+  align-items: center !important;
+  gap: 12px !important;
+  background: transparent !important;
+  margin: 4px 0 !important;
+  padding: 0 !important;
+  height: auto !important;
   width: 100% !important;
   position: relative !important;
-}
-
-progressbar {
-  display: block !important;
-  width: 100% !important;
 }
 
 .progress-bar-rail {
   background: var(--bg-dark-raised) !important;
   height: 4px !important;
   border-radius: 2px !important;
+  flex: 1 !important;
   position: relative !important;
-  width: 100% !important;
 }
 
 .progress-bar-played {
@@ -201,18 +179,11 @@ progressbar {
   height: 100% !important;
 }
 
-.time-metrics-row {
-  display: flex !important;
-  justify-content: space-between !important;
-  width: 100% !important;
-  margin: 0 !important;
-  padding: 0 !important;
-}
-
-/* Absolute reset block targeting time counters uniquely to avoid layout shifts */
+/* Force fix typography coordinates on timers to break collision boxes */
 .progress-bar-time-played {
   color: var(--text-muted) !important;
   background: transparent !important;
+  background-color: transparent !important;
   font-size: 11px !important;
   font-weight: 500 !important;
   position: static !important;
@@ -221,13 +192,11 @@ progressbar {
   height: auto !important;
   padding: 0 !important;
   margin: 0 !important;
-  line-height: 1.2 !important;
-  border-radius: 0 !important;
 }
 
-.progress-bar-time-played[style*="display: none"] {
-  display: none !important;
-}
+.time-played { order: 1 !important; }
+.progress-bar-rail { order: 2 !important; }
+.time-remaining { order: 3 !important; }
 
 .speed-select {
   background: var(--bg-dark-raised) !important;
@@ -240,7 +209,7 @@ progressbar {
 }
 
 /* ══════════════════════════════════════════
-   AUTOMATED EXTENSION PANELS DECK
+   NATIVE PANELS DISPLAY TARGET ADAPTATIONS
    ══════════════════════════════════════════ */
 .panels-tabs-menu {
   background: rgba(0, 0, 0, 0.15) !important;
@@ -297,7 +266,7 @@ progressbar {
   background: rgba(220, 255, 77, 0.04) !important;
 }
 
-/* REMOVE INDEX NUMBER ASSIGNMENTS FROM INTERNAL FEEDS */
+/* HIDOR REMOVE INTERNAL EPISODE TRACK LABEL COUNTERS */
 .playlist-episode-number {
   display: none !important;
 }
@@ -328,8 +297,6 @@ progressbar {
 
 .list-play-icon svg { width: 10px !important; height: 10px !important; }
 .single-playlist-episode.active .list-play-icon svg path { fill: var(--bg-dark-base) !important; }
-
-/* Turn off animated waveform layouts */
 .single-playlist-episode .waveform-icon { display: none !important; }
 
 .playlist-episode-duration {
@@ -353,7 +320,7 @@ progressbar {
 }
 
 /* ══════════════════════════════════════════
-   FOOTER STRIP BLOCK
+   FOOTER LAYER (CLEANS SHARE DOTS)
    ══════════════════════════════════════════ */
 .footer {
   background: var(--bg-dark-base) !important;
@@ -371,17 +338,22 @@ progressbar {
   color: var(--text-main);
 }
 
-.footer-right .buttons .list-button {
+.footer-right .buttons .share-menu-button {
   background: var(--bg-dark-raised) !important;
   color: var(--text-main) !important;
   border: 1px solid var(--ui-border) !important;
   border-radius: 20px !important;
   font-size: 11px !important;
   font-weight: 600 !important;
-  padding: 4px 12px !important;
+  padding: 6px 14px !important;
   cursor: pointer !important;
+  text-transform: none !important;
+  display: inline-block !important;
+  height: auto !important;
+  width: auto !important;
 }
-.footer-right .buttons .list-button:hover {
+
+.footer-right .buttons .share-menu-button:hover {
   background: var(--accent-lime) !important;
   color: var(--bg-dark-base) !important;
 }
