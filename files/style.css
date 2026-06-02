@@ -1,6 +1,7 @@
 /* ══════════════════════════════════════════
    DESIGN SYSTEM VARIABLE METRICS — ARTICLY
    ══════════════════════════════════════════ */
+/* DEFAULT: DARK MODE CONFIGURATION */
 :root {
   --bg-dark-base:    #000002;
   --bg-dark-surface: #1B282D;
@@ -10,6 +11,20 @@
   --text-muted:      rgba(255, 255, 255, 0.60);
   --text-subtle:     rgba(255, 255, 255, 0.35);
   --ui-border:       rgba(255, 255, 255, 0.08);
+}
+
+/* AUTOMATIC SWAP: LIGHT MODE CONFIGURATION */
+@media (prefers-color-scheme: light) {
+  :root {
+    --bg-dark-base:    #FFFFFF;                /* Clean white background */
+    --bg-dark-surface: #F9FAFB;                /* Soft light gray inner surface */
+    --bg-dark-raised:  #E5E7EB;                /* Light gray button backgrounds */
+    --accent-lime:     #111827;                /* Dark accent for solid high-visibility play triggers */
+    --text-main:       #111827;                /* Bold dark gray text */
+    --text-muted:      #4B5563;                /* Muted gray text */
+    --text-subtle:     #9CA3AF;                /* Low-contrast details */
+    --ui-border:       rgba(0, 0, 0, 0.08);    /* Soft dark divider lines */
+  }
 }
 
 /* Eliminate native unstyled configuration flags and hide ghost elements */
