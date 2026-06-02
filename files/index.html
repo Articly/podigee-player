@@ -1,56 +1,40 @@
-<div class="podcast-player podcast-player-redesign articly-dark-player">
-  <audio preload="none"></audio>
-  
-  <div class="player-wrapper-inner">
+<div class="podcast-player podcast-player-redesign articly-dark-theme">
+  <div class="podcast-player-inside">
+    <audio preload="none"></audio>
     
     <div class="cover-image-player-wrap">
       <div class="cover-image-wrap">
-        <img class="cover-image" pp-src="coverUrl | scale 150" pp-alt="title" />
+        <img class="cover-image" pp-src="coverUrl | scale 90" pp-alt="title" />
       </div>
 
       <div class="player-info-wrap">
         <div class="episode-basic-info">
           <div class="episode-title">
-            <h1 pp-if="url">
-              <a pp-href="url" pp-html="title" target="_parent"></a>
+            <h1>
+              <a pp-href="url" pp-if="url" pp-html="title" target="_parent"></a>
             </h1>
             <h1 pp-unless="url" pp-html="title"></h1>
           </div>
-          <div class="episode-subtitle" pp-if="subtitle">
+          <div class="episode-subtitle">
             <h2 pp-html="subtitle"></h2>
           </div>
         </div>
 
         <div class="main-player">
           <div class="controls">
-            <button class="previous-button ctrl-btn" pp-title="translations.previous" aria-label="Previous Episode">
-              <svg viewBox="0 0 24 24"><path d="M6 6h2v12H6zm3.5 6 8.5 6V6z"/></svg>
-            </button>
-
-            <button class="backward-button ctrl-btn" pp-title="translations.backward" aria-label="Skip Back">
-              <svg viewBox="0 0 24 24"><path d="M12 5V1L7 6l5 5V7c3.31 0 6 2.69 6 6s-2.69 6-6 6-6-2.69-6-6H4c0 4.42 3.58 8 8 8s8-3.58 8-8-3.58-8-8-8z"/></svg>
-            </button>
-
-            <button class="play-button main-play-trigger" pp-title="translations.playPause" aria-label="Play or Pause">
-              <svg class="play-icon-svg" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-              <svg class="stop-icon-svg" viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
-            </button>
-
-            <button class="forward-button ctrl-btn" pp-title="translations.forward" aria-label="Skip Forward">
-              <svg viewBox="0 0 24 24"><path d="M12 5V1l5 5-5 5V7c-3.31 0-6 2.69-6 6s2.69 6 6 6 6-2.69 6-6h2c0 4.42-3.58 8-8 8s-8-3.58-8-8 3.58-8 8-8z"/></svg>
-            </button>
-
-            <button class="next-button ctrl-btn" pp-title="translations.next" aria-label="Next Episode">
-              <svg viewBox="0 0 24 24"><path d="M6 18l8.5-6L6 6v12zm2-8.14L11.03 12 8 14.14V9.86zM16 6h2v12h-2z"/></svg>
-            </button>
+            <button class="previous-button skip-backward-button" pp-title="translations.previous" pp-aria-label="translations.previous"></button>
+            <button class="backward-button" pp-title="translations.backward" pp-aria-label="translations.backward"></button>
+            <button class="play-button" pp-aria-label="translations.playPause" pp-title="translations.playPause"></button>
+            <button class="forward-button" pp-title="translations.forward" pp-aria-label="translations.forward"></button>
+            <button class="next-button skip-forward-button" pp-title="translations.next" pp-aria-label="translations.next"></button>
           </div>
 
           <progressbar></progressbar>
 
           <div class="controls-bottom">
-            <select class="speed-select class-speed-menu" pp-title="translations.changePlaybackSpeed">
+            <select class="speed-select" pp-title="translations.changePlaybackSpeed">
               <option value="0.5">0.5x</option>
-              <option value="1.0" selected>1.0x</option>
+              <option value="1.0" selected>1x</option>
               <option value="1.5">1.5x</option>
               <option value="2.0">2.0x</option>
             </select>
@@ -60,62 +44,17 @@
       </div>
     </div>
 
-    <div class="panels-tabs-custom">
-      <ul>
-        <li><button class="tab-toggle-btn active" id="btn-tab-list" onclick="togglePlayerTab('list')">Alle Episoden</button></li>
-        <li><button class="tab-toggle-btn" id="btn-tab-info" onclick="togglePlayerTab('info')">Episodeninformation</button></li>
-      </ul>
-    </div>
+    <div class="panels-tabs"></div>
+    <div class="panels"></div>
 
-    <div class="panels-content-custom">
-      
-      <div class="panel-view-container" id="panel-custom-playlist" style="display: block;">
-        <ul class="custom-playlist-ul">
-          <li class="custom-track-row" pp-for="ep in episodes" pp-class-active="ep.active">
-            <div class="track-play-indicator">
-              <svg class="row-play" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-            </div>
-            <span class="track-title-text"><a pp-href="ep.url" target="_parent">{ ep.title }</a></span>
-            <span class="track-duration-stamp" pp-if="ep.duration">{ ep.duration }</span>
-          </li>
-        </ul>
+    <div class="footer">
+      <div class="footer-left">
+        <span class="articly-logo-text">ARTICLY</span>
       </div>
-
-      <div class="panel-view-container" id="panel-custom-info" style="display: none;">
-        <div class="info-body-render" pp-html="description"></div>
-      </div>
-
-    </div>
-
-    <div class="player-custom-footer">
-      <div class="footer-branding-left">
-        <span class="brand-text-logo">ARTICLY</span>
-      </div>
-      <div class="footer-branding-right">
-        <span class="powered-label">powered by Podigee</span>
+      <div class="footer-right">
+        <div class="buttons"></div>
       </div>
     </div>
 
   </div>
 </div>
-
-<script>
-  function togglePlayerTab(target) {
-    var listBtn = document.getElementById('btn-tab-list');
-    var infoBtn = document.getElementById('btn-tab-info');
-    var listPanel = document.getElementById('panel-custom-playlist');
-    var infoPanel = document.getElementById('panel-custom-info');
-    
-    if (target === 'list') {
-      listBtn.classList.add('active');
-      infoBtn.classList.remove('active');
-      listPanel.style.display = 'block';
-      infoPanel.style.display = 'none';
-    } else {
-      infoBtn.classList.add('active');
-      listBtn.classList.remove('active');
-      infoPanel.style.display = 'block';
-      listPanel.style.display = 'none';
-    }
-  }
-</script>
