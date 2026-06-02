@@ -326,13 +326,14 @@
 }
 
 .playlist-open .all-episodes-tab-button,
-.episode-info-open .episode-info-tab-button {
+.episode-info-open .episode-info-tab-button,
+.share-open .share-tab-button {
   color: var(--accent-lime) !important;
   border-bottom: 2px solid var(--accent-lime) !important;
 }
 
 /* ══════════════════════════════════════════
-   PANELS VIEWPORT (NATIVE TOGGLE SYSTEM UNLOCKED)
+   PANELS VIEWPORT & HEIGHT LOCKS
    ══════════════════════════════════════════ */
 .panels {
   background: var(--bg-dark-surface) !important;
@@ -365,11 +366,13 @@
 }
 
 .single-panel.playlist ul::-webkit-scrollbar,
-.single-panel.episode-info::-webkit-scrollbar { 
+.single-panel.episode-info::-webkit-scrollbar,
+.single-panel.share::-webkit-scrollbar { 
   width: 4px; 
 }
 .single-panel.playlist ul::-webkit-scrollbar-thumb,
-.single-panel.episode-info::-webkit-scrollbar-thumb { 
+.single-panel.episode-info::-webkit-scrollbar-thumb,
+.single-panel.share::-webkit-scrollbar-thumb { 
   background: var(--bg-dark-raised); 
   border-radius: 2px; 
 }
@@ -385,6 +388,146 @@
 }
 
 .single-panel.episode-info a {
+  color: var(--accent-lime) !important;
+}
+
+/* ══════════════════════════════════════════
+   SHARE PANEL COMPLETE EXTENSION FORMATTING
+   ══════════════════════════════════════════ */
+.single-panel.share {
+  padding: 24px !important;
+  color: var(--text-main) !important;
+  font-size: 13px !important;
+  height: 230px !important;      
+  max-height: 230px !important;
+  overflow-y: auto !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 16px !important;
+}
+
+/* Aligns copy triggers and inline inputs horizontally */
+.single-panel.share > div,
+.single-panel.share p,
+.single-panel.share form {
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+  gap: 12px !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  flex-wrap: wrap !important;
+}
+
+/* Normalizes custom copy buttons to remove standard borders */
+.single-panel.share button,
+.single-panel.share a.copy-button {
+  background: transparent !important;
+  border: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  cursor: pointer !important;
+  color: var(--text-main) !important;
+  font-weight: 500 !important;
+  gap: 8px !important;
+}
+
+/* Compresses the massive double-square vector illustrations */
+.single-panel.share svg,
+.single-panel.share svg *,
+.single-panel.share button svg,
+.single-panel.share .icon svg {
+  width: 18px !important;
+  height: 18px !important;
+  max-width: 18px !important;
+  max-height: 18px !important;
+  fill: var(--text-muted) !important;
+  stroke: none !important;
+}
+
+.single-panel.share button:hover svg {
+  fill: var(--accent-lime) !important;
+}
+
+/* Eliminates bullet points for sub-tabs and social grids */
+.single-panel.share ul {
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  gap: 14px !important;
+  list-style: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.single-panel.share li {
+  list-style: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* Formats JavaScript and iFrame selector sub-tabs */
+.single-panel.share li a,
+.single-panel.share li button {
+  color: var(--text-muted) !important;
+  text-decoration: none !important;
+  font-size: 12px !important;
+  font-weight: 600 !important;
+  padding-bottom: 2px !important;
+  border-bottom: 2px solid transparent !important;
+  background: transparent !important;
+}
+
+.single-panel.share li.active a,
+.single-panel.share li.active button,
+.single-panel.share li a:hover {
+  color: var(--accent-lime) !important;
+  border-bottom-color: var(--accent-lime) !important;
+}
+
+/* Styles time stamp selection box metrics (Start at 00:00:00) */
+.single-panel.share input[type="text"],
+.single-panel.share input {
+  background: var(--bg-dark-raised) !important;
+  color: var(--text-main) !important;
+  border: 1px solid var(--ui-border) !important;
+  border-radius: 6px !important;
+  padding: 4px 10px !important;
+  font-size: 12px !important;
+  font-family: monospace !important;
+  width: 85px !important;
+  text-align: center !important;
+  outline: none !important;
+}
+
+/* Organizes social grid systems explicitly across the base row */
+.single-panel.share .social-share,
+.single-panel.share .share-links,
+.single-panel.share ul:last-of-type {
+  margin-top: auto !important; 
+  padding-top: 12px !important;
+  display: flex !important;
+  justify-content: flex-start !important;
+  gap: 20px !important;
+}
+
+.single-panel.share .social-share a,
+.single-panel.share ul:last-of-type a,
+.single-panel.share ul:last-of-type button {
+  color: var(--text-muted) !important;
+  font-size: 18px !important;
+  transition: color 0.15s ease !important;
+  background: transparent !important;
+  border: none !important;
+  padding: 0 !important;
+}
+
+.single-panel.share .social-share a:hover,
+.single-panel.share ul:last-of-type a:hover,
+.single-panel.share ul:last-of-type button:hover {
   color: var(--accent-lime) !important;
 }
 
