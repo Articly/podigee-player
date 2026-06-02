@@ -21,7 +21,7 @@
         </div>
 
         <div class="main-player">
-          <div class="controls-row">
+          <div class="controls">
             <button class="previous-button skip-backward-button" pp-title="translations.previous" pp-aria-label="translations.previous">
               <svg viewBox="0 0 20 17" xmlns="http://www.w3.org/2000/svg">
                 <path d="M1 17C0.447715 17 0 16.4563 0 15.7857V1.21429C0 0.543654 0.447715 6.91937e-08 1 6.91937e-08C1.55228 6.91937e-08 2 0.543654 2 1.21429V15.7857C2 16.4563 1.55228 17 1 17Z"/>
@@ -46,7 +46,7 @@
 
             <button class="forward-button" pp-title="translations.forward" pp-aria-label="translations.forward">
               <svg class="play" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                <path fill-rule="evenodd" clip-rule="evenodd" d="M17.0009 5.01967L17.939 4.56212C18.8249 4.13005 19.817 4.75879 19.7247 5.69387L19.3096 9.9017C19.2174 10.8368 18.11 11.3769 17.3164 10.8739L13.745 8.61039C12.9513 8.1074 13.0666 6.93855 13.9525 6.50648L15.3916 5.80462C15.3331 5.69217 15.2719 5.58111 15.2079 5.47156C14.5163 4.28846 13.5258 3.32643 12.3446 2.69077C11.1633 2.05512 9.83706 1.77035 8.5109 1.86766C7.18475 1.96496 5.90985 2.44058 4.82579 3.24245C3.74174 4.04431 2.89031 5.14151 2.36474 6.4139C1.83917 7.6863 1.65972 9.08484 1.84603 10.4564C2.03234 11.828 2.57723 13.1197 3.42104 14.1901C4.07645 15.0216 4.89258 15.6946 5.81246 16.1678C6.25185 16.3939 6.49907 16.9161 6.33745 17.3981C6.25185 16.3939 6.49907 16.9161 6.33745 17.3981Z"/>
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M17.0009 5.01967L17.939 4.56212C18.8249 4.13005 19.817 4.75879 19.7247 5.69387L19.3096 9.9017C19.2174 10.8368 18.11 11.3769 17.3164 10.8739L13.745 8.61039C12.9513 8.1074 13.0666 6.93855 13.9525 6.50648L15.3916 5.80462C15.3331 5.69217 15.2719 5.58111 15.2079 5.47156C14.5163 4.28846 13.5258 3.32643 12.3446 2.69077C11.1633 2.05512 9.83706 1.77035 8.5109 1.86766C7.18475 1.96496 5.90985 2.44058 4.82579 3.24245C3.74174 4.04431 2.89031 5.14151 2.36474 6.4139C1.83917 7.6863 1.65972 9.08484 1.84603 10.4564C2.03234 11.828 2.57723 13.1197 3.42104 14.1901C4.07645 15.0216 4.89258 15.6946 5.81246 16.1678C6.25185 16.3939 6.49907 16.9161 6.33745 17.3981Z"/>
               </svg>
             </button>
 
@@ -58,9 +58,9 @@
             </button>
           </div>
 
-          <div class="progress-timeline-container">
+          <div class="progress-timeline-wrapper">
             <progressbar></progressbar>
-            <div class="time-row-display">
+            <div class="time-metrics-row">
               <time class="progress-bar-time-played time-played" pp-show="timeCountup" tabindex="0" role="button">00:00</time>
               <time class="progress-bar-time-played time-remaining" pp-show="timeCountdown" tabindex="0" role="button">-00:00</time>
             </div>
