@@ -1,5 +1,5 @@
 /* ══════════════════════════════════════════
-   BRAND CONFIGURATION TOKENS
+   BRAND COLOR VARIABLES
    ══════════════════════════════════════════ */
 :root {
   --bg-dark-base:    #000002;
@@ -12,66 +12,47 @@
   --ui-border:       rgba(255, 255, 255, 0.08);
 }
 
-/* Hide native template nodes appended automatically outside our layout blocks */
-.panels-tabs, .panels, .more-menu, .subscribe-menu, .share-menu, .splash-button, .footer {
+/* Hide raw layout elements we don't want */
+.splash-button, .single-panel-title, .load-more {
   display: none !important;
 }
 
 /* ══════════════════════════════════════════
-   CORE CONTAINMENT RESETS
+   SHELL STRUCTURE
    ══════════════════════════════════════════ */
-.articly-dark-player, 
-.articly-dark-player *, 
-.articly-dark-player *::before, 
-.articly-dark-player *::after {
+.articly-dark-theme, 
+.articly-dark-theme *, 
+.articly-dark-theme *::before, 
+.articly-dark-theme *::after {
   box-sizing: border-box;
-  margin: 0;
-  padding: 0;
 }
 
-.articly-dark-player {
-  background: var(--bg-dark-base);
-  color: var(--text-main);
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  width: 100% !important;
-  min-width: 100% !important;
-  padding: 8px;
+.articly-dark-theme {
+  background: var(--bg-dark-base) !important;
+  color: var(--text-main) !important;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+  padding: 6px !important;
 }
 
-.player-wrapper-inner {
-  background: var(--bg-dark-surface);
-  border: 1px solid var(--ui-border);
-  border-radius: 20px;
-  overflow: hidden;
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+.podcast-player-inside {
+  background: var(--bg-dark-surface) !important;
+  border: 1px solid var(--ui-border) !important;
+  border-radius: 20px !important;
+  overflow: hidden !important;
 }
 
-/* ══════════════════════════════════════════
-   ARTWORK & EPISODE INFO LAYOUT
-   ══════════════════════════════════════════ */
 .cover-image-player-wrap {
   display: flex;
-  flex-direction: row;
   padding: 24px;
   gap: 20px;
-  align-items: flex-start;
-}
-
-@media (max-width: 600px) {
-  .cover-image-player-wrap {
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-  }
 }
 
 .cover-image-wrap {
-  width: 110px;
-  height: 110px;
-  flex-shrink: 0;
+  width: 100px;
+  height: 100px;
   border-radius: 12px;
   overflow: hidden;
-  border: 1px solid var(--ui-border);
+  flex-shrink: 0;
 }
 
 .cover-image {
@@ -88,321 +69,199 @@
   gap: 12px;
 }
 
-.episode-title h1, 
-.episode-title h1 a {
-  font-size: 16px;
-  font-weight: 700;
-  color: var(--text-main);
-  line-height: 1.4;
-  text-decoration: none;
-}
-
-.episode-title h1 a:hover {
-  color: var(--accent-lime);
+.episode-title h1 a, .episode-title h1 {
+  font-size: 15px !important;
+  color: var(--text-main) !important;
+  font-weight: 700 !important;
+  text-decoration: none !important;
 }
 
 .episode-subtitle h2 {
-  font-size: 12px;
-  color: var(--text-muted);
-  font-weight: 400;
-  margin-top: 2px;
+  font-size: 11px !important;
+  color: var(--text-muted) !important;
 }
 
 /* ══════════════════════════════════════════
-   PLAYER CONTROLS STRIP
+   PLAYER BUTTONS & TIMELINE
    ══════════════════════════════════════════ */
-.main-player {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-}
-
 .controls {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 14px;
 }
 
-@media (max-width: 600px) {
-  .controls {
-    justify-content: center;
-  }
-}
-
-.ctrl-btn {
-  background: none;
-  border: none;
-  width: 34px;
-  height: 34px;
-  border-radius: 50%;
-  color: var(--text-muted);
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.2s ease;
-}
-
-.ctrl-btn hover {
-  background: var(--ui-border);
-  color: var(--text-main);
-}
-
-.ctrl-btn svg {
-  width: 16px;
-  height: 16px;
-  fill: currentColor;
-}
-
-/* High-priority override configuration for the primary track trigger action */
-.main-play-trigger {
-  background: var(--accent-lime) !important;
+/* Base button styling */
+.controls button {
+  background: none !important;
   border: none !important;
-  width: 48px !important;
-  height: 48px !important;
+  cursor: pointer !important;
+}
+
+.controls button svg {
+  width: 14px !important;
+  height: 14px !important;
+  fill: var(--text-muted) !important;
+}
+
+.controls button:hover svg {
+  fill: var(--text-main) !important;
+}
+
+/* Play button isolation styling */
+.controls button.play-button {
+  background: var(--accent-lime) !important;
+  width: 46px !important;
+  height: 46px !important;
   border-radius: 50% !important;
-  cursor: pointer;
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
-  transition: transform 0.2s ease, box-shadow 0.2s ease !important;
-  box-shadow: 0 0 15px rgba(220, 255, 77, 0.2);
+  box-shadow: 0 0 15px rgba(220, 255, 77, 0.25) !important;
 }
 
-.main-play-trigger:hover {
-  transform: scale(1.05);
-  box-shadow: 0 0 25px rgba(220, 255, 77, 0.4);
-}
-
-.main-play-trigger svg {
-  width: 20px;
-  height: 20px;
+.controls button.play-button svg {
+  width: 18px !important;
+  height: 18px !important;
   fill: var(--bg-dark-base) !important;
 }
 
-.main-play-trigger .stop-icon-svg {
-  display: none;
-}
-
-/* Track running presentation updates mapping over functional runtime additions */
-.playing .main-play-trigger .play-icon-svg { display: none !important; }
-.playing .main-play-trigger .stop-icon-svg { display: block !important; }
-
-/* ══════════════════════════════════════════
-   NATIVE TIMELINE INJECTIONS
-   ══════════════════════════════════════════ */
-progressbar {
-  display: block;
-  width: 100%;
-}
-
+/* Native timeline styling overrides */
 .progress-bar-rail {
   background: var(--bg-dark-raised) !important;
-  height: 5px !important;
-  border-radius: 3px !important;
-  position: relative;
+  height: 4px !important;
+  border-radius: 2px !important;
 }
 
 .progress-bar-played {
   background: var(--accent-lime) !important;
-  height: 100% !important;
-  border-radius: 3px !important;
 }
 
-.progress-bar-loaded {
-  background: rgba(255, 255, 255, 0.15) !important;
-  height: 100% !important;
-}
-
-.time-played, .time-remaining {
+.progress-bar-time-played {
   color: var(--text-muted) !important;
   font-size: 11px !important;
-  font-weight: 500 !important;
 }
 
-.class-speed-menu {
-  background: var(--bg-dark-raised);
-  border: 1px solid var(--ui-border);
-  color: var(--text-main);
-  padding: 4px 8px;
-  border-radius: 6px;
-  font-size: 11px;
-  font-weight: 600;
-  cursor: pointer;
+.speed-select {
+  background: var(--bg-dark-raised) !important;
+  color: var(--text-main) !important;
+  border: 1px solid var(--ui-border) !important;
+  border-radius: 6px !important;
+  font-size: 11px !important;
+  padding: 2px 6px !important;
 }
 
 /* ══════════════════════════════════════════
-   NAV TABS SYSTEM
+   NATIVE PANELS & EPISODE LISTS
    ══════════════════════════════════════════ */
-.panels-tabs-custom {
-  background: rgba(0, 0, 0, 0.15);
-  border-top: 1px solid var(--ui-border);
-  border-bottom: 1px solid var(--ui-border);
+.panels-tabs-menu {
+  background: rgba(0, 0, 0, 0.2) !important;
+  border-top: 1px solid var(--ui-border) !important;
+  border-bottom: 1px solid var(--ui-border) !important;
 }
 
-.panels-tabs-custom ul {
-  display: flex;
-  list-style: none;
-  padding-left: 16px;
+.panels-tabs-menu ul {
+  display: flex !important;
+  list-style: none !important;
+  padding-left: 24px !important;
 }
 
-.tab-toggle-btn {
-  background: none;
-  border: none;
-  border-bottom: 2px solid transparent;
-  color: var(--text-muted);
-  font-size: 13px;
-  font-weight: 600;
-  padding: 14px 16px;
-  cursor: pointer;
-  transition: all 0.2s ease;
+.panels-tab-button {
+  background: none !important;
+  border: none !important;
+  color: var(--text-muted) !important;
+  font-size: 12px !important;
+  font-weight: 600 !important;
+  padding: 12px 0 !important;
+  margin-right: 24px !important;
+  text-transform: none !important;
+  cursor: pointer !important;
 }
 
-.tab-toggle-btn:hover {
-  color: var(--text-main);
+/* Target active tabs state */
+.playlist-open .all-episodes-tab-button,
+.episode-info-open .episode-info-tab-button {
+  color: var(--accent-lime) !important;
+  border-bottom: 2px solid var(--accent-lime) !important;
 }
 
-.tab-toggle-btn.active {
-  color: var(--accent-lime);
-  border-bottom-color: var(--accent-lime);
+/* Target text content/lists inside panels */
+.panels {
+  background: var(--bg-dark-surface) !important;
+}
+
+.single-panel.playlist ul {
+  list-style: none !important;
+  max-height: 240px !important;
+  overflow-y: auto !important;
+}
+
+.single-playlist-episode {
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  padding: 12px 24px !important;
+  border-bottom: 1px solid var(--ui-border) !important;
+  background: transparent !important;
+}
+
+.single-playlist-episode.active {
+  background: rgba(220, 255, 77, 0.05) !important;
+}
+
+.playlist-episode-title {
+  color: var(--text-muted) !important;
+  font-size: 12px !important;
+}
+
+.single-playlist-episode.active .playlist-episode-title {
+  color: var(--text-main) !important;
+  font-weight: 600 !important;
+}
+
+.list-play-icon {
+  background: var(--bg-dark-raised) !important;
+  border-radius: 50% !important;
+}
+
+.single-playlist-episode.active .list-play-icon {
+  background: var(--accent-lime) !important;
+}
+
+.single-playlist-episode.active .list-play-icon svg path {
+  fill: var(--bg-dark-base) !important;
+}
+
+.playlist-episode-duration {
+  color: var(--text-subtle) !important;
+  font-size: 11px !important;
+}
+
+.single-playlist-episode.active .playlist-episode-duration {
+  color: var(--accent-lime) !important;
+}
+
+.single-panel.episode-info {
+  padding: 20px 24px !important;
+  color: var(--text-muted) !important;
+  font-size: 13px !important;
+  line-height: 1.6 !important;
 }
 
 /* ══════════════════════════════════════════
-   DATA CONTENT TILES
+   FOOTER STRIP
    ══════════════════════════════════════════ */
-.panels-content-custom {
-  background: var(--bg-dark-surface);
+.footer {
+  background: var(--bg-dark-base) !important;
+  border-top: 1px solid var(--ui-border) !important;
+  padding: 12px 24px !important;
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
 }
 
-.panel-view-container {
-  max-height: 280px;
-  overflow-y: auto;
-}
-
-/* Custom scroll bar formatting configuration rules */
-.panel-view-container::-webkit-scrollbar { width: 5px; }
-.panel-view-container::-webkit-scrollbar-track { background: transparent; }
-.panel-view-container::-webkit-scrollbar-thumb { background: var(--bg-dark-raised); border-radius: 4px; }
-
-.custom-playlist-ul {
-  list-style: none;
-}
-
-.custom-track-row {
-  display: flex;
-  align-items: center;
-  padding: 12px 24px;
-  gap: 14px;
-  border-bottom: 1px solid var(--ui-border);
-  cursor: pointer;
-  transition: background 0.15s ease;
-}
-
-.custom-track-row:last-child {
-  border-bottom: none;
-}
-
-.custom-track-row:hover {
-  background: rgba(255, 255, 255, 0.03);
-}
-
-.custom-track-row.active {
-  background: rgba(220, 255, 77, 0.05);
-}
-
-.track-play-indicator {
-  width: 26px;
-  height: 26px;
-  border-radius: 50%;
-  background: var(--bg-dark-raised);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--text-muted);
-}
-
-.track-play-indicator svg {
-  width: 12px;
-  height: 12px;
-  fill: currentColor;
-}
-
-.custom-track-row:hover .track-play-indicator {
-  background: var(--accent-lime);
-  color: var(--bg-dark-base);
-}
-
-.custom-track-row.active .track-play-indicator {
-  background: var(--accent-lime);
-  color: var(--bg-dark-base);
-}
-
-.track-title-text {
-  flex: 1;
-  font-size: 13px;
-  color: var(--text-muted);
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.track-title-text a {
-  color: inherit;
-  text-decoration: none;
-}
-
-.custom-track-row.active .track-title-text {
-  color: var(--text-main);
-  font-weight: 600;
-}
-
-.track-duration-stamp {
-  font-size: 11px;
-  color: var(--text-subtle);
-}
-
-.custom-track-row.active .track-duration-stamp {
-  color: var(--accent-lime);
-}
-
-/* Description text markup rules overrides */
-.info-body-render {
-  padding: 20px 24px;
-  font-size: 13px;
-  line-height: 1.6;
-  color: var(--text-muted);
-}
-
-.info-body-render p {
-  margin-bottom: 12px;
-}
-
-.info-body-render strong, 
-.info-body-render b {
-  color: var(--text-main);
-}
-
-/* ══════════════════════════════════════════
-   BRAND FOOTER STRIP
-   ══════════════════════════════════════════ */
-.player-custom-footer {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 12px 24px;
-  background: var(--bg-dark-base);
-  border-top: 1px solid var(--ui-border);
-}
-
-.brand-text-logo {
+.articly-logo-text {
   font-size: 13px;
   font-weight: 800;
-  letter-spacing: 1.5px;
+  letter-spacing: 1px;
   color: var(--text-main);
-}
-
-.powered-label {
-  font-size: 10px;
-  color: var(--text-subtle);
 }
