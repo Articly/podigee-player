@@ -297,7 +297,7 @@
 }
 
 /* ══════════════════════════════════════════
-   PLAYLIST NAVIGATION TAB CONTEXT TRACKS
+   MULTILINGUAL TAB NAVIGATION CONTROLS
    ══════════════════════════════════════════ */
 .panels-tabs-menu {
   background: rgba(0, 0, 0, 0.15) !important;
@@ -317,7 +317,6 @@
   background: none !important;
   border: none !important;
   color: var(--text-muted) !important;
-  font-size: 12px !important; /* Restores unhindered display size for native text strings */
   font-weight: 600 !important;
   padding: 14px 0 !important;
   margin-right: 24px !important;
@@ -326,6 +325,22 @@
   border-bottom: 2px solid transparent !important;
   transition: color 0.2s ease, border-color 0.2s ease !important;
 }
+
+/* ── DEFAULT BASE STRINGS (ENGLISH) ── */
+.all-episodes-tab-button { font-size: 0 !important; }
+.all-episodes-tab-button::after { content: "All episodes" !important; font-size: 12px !important; }
+
+.episode-info-tab-button { font-size: 0 !important; }
+.episode-info-tab-button::after { content: "Episode information" !important; font-size: 12px !important; }
+
+/* ── GERMAN TRANSLATION REPLACEMENTS ── */
+html[lang^="de"] .all-episodes-tab-button::after,
+[lang^="de"] .all-episodes-tab-button::after,
+:lang(de) .all-episodes-tab-button::after { content: "Alle Folgen" !important; }
+
+html[lang^="de"] .episode-info-tab-button::after,
+[lang^="de"] .episode-info-tab-button::after,
+:lang(de) .episode-info-tab-button::after { content: "Beschreibung" !important; }
 
 .playlist-open .all-episodes-tab-button,
 .episode-info-open .episode-info-tab-button {
@@ -389,14 +404,14 @@
 }
 
 /* ══════════════════════════════════════════
-   PERMANENT FOOTER LINK ALIGNMENT CONSOLE
+   PERMANENT FOOTER BLACK BOX BUTTON ALIGNMENT
    ══════════════════════════════════════════ */
 .share-menu {
   display: flex !important;
   position: absolute !important;
-  bottom: -53px !important;      /* Drops layout container cleanly into your single black footer bar */
-  right: 24px !important;        /* Aligns button perfectly onto the right layout margin line */
-  background: transparent !important; /* Blends context natively into the underlying black footer bar */
+  bottom: -53px !important;      /* FIXED: Locks perfectly parallel in your original black bar layout area */
+  right: 24px !important;        
+  background: transparent !important; 
   border: none !important;
   padding: 0 !important;
   margin: 0 !important;
@@ -448,23 +463,35 @@
   display: block !important;
 }
 
-/* Native multi-language fallback descriptor string container box */
+/* ── MULTILINGUAL COPY TRIDGERS ── */
 .share-menu button.share-copy-url-btn span {
-  font-size: 11px !important; /* Restores clear font configurations so native language templates can render strings */
+  font-size: 0 !important;
+  line-height: 0 !important;
+  display: inline-block !important;
+}
+.share-menu button.share-copy-url-btn span::after {
+  content: "Copy episode link" !important; /* Default fallback string */
+  font-size: 11px !important;
   font-weight: 600 !important;
   line-height: 1.2 !important;
   display: inline-block !important;
 }
 
-/* DYNAMIC LANGUAGE-NEUTRAL GREEN TRANSITION SUCCESS SLIDE BANNER OVERLAY */
+html[lang^="de"] .share-menu button.share-copy-url-btn span::after,
+[lang^="de"] .share-menu button.share-copy-url-btn span::after,
+:lang(de) .share-menu button.share-copy-url-btn span::after {
+  content: "Link kopieren" !important; /* German translation override string */
+}
+
+/* PURE CSS FEEDBACK SLIDE OVERLAY WITH EXTENDED VISIBILITY HOLD TIME */
 .share-menu button.share-copy-url-btn::after {
-  content: "✓" !important;       /* Clean language-neutral checkmark overlay */
+  content: "Copied! ✓" !important; /* Default fallback banner string */
   position: absolute !important;
   top: 0 !important;
   left: 0 !important;
   right: 0 !important;
   bottom: 0 !important;
-  background: #10B981 !important; /* Premium system success green feedback banner color */
+  background: #10B981 !important; 
   color: #FFFFFF !important;
   font-size: 11px !important;
   font-weight: 700 !important;
@@ -474,17 +501,20 @@
   opacity: 0 !important;
   visibility: hidden !important;
   transform: translateY(100%) !important; 
-  /* LONG TRANSITION-OUT DELAY: Waits 2 seconds before smoothly hiding the banner again */
   transition: opacity 0.2s ease 2s, transform 0.2s cubic-bezier(0.4, 0, 0.2, 1) 2s, visibility 0.2s ease 2s !important;
 }
 
-/* Swaps button into success mode immediately upon click focus input state */
+html[lang^="de"] .share-menu button.share-copy-url-btn::after,
+[lang^="de"] .share-menu button.share-copy-url-btn::after,
+:lang(de) .share-menu button.share-copy-url-btn::after {
+  content: "Kopiert! ✓" !important; /* German translation banner string */
+}
+
 .share-menu button.share-copy-url-btn:active::after,
 .share-menu button.share-copy-url-btn:focus::after {
   opacity: 1 !important;
   visibility: visible !important;
   transform: translateY(0) !important; 
-  /* ZERO DELAY ON TRANSITION-IN: Ensures the green success banner shows up instantly on click */
   transition: opacity 0s ease 0s, transform 0s ease 0s, visibility 0s ease 0s !important;
 }
 
@@ -594,12 +624,24 @@
   color: var(--text-main) !important;
   border: 1px solid var(--ui-border) !important;
   border-radius: 12px !important;
-  font-size: 12px !important; /* Restores dynamic text tracking for global languages */
   font-weight: 600 !important;
   cursor: pointer !important;
   transition: background 0.2s ease, color 0.2s ease !important;
   text-transform: none !important;
   box-shadow: none !important;
+  font-size: 0 !important;
+}
+
+.load-more::after,
+.load-more-button::after {
+  content: "Load more episodes" !important; /* Default fallback string */
+  font-size: 12px !important;
+}
+
+html[lang^="de"] .load-more::after, html[lang^="de"] .load-more-button::after,
+[lang^="de"] .load-more::after, [lang^="de"] .load-more-button::after,
+:lang(de) .load-more::after, :lang(de) .load-more-button::after {
+  content: "Mehr Folgen laden" !important; /* German translation override string */
 }
 
 .load-more:hover,
