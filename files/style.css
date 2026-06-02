@@ -138,8 +138,6 @@
   padding: 0 !important;
   margin: 0 !important;
   cursor: pointer !important;
-  width: 44px !important;
-  height: 44px !important;
   display: inline-flex !important;
   align-items: center !important;
   justify-content: center !important;
@@ -147,53 +145,62 @@
   transition: background 0.15s ease !important;
 }
 
-.controls button:hover {
+/* ══════════════════════════════════════════
+   BULLETPROOF CONTROL ICON SCALING ENGINE
+   ══════════════════════════════════════════ */
+.previous-button, 
+.backward-button, 
+.forward-button, 
+.next-button {
+  width: 44px !important;
+  height: 44px !important;
+}
+
+.controls button:not(.play-button):hover {
   background: rgba(255, 255, 255, 0.08) !important;
 }
 
 @media (prefers-color-scheme: light) {
-  .controls button:hover {
+  .controls button:not(.play-button):hover {
     background: rgba(0, 0, 0, 0.05) !important;
   }
 }
 
-/* DEEP-TARGETED MEDIA CONTROL ICON SCALING ENGINE */
-.controls button svg,
-.controls button i,
-.controls button span {
-  display: block !important;
+/* Deep-targets every possible inner icon element to force the correct large size */
+.previous-button *, 
+.backward-button *, 
+.forward-button *, 
+.next-button * {
   width: 24px !important;
   height: 24px !important;
+  min-width: 24px !important;
+  min-height: 24px !important;
   font-size: 24px !important;
-  transform: scale(1.5) !important; /* Structural layout scale modifier for extreme clarity */
+  line-height: 1 !important;
+  transform: scale(1.6) !important; /* Wipes out tiny icons completely */
   transform-origin: center !important;
-}
-
-/* HIGH-CONTRAST VISIBILITY REINFORCEMENT — DARK MODE (DEFAULT) */
-.controls button:not(.play-button) svg,
-.controls button:not(.play-button) svg path,
-.controls button:not(.play-button) svg polygon,
-.controls button:not(.play-button) i {
+  opacity: 1 !important;
   fill: #FFFFFF !important;
   stroke: #FFFFFF !important;
   color: #FFFFFF !important;
-  opacity: 1 !important;
+  transition: all 0.15s ease !important;
 }
 
-/* HIGH-CONTRAST VISIBILITY REINFORCEMENT — LIGHT MODE */
+/* Light Mode visibility correction */
 @media (prefers-color-scheme: light) {
-  .controls button:not(.play-button) svg,
-  .controls button:not(.play-button) svg path,
-  .controls button:not(.play-button) svg polygon,
-  .controls button:not(.play-button) i {
+  .previous-button *, 
+  .backward-button *, 
+  .forward-button *, 
+  .next-button * {
     fill: #111827 !important;
     stroke: #111827 !important;
     color: #111827 !important;
-    opacity: 1 !important;
   }
 }
 
-/* HIGH-CONTRAST CENTER PLAY BUTTON CONSOLE */
+/* ══════════════════════════════════════════
+   HIGH-CONTRAST CENTER PLAY BUTTON CONSOLE
+   ══════════════════════════════════════════ */
 .controls button.play-button {
   background: var(--accent-lime) !important;
   width: 54px !important;
