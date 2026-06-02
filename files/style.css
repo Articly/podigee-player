@@ -392,10 +392,10 @@
 }
 
 /* ══════════════════════════════════════════
-   SHARE PANEL COMPLETE EXTENSION FORMATTING
+   SHARE PANEL AGGRESSIVE SIZING & ALIGNMENT
    ══════════════════════════════════════════ */
 .single-panel.share {
-  padding: 24px !important;
+  padding: 20px 24px !important;
   color: var(--text-main) !important;
   font-size: 13px !important;
   height: 230px !important;      
@@ -406,10 +406,11 @@
   gap: 16px !important;
 }
 
-/* Aligns copy triggers and inline inputs horizontally */
+/* Force all form elements, fields, and containers into flat rows */
 .single-panel.share > div,
 .single-panel.share p,
-.single-panel.share form {
+.single-panel.share form,
+.single-panel.share .field-wrap {
   display: flex !important;
   flex-direction: row !important;
   align-items: center !important;
@@ -417,10 +418,49 @@
   gap: 12px !important;
   margin: 0 !important;
   padding: 0 !important;
-  flex-wrap: wrap !important;
+  width: 100% !important;
 }
 
-/* Normalizes custom copy buttons to remove standard borders */
+/* Wipe out native bullet configurations from any embedded list structure */
+.single-panel.share ul,
+.single-panel.share li {
+  list-style: none !important;
+  list-style-type: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  gap: 16px !important;
+}
+
+/* DESTRUCTIVE ICON SHRINK RESETS (Wipes out the giant screen-filling states) */
+.single-panel.share svg,
+.single-panel.share svg *,
+.single-panel.share img,
+.single-panel.share i,
+.single-panel.share .icon,
+.single-panel.share [class*="icon"] svg,
+.single-panel.share [class*="icon"]::before,
+.single-panel.share [class*="icon"]::after {
+  width: 22px !important;
+  height: 22px !important;
+  min-width: 22px !important;
+  min-height: 22px !important;
+  max-width: 22px !important;
+  max-height: 22px !important;
+  font-size: 22px !important;
+  line-height: 1 !important;
+  fill: var(--text-muted) !important;
+  stroke: none !important;
+  display: inline-block !important;
+}
+
+.single-panel.share button:hover svg {
+  fill: var(--accent-lime) !important;
+}
+
+/* Setup custom formatters for operational toggle controls */
 .single-panel.share button,
 .single-panel.share a.copy-button {
   background: transparent !important;
@@ -433,40 +473,6 @@
   color: var(--text-main) !important;
   font-weight: 500 !important;
   gap: 8px !important;
-}
-
-/* Compresses the massive double-square vector illustrations */
-.single-panel.share svg,
-.single-panel.share svg *,
-.single-panel.share button svg,
-.single-panel.share .icon svg {
-  width: 18px !important;
-  height: 18px !important;
-  max-width: 18px !important;
-  max-height: 18px !important;
-  fill: var(--text-muted) !important;
-  stroke: none !important;
-}
-
-.single-panel.share button:hover svg {
-  fill: var(--accent-lime) !important;
-}
-
-/* Eliminates bullet points for sub-tabs and social grids */
-.single-panel.share ul {
-  display: flex !important;
-  flex-direction: row !important;
-  align-items: center !important;
-  gap: 14px !important;
-  list-style: none !important;
-  margin: 0 !important;
-  padding: 0 !important;
-}
-
-.single-panel.share li {
-  list-style: none !important;
-  margin: 0 !important;
-  padding: 0 !important;
 }
 
 /* Formats JavaScript and iFrame selector sub-tabs */
@@ -507,28 +513,11 @@
 .single-panel.share .social-share,
 .single-panel.share .share-links,
 .single-panel.share ul:last-of-type {
-  margin-top: auto !important; 
-  padding-top: 12px !important;
+  margin-top: 4px !important;
   display: flex !important;
   justify-content: flex-start !important;
   gap: 20px !important;
-}
-
-.single-panel.share .social-share a,
-.single-panel.share ul:last-of-type a,
-.single-panel.share ul:last-of-type button {
-  color: var(--text-muted) !important;
-  font-size: 18px !important;
-  transition: color 0.15s ease !important;
-  background: transparent !important;
-  border: none !important;
-  padding: 0 !important;
-}
-
-.single-panel.share .social-share a:hover,
-.single-panel.share ul:last-of-type a:hover,
-.single-panel.share ul:last-of-type button:hover {
-  color: var(--accent-lime) !important;
+  width: 100% !important;
 }
 
 /* ══════════════════════════════════════════
@@ -688,4 +677,11 @@
 .footer-right .buttons .share-menu-button:hover {
   background: var(--accent-lime) !important;
   color: var(--bg-dark-base) !important;
+}
+
+/* ══════════════════════════════════════════
+   REMOVE COLORED TIMER OVERLAY
+   ══════════════════════════════════════════ */
+.progress-tooltip {
+  display: none !important;
 }
