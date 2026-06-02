@@ -161,7 +161,9 @@
   fill: var(--text-main) !important;
 }
 
-/* HIGH-CONTRAST CENTER PLAY BUTTON ENGINE */
+/* ══════════════════════════════════════════
+   HIGH-CONTRAST PLAY BUTTON ENGINE (FIXED CONTRAST)
+   ══════════════════════════════════════════ */
 .controls button.play-button {
   background: var(--accent-lime) !important;
   width: 48px !important;
@@ -169,16 +171,23 @@
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
 }
 
-.controls button.play-button svg,
-.controls button.play-button svg path {
-  width: 18px !important;
-  height: 18px !important;
-  fill: var(--bg-dark-base) !important; /* Turns white in light theme, dark in dark theme */
+/* Aggressively forces the inner arrow to be white in Light Mode, dark in Dark Mode */
+.controls button.play-button,
+.controls button.play-button *,
+.controls button.play-button::before,
+.controls button.play-button::after {
+  color: var(--bg-dark-base) !important;
+  fill: var(--bg-dark-base) !important;
+  stroke: var(--bg-dark-base) !important;
 }
 
 .controls button.play-button:hover {
   transform: scale(1.05) !important;
 }
+
+.play-button svg.stop { display: none !important; }
+.playing .play-button svg.play { display: none !important; }
+.playing .play-button svg.stop { display: block !important; }
 
 /* ══════════════════════════════════════════
    SCALE ALL OTHER CONTROL BUTTONS
@@ -472,4 +481,11 @@
 .footer-right .buttons .share-menu-button:hover {
   background: var(--accent-lime) !important;
   color: var(--bg-dark-base) !important;
+}
+
+/* ══════════════════════════════════════════
+   REMOVE COLORED TIMER OVERLAY
+   ══════════════════════════════════════════ */
+.progress-tooltip {
+  display: none !important;
 }
