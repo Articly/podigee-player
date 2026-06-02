@@ -43,14 +43,6 @@
 }
 
 /* ══════════════════════════════════════════
-   DYNAMIC FOOTER MERGE ENGINE
-   ══════════════════════════════════════════ */
-/* Completely hides the native footer bar from the document layout whenever the share menu bar is open */
-.podcast-player-inside:has(.share-menu[style*="display: block"]) .footer {
-  display: none !important;
-}
-
-/* ══════════════════════════════════════════
    CORE CONTAINMENT RESETS (ROUNDED LAYOUT)
    ══════════════════════════════════════════ */
 .podcast-player-redesign,
@@ -396,52 +388,41 @@
 }
 
 /* ══════════════════════════════════════════
-   UNIFIED SHARE FOOTER OVERLAY ACTION PANEL
+   TRANSPARENT INLINE SHARE BUTTON ENGINE
    ══════════════════════════════════════════ */
-/* Becomes a replacement footer bar matching dimensions of the baseline block exactly */
+/* Strips away background colors and layout extensions to blend into the frame naturally */
 .share-menu {
   display: flex !important;
-  background: var(--bg-dark-base) !important; 
-  border-top: 1px solid var(--ui-border) !important;
-  padding: 0 24px !important;
+  background: transparent !important; 
+  border: none !important;
+  padding: 12px 24px !important;
   flex-direction: row !important;
   align-items: center !important;
-  justify-content: space-between !important;
-  height: 47px !important;       
+  justify-content: flex-end !important; /* Aligns the single action setup cleanly to the right */
   width: 100% !important;
+  height: auto !important;
   margin: 0 !important;
-  box-sizing: border-box !important;
+  box-shadow: none !important;
+  position: static !important;
 }
 
-/* Generates high-contrast brand token text natively on the left hand side */
-.share-menu::before {
-  content: "ARTICLY" !important;
-  font-size: 13px !important;
-  font-weight: 800 !important;
-  letter-spacing: 1px !important;
-  color: var(--text-main) !important;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
-  order: 1 !important;
-}
-
-/* Strip structural clutter entirely from the viewport */
+/* Strip structural clutter entirely from the viewport wrapper */
 .share-menu .copy-embed,
 .share-menu .share-buttons,
 .share-menu .start-at-wrap {
   display: none !important;
 }
 
-/* Formats the active copy button block to align directly to the right */
+/* Normalize flex containers to utilize standard row metrics */
 .share-menu .copy-episode.flex-item {
   border: none !important;
   background: transparent !important;
   padding: 0 !important;
-  margin: 0 0 0 auto !important; 
+  margin: 0 !important; 
   display: flex !important;
   flex-direction: row !important;
   align-items: center !important;
   width: auto !important;
-  order: 2 !important;
 }
 
 /* Styles your lone lime green target operation button */
@@ -470,21 +451,20 @@
   display: block !important;
 }
 
-/* Strips text label words and styles the close action into a clean right-aligned "X" trigger */
+/* Resets the cancel action into a clean right-aligned standalone "X" trigger */
 .share-menu button.close-button {
-  order: 3 !important;
   position: static !important;
   background: transparent !important;
   border: none !important;
   padding: 0 !important;
-  margin: 0 0 0 16px !important; 
+  margin: 0 0 0 12px !important; /* Space gap separation from the copy action pill */
   width: 24px !important;
   height: 24px !important;
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
   cursor: pointer !important;
-  color: transparent !important; /* Hides the word "Cancel" entirely */
+  color: transparent !important; /* Hides the native "Cancel" text completely */
   font-size: 0 !important;
 }
 
