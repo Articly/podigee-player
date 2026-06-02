@@ -12,13 +12,17 @@
   --ui-border:       rgba(255, 255, 255, 0.08);
 }
 
-/* Nuke native unstyled configurations */
-.splash-button, .single-panel-title, .load-more {
+/* Force hide ghost icons and duplicate native elements */
+.splash-button, 
+.single-panel-title, 
+.load-more,
+.main-player > .progress-bar, /* Wipes out old native floating timer bar */
+.time-reader {
   display: none !important;
 }
 
 /* ══════════════════════════════════════════
-   LAYOUT resets
+   RESET SHELL & CORE LAYOUT
    ══════════════════════════════════════════ */
 .podcast-player-redesign,
 .podcast-player-redesign *,
@@ -83,10 +87,11 @@
 .episode-subtitle h2 {
   font-size: 11px !important;
   color: var(--text-muted) !important;
+  font-weight: 400 !important;
 }
 
 /* ══════════════════════════════════════════
-   CONTROLS STRIP (CLEANS GHOST & OVERLAPS)
+   BUTTON CONTROLS (NUKES ALL GHOST COPIES)
    ══════════════════════════════════════════ */
 .controls {
   display: flex !important;
@@ -104,23 +109,33 @@
   align-items: center !important;
   justify-content: center !important;
   border-radius: 50% !important;
+  position: relative !important;
+  
+  /* Wipe background fonts or styling injected by default config sets */
+  font-size: 0 !important;
+  color: transparent !important;
+  background-image: none !important;
 }
 
-.controls button:hover {
-  background: rgba(255, 255, 255, 0.05) !important;
+/* Force eliminate pseudo-element glyph bindings completely */
+.controls button::before,
+.controls button::after {
+  content: none !important;
+  display: none !important;
 }
 
 .controls button svg {
+  display: block !important;
   width: 14px !important;
   height: 14px !important;
   fill: var(--text-muted) !important;
 }
 
 .controls button:hover svg {
-  fill: var(--text-primary) !important;
+  fill: var(--text-main) !important;
 }
 
-/* Main play loop target node */
+/* Main play loop target shell configuration */
 .controls button.play-button {
   background: var(--accent-lime) !important;
   width: 48px !important;
@@ -134,42 +149,60 @@
   fill: var(--bg-dark-base) !important;
 }
 
-/* Manage dual vector template toggles cleanly */
+.controls button.play-button:hover {
+  transform: scale(1.05) !important;
+}
+
+/* Manage vector visibility directly on our tags */
 .play-button svg.stop { display: none !important; }
 .playing .play-button svg.play { display: none !important; }
 .playing .play-button svg.stop { display: block !important; }
 
 /* ══════════════════════════════════════════
-   TIMELINE SECTOR (FIXES DOUBLE TIMER)
+   PROGRESS DECK & TIME CONTAINER
    ══════════════════════════════════════════ */
-.progress-bar-player {
+.progress-timeline-container {
   display: flex !important;
-  align-items: center !important;
-  gap: 12px !important;
-  margin-bottom: 4px !important;
+  flex-direction: column !important;
+  gap: 6px !important;
+  width: 100% !important;
 }
 
-/* Allow native framework parameters to safely rule layout hiding properties */
-.progress-bar-time-played[style*="display: none"] {
-  display: none !important;
-}
-
-.progress-bar-time-played {
-  color: var(--text-muted) !important;
-  font-size: 11px !important;
-  font-weight: 500 !important;
+progressbar {
+  display: block !important;
+  width: 100% !important;
 }
 
 .progress-bar-rail {
   background: var(--bg-dark-raised) !important;
   height: 4px !important;
   border-radius: 2px !important;
-  flex: 1 !important;
   position: relative !important;
+  width: 100% !important;
 }
 
 .progress-bar-played {
   background: var(--accent-lime) !important;
+  height: 100% !important;
+  border-radius: 2px !important;
+}
+
+/* Clean up time layout display properties */
+.time-row-display {
+  display: flex !important;
+  justify-content: space-between !important;
+  width: 100% !important;
+}
+
+.progress-bar-time-played {
+  color: var(--text-muted) !important;
+  background: transparent !important; /* Strips bright highlight styling box */
+  font-size: 11px !important;
+  font-weight: 500 !important;
+  display: inline-block !important;
+  width: auto !important;
+  height: auto !important;
+  padding: 0 !important;
 }
 
 .speed-select {
@@ -183,7 +216,7 @@
 }
 
 /* ══════════════════════════════════════════
-   DYNAMIC PANELS SECTOR
+   AUTOMATED COMPONENT AREA & EPISODE LIST
    ══════════════════════════════════════════ */
 .panels-tabs-menu {
   background: rgba(0, 0, 0, 0.2) !important;
@@ -240,7 +273,7 @@
   background: rgba(220, 255, 77, 0.04) !important;
 }
 
-/* REMOVE TRACK INDEX NUMBERS */
+/* STRIP EPISODE INDEX LABEL IDENTIFIERS */
 .playlist-episode-number {
   display: none !important;
 }
@@ -272,6 +305,10 @@
 .list-play-icon svg { width: 10px !important; height: 10px !important; }
 .single-playlist-episode.active .list-play-icon svg path { fill: var(--bg-dark-base) !important; }
 
+/* Track running waveform overrides */
+.single-playlist-episode .waveform-icon { display: none !important; }
+.single-playlist-episode.active .waveform-icon { display: none !important; }
+
 .playlist-episode-duration {
   color: var(--text-subtle) !important;
   font-size: 11px !important;
@@ -293,7 +330,7 @@
 }
 
 /* ══════════════════════════════════════════
-   FOOTER STRUCTURE
+   FOOTER BAR
    ══════════════════════════════════════════ */
 .footer {
   background: var(--bg-dark-base) !important;
@@ -304,14 +341,13 @@
   align-items: center !important;
 }
 
-.articly-brand-logo {
+.articly-brand-label {
   font-size: 13px;
   font-weight: 800;
   letter-spacing: 1px;
   color: var(--text-main);
 }
 
-/* Cleanup native unstyled active components in footer row */
 .footer-right .buttons .list-button {
   background: var(--bg-dark-raised) !important;
   color: var(--text-main) !important;
