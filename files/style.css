@@ -314,3 +314,38 @@
   letter-spacing: 1px;
   color: var(--text-primary);
 }
+
+/* ══════════════════════════════════════════
+   FIX PLAY/PAUSE DUAL ICON GLITCH
+   ══════════════════════════════════════════ */
+
+/* 1. Hide the pause/stop icon by default when the player is idle */
+.play-button .stop {
+  display: none !important;
+}
+
+/* 2. When the player state is active (playing), flip the visibility flags */
+.playing .play-button .play {
+  display: none !important;
+}
+.playing .play-button .stop {
+  display: block !important;
+}
+
+/* 3. Ensure the active icon scales and sits dead-center inside the circle */
+.play-button {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+.play-button svg {
+  width: 16px !important;
+  height: 20px !important;
+  margin: 0 !important;
+}
+
+/* Optically balance the play triangle so it looks perfectly centered */
+.play-button .play {
+  margin-left: 2px !important;
+}
