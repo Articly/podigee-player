@@ -713,25 +713,3 @@
     margin-top: 4px !important;
   }
 }
-
-/* ══════════════════════════════════════════
-   IOS / SAFARI ICON FONT DISTORTION FIX
-   ══════════════════════════════════════════ */
-
-/* Forces Safari to render the icon font glyphs without squishing or clipping */
-.controls button::before {
-  font-family: "podigee-podcast-player" !important;
-  display: inline-block !important; /* Crucial: stops iOS Safari from compressing font paths */
-  font-size: 22px !important;       /* Clean, highly visible scale for the side icons */
-  line-height: 1 !important;        /* Prevents vertical crushing */
-  letter-spacing: 0 !important;     /* Prevents horizontal crumbling */
-  text-align: center !important;
-  width: 100% !important;
-  height: auto !important;
-}
-
-/* Keeps the central play/pause icon slightly larger and perfectly balanced */
-.controls button.play-button::before {
-  font-size: 26px !important;       /* Crisp scale for the main action trigger */
-  line-height: 1 !important;
-}
