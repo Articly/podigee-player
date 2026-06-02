@@ -43,6 +43,14 @@
 }
 
 /* ══════════════════════════════════════════
+   DYNAMIC FOOTER MERGE ENGINE
+   ══════════════════════════════════════════ */
+/* Completely hides the native footer bar from the document layout whenever the share menu bar is open */
+.podcast-player-inside:has(.share-menu[style*="display: block"]) .footer {
+  display: none !important;
+}
+
+/* ══════════════════════════════════════════
    CORE CONTAINMENT RESETS (ROUNDED LAYOUT)
    ══════════════════════════════════════════ */
 .podcast-player-redesign,
@@ -68,7 +76,7 @@
   border: 1px solid var(--ui-border) !important;
   border-radius: 20px !important;
   overflow: hidden !important;
-  position: relative !important;     /* Anchor alignment for the bottom footer swap */
+  position: relative !important;     
 }
 
 .cover-image-player-wrap {
@@ -388,27 +396,24 @@
 }
 
 /* ══════════════════════════════════════════
-   FOOTER LEVEL OVERLAY ACTION ENGINE 
+   UNIFIED SHARE FOOTER OVERLAY ACTION PANEL
    ══════════════════════════════════════════ */
-/* Snaps the copy block directly over the footer bar so panels remain fully visible above */
+/* Becomes a replacement footer bar matching dimensions of the baseline block exactly */
 .share-menu {
   display: flex !important;
-  position: absolute !important;
-  bottom: 0 !important;
-  left: 0 !important;
-  width: 100% !important;
-  height: 47px !important;       /* Exact vertical dimension matching the footer layout */
   background: var(--bg-dark-base) !important; 
   border-top: 1px solid var(--ui-border) !important;
   padding: 0 24px !important;
   flex-direction: row !important;
   align-items: center !important;
   justify-content: space-between !important;
-  z-index: 99999 !important;
+  height: 47px !important;       
+  width: 100% !important;
   margin: 0 !important;
+  box-sizing: border-box !important;
 }
 
-/* Natively reproduces the high-contrast branding label on the left side of the row */
+/* Generates high-contrast brand token text natively on the left hand side */
 .share-menu::before {
   content: "ARTICLY" !important;
   font-size: 13px !important;
@@ -419,14 +424,14 @@
   order: 1 !important;
 }
 
-/* Strip extra unneeded options entirely from view */
+/* Strip structural clutter entirely from the viewport */
 .share-menu .copy-embed,
 .share-menu .share-buttons,
 .share-menu .start-at-wrap {
   display: none !important;
 }
 
-/* Formats the active copy button block to snap beautifully on the right hand side */
+/* Formats the active copy button block to align directly to the right */
 .share-menu .copy-episode.flex-item {
   border: none !important;
   background: transparent !important;
@@ -439,7 +444,7 @@
   order: 2 !important;
 }
 
-/* Styles your standalone green trigger button */
+/* Styles your lone lime green target operation button */
 .share-menu button.share-copy-url-btn {
   background: var(--accent-lime) !important;
   color: var(--bg-dark-base) !important;
@@ -465,20 +470,22 @@
   display: block !important;
 }
 
-/* Formats the cancel trigger as a clean standalone "X" on the far right */
+/* Strips text label words and styles the close action into a clean right-aligned "X" trigger */
 .share-menu button.close-button {
   order: 3 !important;
   position: static !important;
   background: transparent !important;
   border: none !important;
   padding: 0 !important;
-  margin: 0 0 0 16px !important; /* Space separation gap from the copy button */
+  margin: 0 0 0 16px !important; 
   width: 24px !important;
   height: 24px !important;
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
   cursor: pointer !important;
+  color: transparent !important; /* Hides the word "Cancel" entirely */
+  font-size: 0 !important;
 }
 
 .share-menu button.close-button svg {
