@@ -12,20 +12,14 @@
   --ui-border:       rgba(255, 255, 255, 0.08);
 }
 
-/* Eliminate native unstyled floating configuration flags */
-.splash-button, 
-.single-panel-title, 
-.load-more, 
-.time-reader,
-.main-player > .progress-bar,
-.close-menu-button, 
-.more-menu-button,
-.single-playlist-episode .waveform-icon { 
+/* Eliminate system conflict overlays */
+.splash-button, .single-panel-title, .load-more, .time-reader,
+.close-menu-button, .more-menu-button, .single-playlist-episode .waveform-icon { 
   display: none !important; 
 }
 
 /* ══════════════════════════════════════════
-   CORE CONTAINMENT RESETS
+   CORE WRAPPER FRAMEWORK RESETS
    ══════════════════════════════════════════ */
 .podcast-player-redesign,
 .podcast-player-redesign *,
@@ -37,7 +31,7 @@
 .podcast-player-redesign {
   background: var(--bg-dark-base) !important;
   color: var(--text-main) !important;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif !important;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
   padding: 6px !important;
   width: 100% !important;
   min-width: 100% !important;
@@ -94,7 +88,7 @@
 }
 
 /* ══════════════════════════════════════════
-   BUTTON ACTIONS DECK (RESETS GHOST OVERLAPS)
+   PURE CSS SHAPE CONTROLS (BULLETPROOF CONFIG)
    ══════════════════════════════════════════ */
 .controls {
   display: flex !important;
@@ -113,8 +107,6 @@
   border: none !important;
   outline: none !important;
   box-shadow: none !important;
-  padding: 0 !important;
-  margin: 0 !important;
   cursor: pointer !important;
   width: 32px !important;
   height: 32px !important;
@@ -122,52 +114,94 @@
   align-items: center !important;
   justify-content: center !important;
   border-radius: 50% !important;
+  font-size: 0 !important;
+  color: transparent !important;
 }
 
 .controls button:hover {
   background: rgba(255, 255, 255, 0.05) !important;
 }
 
-.controls button::before,
-.controls button::after {
-  content: none !important;
-  display: none !important;
-}
-
-.controls button svg {
+/* Render Vector Shapes via Pseudo-Elements to Prevent Script Drops */
+.controls button::before {
+  content: "" !important;
   display: block !important;
-  width: 14px !important;
-  height: 14px !important;
-  fill: var(--text-muted) !important;
+  font-family: inherit !important;
 }
 
-.controls button:hover svg {
-  fill: var(--text-main) !important;
+/* Skip Previous Icon */
+.previous-button::before {
+  width: 0; height: 0;
+  border-style: solid;
+  border-width: 5px 8px 5px 0;
+  border-color: transparent var(--text-muted) transparent transparent;
+  box-shadow: -2px 0 0 var(--text-muted);
+}
+.previous-button:hover::before {
+  border-color: transparent var(--text-main) transparent transparent;
+  box-shadow: -2px 0 0 var(--text-main);
 }
 
+/* Skip Backward 10s Gylph */
+.backward-button::before {
+  content: "⟲10" !important;
+  font-size: 11px !important;
+  color: var(--text-muted) !important;
+  font-weight: 700 !important;
+}
+.backward-button:hover::before { color: var(--text-main) !important; }
+
+/* Skip Forward 30s Glyph */
+.forward-button::before {
+  content: "⟳30" !important;
+  font-size: 11px !important;
+  color: var(--text-muted) !important;
+  font-weight: 700 !important;
+}
+.forward-button:hover::before { color: var(--text-main) !important; }
+
+/* Skip Next Icon */
+.next-button::before {
+  width: 0; height: 0;
+  border-style: solid;
+  border-width: 5px 0 5px 8px;
+  border-color: transparent transparent transparent var(--text-muted);
+  box-shadow: 2px 0 0 var(--text-muted);
+}
+.next-button:hover::before {
+  border-color: transparent transparent transparent var(--text-main);
+  box-shadow: 2px 0 0 var(--text-main);
+}
+
+/* Primary Play Circle Engine Specs */
 .controls button.play-button {
   background: var(--accent-lime) !important;
   width: 48px !important;
   height: 48px !important;
   box-shadow: 0 0 15px rgba(220, 255, 77, 0.25) !important;
 }
+.controls button.play-button:hover { transform: scale(1.05) !important; }
 
-.controls button.play-button svg {
-  width: 18px !important;
-  height: 18px !important;
-  fill: var(--bg-dark-base) !important;
+/* Triangle Play Shape */
+.play-button::before {
+  width: 0 !important; height: 0 !important;
+  border-style: solid !important;
+  border-width: 7px 0 7px 12px !important;
+  border-color: transparent transparent transparent var(--bg-dark-base) !important;
+  margin-left: 2px !important;
 }
 
-.controls button.play-button:hover {
-  transform: scale(1.05) !important;
+/* Target Running State Changes Natively via Podigee Class Toggles */
+.playing .play-button::before {
+  border: none !important;
+  width: 10px !important;
+  height: 12px !important;
+  background: linear-gradient(to right, var(--bg-dark-base) 35%, transparent 35%, transparent 65%, var(--bg-dark-base) 65%) !important;
+  margin-left: 0 !important;
 }
-
-.play-button svg.stop { display: none !important; }
-.playing .play-button svg.play { display: none !important; }
-.playing .play-button svg.stop { display: block !important; }
 
 /* ══════════════════════════════════════════
-   TIMELINE SECTOR MODULE (CLEANS HIGHLIGHT BOXES)
+   TIMELINE DECK TRACK (FIXES VISIBILITY & BLOCKS)
    ══════════════════════════════════════════ */
 .progress-bar-player {
   display: flex !important;
@@ -175,7 +209,7 @@
   align-items: center !important;
   gap: 12px !important;
   background: transparent !important;
-  margin: 4px 0 !important;
+  margin: 12px 0 4px !important;
   padding: 0 !important;
   height: auto !important;
   width: 100% !important;
@@ -197,6 +231,7 @@
   border-radius: 2px !important;
 }
 
+/* Wipe highlight container panels background overlays on digital timers */
 .progress-bar-time-played {
   color: var(--text-muted) !important;
   background: transparent !important;
@@ -217,9 +252,7 @@
 .time-played { order: 1 !important; }
 .time-remaining { order: 3 !important; }
 
-.progress-bar-time-played[style*="display: none"] {
-  display: none !important;
-}
+.progress-bar-time-played[style*="display: none"] { display: none !important; }
 
 .speed-select {
   background: var(--bg-dark-raised) !important;
@@ -232,7 +265,7 @@
 }
 
 /* ══════════════════════════════════════════
-   PLAYLIST ROW FORMATTING (MATCHES IMAGE 1)
+   PLAYLIST RUNTIME MAPPING & SELECTION TRACK
    ══════════════════════════════════════════ */
 .panels-tabs-menu {
   background: rgba(0, 0, 0, 0.15) !important;
@@ -279,7 +312,6 @@
 .single-panel.playlist ul::-webkit-scrollbar { width: 4px; }
 .single-panel.playlist ul::-webkit-scrollbar-thumb { background: var(--bg-dark-raised); border-radius: 2px; }
 
-/* Enforce crisp borders and full width item layouts */
 .single-playlist-episode {
   display: flex !important;
   justify-content: space-between !important;
@@ -290,16 +322,15 @@
   transition: background 0.15s ease !important;
 }
 
-/* Row active container background highlight lookup */
+/* Sync visual execution variables across selected tracks row targets */
 .single-playlist-episode.active {
   background: rgba(220, 255, 77, 0.04) !important;
 }
-
 .single-playlist-episode:hover {
   background: rgba(255, 255, 255, 0.02) !important;
 }
 
-/* Forces inner container holding icon and text to sit in a flat line */
+/* Force container holding icon and title row directly into a single horizontal block */
 .playlist-episode-info {
   display: flex !important;
   flex-direction: row !important;
@@ -309,10 +340,8 @@
   min-width: 0 !important;
 }
 
-/* Wipes out the auto-generated numeric indexes prefix digits strings */
-.playlist-episode-number {
-  display: none !important;
-}
+/* Strip native index serial counters strings metrics */
+.playlist-episode-number { display: none !important; }
 
 .playlist-episode-title {
   color: var(--text-muted) !important;
@@ -329,7 +358,7 @@
   font-weight: 700 !important;
 }
 
-/* Rebuild track circular layout block */
+/* Build crisp inner circle layout vectors indicators */
 .list-play-icon {
   background: var(--bg-dark-raised) !important;
   border-radius: 50% !important;
@@ -346,18 +375,9 @@
   background: var(--accent-lime) !important;
 }
 
-.list-play-icon svg { 
-  width: 11px !important; 
-  height: 11px !important; 
-}
-
-.list-play-icon svg path {
-  fill: var(--text-muted) !important;
-}
-
-.single-playlist-episode.active .list-play-icon svg path { 
-  fill: var(--bg-dark-base) !important; 
-}
+.list-play-icon svg { width: 11px !important; height: 11px !important; }
+.list-play-icon svg path { fill: var(--text-muted) !important; }
+.single-playlist-episode.active .list-play-icon svg path { fill: var(--bg-dark-base) !important; }
 
 .playlist-episode-duration {
   color: var(--text-subtle) !important;
@@ -366,7 +386,6 @@
   margin-left: 12px !important;
   flex-shrink: 0 !important;
 }
-
 .single-playlist-episode.active .playlist-episode-duration {
   color: var(--accent-lime) !important;
   font-weight: 600 !important;
@@ -378,10 +397,7 @@
   font-size: 13px !important;
   line-height: 1.6 !important;
 }
-
-.single-panel.episode-info a {
-  color: var(--accent-lime) !important;
-}
+.single-panel.episode-info a { color: var(--accent-lime) !important; }
 
 /* ══════════════════════════════════════════
    FOOTER BLOCK DECK
@@ -414,7 +430,6 @@
   text-transform: none !important;
   display: inline-block !important;
 }
-
 .footer-right .buttons .share-menu-button:hover {
   background: var(--accent-lime) !important;
   color: var(--bg-dark-base) !important;
