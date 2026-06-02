@@ -1,24 +1,24 @@
 /* ══════════════════════════════════════════
-   BRAND PALETTE DEFINITIONS
+   DESIGN TOKENS — ARTICLY DARK MODE
    ══════════════════════════════════════════ */
 :root {
-  --bg-primary:   #000002;
-  --bg-surface:   #1B282D;
-  --bg-raised:    #2e4550;
-  --lime-green:   #DCFF4D;
-  --text-primary: #FFFFFF;
-  --text-muted:   rgba(255, 255, 255, 0.60);
-  --text-subtle:  rgba(255, 255, 255, 0.35);
-  --border-line:  rgba(255, 255, 255, 0.08);
+  --bg-dark-base:    #000002;
+  --bg-dark-surface: #1B282D;
+  --bg-dark-raised:  #2e4550;
+  --accent-lime:     #DCFF4D;
+  --text-main:       #FFFFFF;
+  --text-muted:      rgba(255, 255, 255, 0.60);
+  --text-subtle:     rgba(255, 255, 255, 0.35);
+  --ui-border:       rgba(255, 255, 255, 0.08);
 }
 
-/* Nuke absolute positioning metrics generated outside our viewport wrapper context */
+/* Nuke native unstyled configurations */
 .splash-button, .single-panel-title, .load-more {
   display: none !important;
 }
 
 /* ══════════════════════════════════════════
-   RESET SHELL ENFORCEMENTS
+   LAYOUT resets
    ══════════════════════════════════════════ */
 .podcast-player-redesign,
 .podcast-player-redesign *,
@@ -28,24 +28,21 @@
 }
 
 .podcast-player-redesign {
-  background: var(--bg-primary) !important;
-  color: var(--text-primary) !important;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+  background: var(--bg-dark-base) !important;
+  color: var(--text-main) !important;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif !important;
   padding: 6px !important;
   width: 100% !important;
   min-width: 100% !important;
 }
 
 .podcast-player-inside {
-  background: var(--bg-surface) !important;
-  border: 1px solid var(--border-line) !important;
+  background: var(--bg-dark-surface) !important;
+  border: 1px solid var(--ui-border) !important;
   border-radius: 20px !important;
   overflow: hidden !important;
 }
 
-/* ══════════════════════════════════════════
-   PLAYER BODY & AUDIO BLOCK
-   ══════════════════════════════════════════ */
 .cover-image-player-wrap {
   display: flex !important;
   padding: 24px !important;
@@ -77,7 +74,7 @@
 .episode-title h1 a, 
 .episode-title h1 {
   font-size: 15px !important;
-  color: var(--text-primary) !important;
+  color: var(--text-main) !important;
   font-weight: 700 !important;
   text-decoration: none !important;
   line-height: 1.4 !important;
@@ -86,11 +83,10 @@
 .episode-subtitle h2 {
   font-size: 11px !important;
   color: var(--text-muted) !important;
-  font-weight: 400 !important;
 }
 
 /* ══════════════════════════════════════════
-   ISOLATED CONTROL HANDLERS
+   CONTROLS STRIP (CLEANS GHOST & OVERLAPS)
    ══════════════════════════════════════════ */
 .controls {
   display: flex !important;
@@ -124,9 +120,9 @@
   fill: var(--text-primary) !important;
 }
 
-/* Structural enforcement configurations targeting play button node precisely */
+/* Main play loop target node */
 .controls button.play-button {
-  background: var(--lime-green) !important;
+  background: var(--accent-lime) !important;
   width: 48px !important;
   height: 48px !important;
   box-shadow: 0 0 15px rgba(220, 255, 77, 0.25) !important;
@@ -135,20 +131,16 @@
 .controls button.play-button svg {
   width: 18px !important;
   height: 18px !important;
-  fill: var(--bg-primary) !important;
+  fill: var(--bg-dark-base) !important;
 }
 
-.controls button.play-button:hover {
-  transform: scale(1.05) !important;
-}
-
-/* Handle playback mode dynamic toggling conditions explicitly */
+/* Manage dual vector template toggles cleanly */
 .play-button svg.stop { display: none !important; }
 .playing .play-button svg.play { display: none !important; }
 .playing .play-button svg.stop { display: block !important; }
 
 /* ══════════════════════════════════════════
-   TIMELINE SECTOR STRUCTURAL COMPONENT OVERRIDES
+   TIMELINE SECTOR (FIXES DOUBLE TIMER)
    ══════════════════════════════════════════ */
 .progress-bar-player {
   display: flex !important;
@@ -157,27 +149,33 @@
   margin-bottom: 4px !important;
 }
 
-.progress-bar-rail {
-  background: var(--bg-dark-raised) !important;
-  height: 4px !important;
-  border-radius: 2px !important;
-  flex: 1 !important;
-}
-
-.progress-bar-played {
-  background: var(--lime-green) !important;
+/* Allow native framework parameters to safely rule layout hiding properties */
+.progress-bar-time-played[style*="display: none"] {
+  display: none !important;
 }
 
 .progress-bar-time-played {
   color: var(--text-muted) !important;
   font-size: 11px !important;
-  font-family: inherit !important;
+  font-weight: 500 !important;
+}
+
+.progress-bar-rail {
+  background: var(--bg-dark-raised) !important;
+  height: 4px !important;
+  border-radius: 2px !important;
+  flex: 1 !important;
+  position: relative !important;
+}
+
+.progress-bar-played {
+  background: var(--accent-lime) !important;
 }
 
 .speed-select {
   background: var(--bg-dark-raised) !important;
-  color: var(--text-primary) !important;
-  border: 1px solid var(--border-line) !important;
+  color: var(--text-main) !important;
+  border: 1px solid var(--ui-border) !important;
   border-radius: 6px !important;
   font-size: 11px !important;
   padding: 2px 6px !important;
@@ -185,12 +183,12 @@
 }
 
 /* ══════════════════════════════════════════
-   NATIVE PANELS MAPPING ADAPTATION OVERRIDES
+   DYNAMIC PANELS SECTOR
    ══════════════════════════════════════════ */
 .panels-tabs-menu {
   background: rgba(0, 0, 0, 0.2) !important;
-  border-top: 1px solid var(--border-line) !important;
-  border-bottom: 1px solid var(--border-line) !important;
+  border-top: 1px solid var(--ui-border) !important;
+  border-bottom: 1px solid var(--ui-border) !important;
 }
 
 .panels-tabs-menu ul {
@@ -213,8 +211,8 @@
 
 .playlist-open .all-episodes-tab-button,
 .episode-info-open .episode-info-tab-button {
-  color: var(--lime-green) !important;
-  border-bottom: 2px solid var(--lime-green) !important;
+  color: var(--accent-lime) !important;
+  border-bottom: 2px solid var(--accent-lime) !important;
 }
 
 .panels {
@@ -227,7 +225,6 @@
   overflow-y: auto !important;
 }
 
-/* Custom platform-native tracking layout configurations */
 .single-panel.playlist ul::-webkit-scrollbar { width: 4px; }
 .single-panel.playlist ul::-webkit-scrollbar-thumb { background: var(--bg-dark-raised); border-radius: 2px; }
 
@@ -236,11 +233,16 @@
   justify-content: space-between !important;
   align-items: center !important;
   padding: 12px 24px !important;
-  border-bottom: 1px solid var(--border-line) !important;
+  border-bottom: 1px solid var(--ui-border) !important;
 }
 
 .single-playlist-episode.active {
   background: rgba(220, 255, 77, 0.04) !important;
+}
+
+/* REMOVE TRACK INDEX NUMBERS */
+.playlist-episode-number {
+  display: none !important;
 }
 
 .playlist-episode-title {
@@ -249,7 +251,7 @@
 }
 
 .single-playlist-episode.active .playlist-episode-title {
-  color: var(--text-primary) !important;
+  color: var(--text-main) !important;
   font-weight: 600 !important;
 }
 
@@ -264,17 +266,11 @@
 }
 
 .single-playlist-episode.active .list-play-icon {
-  background: var(--lime-green) !important;
+  background: var(--accent-lime) !important;
 }
 
-.list-play-icon svg {
-  width: 10px !important;
-  height: 10px !important;
-}
-
-.single-playlist-episode.active .list-play-icon svg path {
-  fill: var(--bg-primary) !important;
-}
+.list-play-icon svg { width: 10px !important; height: 10px !important; }
+.single-playlist-episode.active .list-play-icon svg path { fill: var(--bg-dark-base) !important; }
 
 .playlist-episode-duration {
   color: var(--text-subtle) !important;
@@ -282,7 +278,7 @@
 }
 
 .single-playlist-episode.active .playlist-episode-duration {
-  color: var(--lime-green) !important;
+  color: var(--accent-lime) !important;
 }
 
 .single-panel.episode-info {
@@ -293,83 +289,40 @@
 }
 
 .single-panel.episode-info a {
-  color: var(--lime-green) !important;
+  color: var(--accent-lime) !important;
 }
 
 /* ══════════════════════════════════════════
-   FOOTER LAYER
+   FOOTER STRUCTURE
    ══════════════════════════════════════════ */
 .footer {
-  background: var(--bg-primary) !important;
-  border-top: 1px solid var(--border-line) !important;
+  background: var(--bg-dark-base) !important;
+  border-top: 1px solid var(--ui-border) !important;
   padding: 14px 24px !important;
   display: flex !important;
   justify-content: space-between !important;
   align-items: center !important;
 }
 
-.articly-brand-label {
+.articly-brand-logo {
   font-size: 13px;
   font-weight: 800;
   letter-spacing: 1px;
-  color: var(--text-primary);
+  color: var(--text-main);
 }
 
-/* ══════════════════════════════════════════
-   NUKES ALL GHOST/DOUBLE ICONS FROM PODIGEE
-   ══════════════════════════════════════════ */
-.play-button::before, 
-.play-button::after,
-.backward-button::before,
-.backward-button::after,
-.forward-button::before,
-.forward-button::after,
-.previous-button::before,
-.previous-button::after,
-.next-button::before,
-.next-button::after {
-  content: none !important;
-  display: none !important;
-  background: none !important;
-  border: none !important;
-  width: 0 !important;
-  height: 0 !important;
+/* Cleanup native unstyled active components in footer row */
+.footer-right .buttons .list-button {
+  background: var(--bg-dark-raised) !important;
+  color: var(--text-main) !important;
+  border: 1px solid var(--ui-border) !important;
+  border-radius: 20px !important;
+  font-size: 11px !important;
+  font-weight: 600 !important;
+  padding: 4px 12px !important;
+  cursor: pointer !important;
 }
-
-/* ══════════════════════════════════════════
-   MANAGES YOUR CUSTOM HTML SVG VISIBILITY
-   ══════════════════════════════════════════ */
-
-/* Hide the stop/pause icon by default when the player is idle */
-.play-button svg.stop {
-  display: none !important;
-}
-.play-button svg.play {
-  display: block !important;
-}
-
-/* When Podigee changes state to playing, swap them cleanly */
-.playing .play-button svg.play {
-  display: none !important;
-}
-.playing .play-button svg.stop {
-  display: block !important;
-}
-
-/* Center your HTML SVGs perfectly inside the green circle */
-.play-button {
-  display: inline-flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-}
-
-.play-button svg {
-  width: 16px !important;
-  height: 20px !important;
-  margin: 0 !important;
-}
-
-/* Optically adjust the play triangle so it looks perfectly centered */
-.play-button svg.play {
-  margin-left: 3px !important;
+.footer-right .buttons .list-button:hover {
+  background: var(--accent-lime) !important;
+  color: var(--bg-dark-base) !important;
 }
