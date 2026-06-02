@@ -27,7 +27,7 @@
   }
 }
 
-/* Eliminate native unstyled configuration flags and hide ghost elements */
+/* Eliminate native unstyled configuration flags and permanently remove default Share buttons */
 .splash-button, 
 .single-panel-title, 
 .playlist-title,
@@ -38,16 +38,9 @@
 .more-menu-button,
 .single-playlist-episode .waveform-icon,
 .progress-tooltip,
-.footer-right .buttons button:not(.share-menu-button) { 
+.share-menu-button,
+.footer-right .buttons button { 
   display: none !important; 
-}
-
-/* ══════════════════════════════════════════
-   DYNAMIC FOOTER REPLACEMENT ENGINE
-   ══════════════════════════════════════════ */
-/* Hides the native static Share button instantly whenever the copy overlay state is active */
-.podcast-player-inside:has(.share-menu[style*="display: block"]) .share-menu-button {
-  display: none !important;
 }
 
 /* ══════════════════════════════════════════
@@ -76,7 +69,7 @@
   border: 1px solid var(--ui-border) !important;
   border-radius: 20px !important;
   overflow: hidden !important;
-  position: relative !important;     /* Required anchor point for absolute footer button mapping */
+  position: relative !important;     /* Required absolute anchor frame target */
 }
 
 .cover-image-player-wrap {
@@ -341,13 +334,15 @@
 }
 
 /* ══════════════════════════════════════════
-   PANELS VIEWPORT & HEIGHT LOCKS
+   PANELS VIEWPORT & POSITION DECK RESETS
    ══════════════════════════════════════════ */
-.panels {
-  background: var(--bg-dark-surface) !important;
-  margin: 0 !important;
-  padding: 0 !important;
-  position: static !important; /* Strips layout resets so absolute positions bypass this node */
+/* Removes structural absolute blocks to force elements to align with the core frame parent */
+.panels, 
+.single-panel, 
+.main-player, 
+.player-info-wrap, 
+.cover-image-player-wrap {
+  position: static !important;
 }
 
 @keyframes panelFadeIn {
@@ -360,7 +355,6 @@
   margin: 0 !important;
   padding: 0 !important;
   animation: panelFadeIn 0.2s ease-out forwards !important;
-  position: static !important;
 }
 
 .single-panel.playlist ul {
@@ -398,35 +392,33 @@
 }
 
 /* ══════════════════════════════════════════
-   PERFECT CORNER FOOTER BUTTON ALIGNMENT ENGINE
+   PERMANENT CORNER GREEN COPY BUTTON ENGINE
    ══════════════════════════════════════════ */
-/* Positions the link menu directly inside the base right corner padding row of the player box frame */
+/* Snaps the copy setup directly inside the bottom-right corner of the original footer bar layout area */
 .share-menu {
   display: flex !important;
+  visibility: visible !important;
   position: absolute !important;
-  bottom: 11px !important;       /* Matches vertical tracking alignment perfectly */
-  right: 24px !important;        /* Lines up exactly where the old Share trigger was placed */
-  top: auto !important;
-  left: auto !important;
-  width: auto !important;
-  height: auto !important;
+  bottom: 11px !important;       /* Aligns perfectly inline with footer vertical center */
+  right: 24px !important;        /* Aligns perfectly to the right edge matching padding */
   background: transparent !important; /* Blends context natively into the underlying black footer bar */
   border: none !important;
   padding: 0 !important;
   margin: 0 !important;
-  box-shadow: none !important;
+  width: auto !important;
+  height: auto !important;
   z-index: 999999 !important;    /* Locks rendering layer above all baseline containers */
 }
 
-/* Wipe out layout clutter entirely from the active drawer viewport array */
+/* Wipe out layout clutter, embed lists, close icons and grids completely */
 .share-menu .copy-embed,
 .share-menu .share-buttons,
 .share-menu .start-at-wrap,
 .share-menu button.close-button {
-  display: none !important;      /* Destroys the close icon block entirely from the runtime engine */
+  display: none !important;      
 }
 
-/* Normalize content nodes safely */
+/* Normalize content layout frameworks safely */
 .share-menu .copy-episode.flex-item {
   border: none !important;
   background: transparent !important;
@@ -435,7 +427,7 @@
   display: flex !important;
 }
 
-/* Styles your unified standalone lime green link trigger button */
+/* Styles your permanent high-visibility lime green copy button pill */
 .share-menu button.share-copy-url-btn {
   background: var(--accent-lime) !important;
   color: var(--bg-dark-base) !important;
@@ -600,22 +592,4 @@
   font-weight: 800;
   letter-spacing: 1px;
   color: var(--text-main);
-}
-
-.footer-right .buttons .share-menu-button {
-  background: var(--bg-dark-raised) !important;
-  color: var(--text-main) !important;
-  border: 1px solid var(--ui-border) !important;
-  border-radius: 20px !important;
-  font-size: 11px !important;
-  font-weight: 600 !important;
-  padding: 6px 14px !important;
-  cursor: pointer !important;
-  text-transform: none !important;
-  display: inline-block !important;
-}
-
-.footer-right .buttons .share-menu-button:hover {
-  background: var(--accent-lime) !important;
-  color: var(--bg-dark-base) !important;
 }
