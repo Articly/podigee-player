@@ -411,7 +411,7 @@
 .share-menu {
   display: flex !important;
   position: absolute !important;
-  bottom: -53px !important;      /* FIXED BOUNDS: Locks perfectly inline inside the footer bar layout */
+  bottom: -54px !important;      /* FIXED BOUNDS: Locks perfectly inline inside the footer bar layout */
   right: 24px !important;        
   background: transparent !important; 
   border: none !important;
