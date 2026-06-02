@@ -395,9 +395,9 @@
 .share-menu {
   display: flex !important;
   position: absolute !important;
-  bottom: -53px !important;      /* Adjusted downward for perfect dead-center alignment inside the footer */
-  right: 24px !important;        /* Aligns perfectly to the right side layout grid padding edge */
-  background: transparent !important; /* Blends context natively into the underlying black footer bar */
+  bottom: -53px !important;      
+  right: 24px !important;        
+  background: transparent !important; 
   border: none !important;
   padding: 0 !important;
   margin: 0 !important;
@@ -425,6 +425,7 @@
 
 /* Styles your permanent high-visibility lime green copy button pill */
 .share-menu button.share-copy-url-btn {
+  position: relative !important; /* Context anchor layer for the copied visual overlay */
   background: var(--accent-lime) !important;
   color: var(--bg-dark-base) !important;
   border: none !important;
@@ -438,6 +439,7 @@
   cursor: pointer !important;
   text-transform: none !important;
   box-shadow: none !important;
+  overflow: hidden !important;   /* Clips the absolute expansion inside the button frame rounded corners */
 }
 
 .share-menu button.share-copy-url-btn svg,
@@ -447,6 +449,35 @@
   fill: var(--bg-dark-base) !important;
   stroke: none !important;
   display: block !important;
+}
+
+/* PURE CSS FEEDBACK SLIDE OVERLAY: Injects the "Copied!" feedback card on active click */
+.share-menu button.share-copy-url-btn::after {
+  content: "Copied! ✓" !important;
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  background: #10B981 !important; /* Premium system success green feedback banner color */
+  color: #FFFFFF !important;
+  font-size: 11px !important;
+  font-weight: 700 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  transform: translateY(100%) !important; /* Keeps the overlay stacked right out of view below the button */
+  transition: opacity 0.15s ease, transform 0.15s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.15s !important;
+}
+
+/* Swaps button into success mode immediately upon click focus input state */
+.share-menu button.share-copy-url-btn:active::after,
+.share-menu button.share-copy-url-btn:focus::after {
+  opacity: 1 !important;
+  visibility: visible !important;
+  transform: translateY(0) !important; /* Slides into place seamlessly covering original text and vectors */
 }
 
 /* ══════════════════════════════════════════
