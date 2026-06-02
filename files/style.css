@@ -123,7 +123,7 @@
   flex-direction: row !important;
   align-items: center !important;
   justify-content: flex-start !important;
-  gap: 18px !important;
+  gap: 20px !important;
   width: 100% !important;
   background: transparent !important;
   margin: 0 !important;
@@ -138,85 +138,93 @@
   padding: 0 !important;
   margin: 0 !important;
   cursor: pointer !important;
-  width: 36px !important;
-  height: 36px !important;
+  width: 44px !important;
+  height: 44px !important;
   display: inline-flex !important;
   align-items: center !important;
   justify-content: center !important;
   border-radius: 50% !important;
+  transition: background 0.15s ease !important;
 }
 
 .controls button:hover {
   background: rgba(255, 255, 255, 0.08) !important;
 }
 
-/* HIGH-CONTRAST CENTER PLAY BUTTON ENGINE */
+@media (prefers-color-scheme: light) {
+  .controls button:hover {
+    background: rgba(0, 0, 0, 0.05) !important;
+  }
+}
+
+/* DEEP-TARGETED MEDIA CONTROL ICON SCALING ENGINE */
+.controls button svg,
+.controls button i,
+.controls button span {
+  display: block !important;
+  width: 24px !important;
+  height: 24px !important;
+  font-size: 24px !important;
+  transform: scale(1.5) !important; /* Structural layout scale modifier for extreme clarity */
+  transform-origin: center !important;
+}
+
+/* HIGH-CONTRAST VISIBILITY REINFORCEMENT — DARK MODE (DEFAULT) */
+.controls button:not(.play-button) svg,
+.controls button:not(.play-button) svg path,
+.controls button:not(.play-button) svg polygon,
+.controls button:not(.play-button) i {
+  fill: #FFFFFF !important;
+  stroke: #FFFFFF !important;
+  color: #FFFFFF !important;
+  opacity: 1 !important;
+}
+
+/* HIGH-CONTRAST VISIBILITY REINFORCEMENT — LIGHT MODE */
+@media (prefers-color-scheme: light) {
+  .controls button:not(.play-button) svg,
+  .controls button:not(.play-button) svg path,
+  .controls button:not(.play-button) svg polygon,
+  .controls button:not(.play-button) i {
+    fill: #111827 !important;
+    stroke: #111827 !important;
+    color: #111827 !important;
+    opacity: 1 !important;
+  }
+}
+
+/* HIGH-CONTRAST CENTER PLAY BUTTON CONSOLE */
 .controls button.play-button {
   background: var(--accent-lime) !important;
-  width: 48px !important;
-  height: 48px !important;
+  width: 54px !important;
+  height: 54px !important;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
 }
 
-/* Aggressively forces the inner arrow to be white in Light Mode, dark in Dark Mode */
-.controls button.play-button,
-.controls button.play-button *,
-.controls button.play-button::before,
-.controls button.play-button::after {
-  color: var(--bg-dark-base) !important;
-  fill: var(--bg-dark-base) !important;
-  stroke: var(--bg-dark-base) !important;
+.controls button.play-button svg,
+.controls button.play-button svg path,
+.controls button.play-button svg polygon {
+  width: 18px !important;
+  height: 18px !important;
+  transform: scale(1.2) !important;
+  fill: #000002 !important;
+  stroke: #000002 !important;
+  color: #000002 !important;
 }
 
-.controls button.play-button:hover {
-  transform: scale(1.05) !important;
+@media (prefers-color-scheme: light) {
+  .controls button.play-button svg,
+  .controls button.play-button svg path,
+  .controls button.play-button svg polygon {
+    fill: #FFFFFF !important;
+    stroke: #FFFFFF !important;
+    color: #FFFFFF !important;
+  }
 }
 
 .play-button svg.stop { display: none !important; }
 .playing .play-button svg.play { display: none !important; }
 .playing .play-button svg.stop { display: block !important; }
-
-/* ══════════════════════════════════════════
-   EXPLICIT MEDIA CONTROL ICON SCALING UP
-   ══════════════════════════════════════════ */
-.previous-button, 
-.backward-button, 
-.forward-button, 
-.next-button {
-  width: 44px !important;
-  height: 44px !important;
-}
-
-/* Dynamically resizes SVGs, text tracks and font layers to a high-contrast format */
-.previous-button svg, .backward-button svg, .forward-button svg, .next-button svg,
-.previous-button *, .backward-button *, .forward-button *, .next-button * {
-  width: 24px !important;  /* Expanded dimension tracking width metrics */
-  height: 24px !important; /* Expanded dimension tracking height metrics */
-  font-size: 24px !important;
-  fill: rgba(255, 255, 255, 0.85) !important;   /* High-contrast visibility upgrade */
-  stroke: rgba(255, 255, 255, 0.85) !important; /* High-contrast visibility upgrade */
-  color: rgba(255, 255, 255, 0.85) !important;
-  transition: all 0.15s ease !important;
-}
-
-/* Adaptive inversion swaps for the structural background modes */
-@media (prefers-color-scheme: light) {
-  .previous-button svg, .backward-button svg, .forward-button svg, .next-button svg,
-  .previous-button *, .backward-button *, .forward-button *, .next-button * {
-    fill: rgba(17, 24, 39, 0.85) !important;
-    stroke: rgba(17, 24, 39, 0.85) !important;
-    color: rgba(17, 24, 39, 0.85) !important;
-  }
-}
-
-/* Solid full-color illumination response frames triggered on hover */
-.previous-button:hover svg, .backward-button:hover svg, .forward-button:hover svg, .next-button:hover svg,
-.previous-button:hover *, .backward-button:hover *, .forward-button:hover *, .next-button:hover * {
-  fill: var(--text-main) !important;
-  stroke: var(--text-main) !important;
-  color: var(--text-main) !important;
-  opacity: 1 !important;
-}
 
 /* ══════════════════════════════════════════
    TIMELINE SECTOR MODULE (CLEANS HIGHLIGHT BOXES)
