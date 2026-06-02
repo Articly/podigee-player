@@ -1,26 +1,31 @@
 /* ══════════════════════════════════════════
-   DESIGN SYSTEM VARIABLE METRICS — ARTICLY
+   DYNAMIC SYSTEM THEMES (LIGHT & DARK)
    ══════════════════════════════════════════ */
+
+/* DEFAULT: LIGHT MODE CONFIGURATION */
 :root {
-  --bg-dark-base:    #000002;
-  --bg-dark-surface: #1B282D;
-  --bg-dark-raised:  #2e4550;
-  --accent-lime:     #DCFF4D;
-  --text-main:       #FFFFFF;
-  --text-muted:      rgba(255, 255, 255, 0.60);
-  --text-subtle:     rgba(255, 255, 255, 0.35);
-  --ui-border:       rgba(255, 255, 255, 0.08);
+  --bg-dark-base:    #F5F7F8;                  /* Light overall wrapper background */
+  --bg-dark-surface: #FFFFFF;                  /* Light inner container surface */
+  --bg-dark-raised:  #E4E7EB;                  /* Light gray button backgrounds */
+  --accent-lime:     #1B282D;                  /* Deep dark brand contrast accent for play triggers */
+  --text-main:       #111827;                  /* High-contrast dark text */
+  --text-muted:      #4B5563;                  /* Medium-contrast text */
+  --text-subtle:     #9CA3AF;                  /* Low-contrast text labels */
+  --ui-border:       rgba(0, 0, 0, 0.08);      /* Soft dark row lines */
 }
 
-/* Safely eliminate unused structural elements without crashing the javascript engine */
-.splash-button, 
-.single-panel-title, 
-.load-more, 
-.time-reader,
-.close-menu-button, 
-.more-menu-button,
-.single-playlist-episode .waveform-icon { 
-  display: none !important; 
+/* AUTOMATIC SWAP: DARK MODE CONFIGURATION */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg-dark-base:    #000002;                /* Your original premium dark palette */
+    --bg-dark-surface: #1B282D;
+    --bg-dark-raised:  #2e4550;
+    --accent-lime:     #DCFF4D;                /* Lime accents come back automatically */
+    --text-main:       #FFFFFF;
+    --text-muted:      rgba(255, 255, 255, 0.60);
+    --text-subtle:     rgba(255, 255, 255, 0.35);
+    --ui-border:       rgba(255, 255, 255, 0.08);
+  }
 }
 
 /* ══════════════════════════════════════════
