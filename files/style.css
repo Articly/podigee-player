@@ -297,7 +297,7 @@
 }
 
 /* ══════════════════════════════════════════
-   PLAYLIST TAB CONTAINER DECK
+   PLAYLIST NAVIGATION TAB MENU TRACKS
    ══════════════════════════════════════════ */
 .panels-tabs-menu {
   background: rgba(0, 0, 0, 0.15) !important;
@@ -333,9 +333,11 @@
   border-bottom: 2px solid var(--accent-lime) !important;
 }
 
+/* ══════════════════════════════════════════
+   PANELS VIEWPORT (NATIVE TOGGLE SYSTEM UNLOCKED)
+   ══════════════════════════════════════════ */
 .panels {
   background: var(--bg-dark-surface) !important;
-  display: block !important;
   margin: 0 !important;
   padding: 0 !important;
 }
@@ -346,24 +348,15 @@
   to { opacity: 1; transform: translateY(0); }
 }
 
-/* ISOLATE CONFIGURATION TARGETS: RESTORE CONDITIONAL DISPLAY SWITCHES */
+/* Let Podigee naturally handle show/hide toggles. We only inject the clean transitions */
 .single-panel {
   background: var(--bg-dark-surface) !important;
   margin: 0 !important;
   padding: 0 !important;
-  display: none !important; /* Hides panel contents globally by default */
+  animation: panelFadeIn 0.2s ease-out forwards !important;
 }
 
-/* Only forces display rules when Podigee attaches active state context flags */
-.playlist-open .single-panel.playlist,
-.episode-info-open .single-panel.episode-info {
-  display: block !important;
-  animation: panelFadeIn 0.25s ease-out forwards !important;
-}
-
-/* ══════════════════════════════════════════
-   PLAYLIST CONTENT VIEW
-   ══════════════════════════════════════════ */
+/* LOCK VERTICAL HEIGHT SIZES TO PREVENT BOX JUMPING BOUNCES */
 .single-panel.playlist ul {
   list-style: none !important;
   height: 230px !important;
@@ -500,7 +493,7 @@
   padding: 14px 24px !important;
   display: flex !important;
   justify-content: space-between !important;
-  align-items: center;
+  align-items: center !important;
 }
 
 .articly-brand-label {
@@ -526,11 +519,4 @@
 .footer-right .buttons .share-menu-button:hover {
   background: var(--accent-lime) !important;
   color: var(--bg-dark-base) !important;
-}
-
-/* ══════════════════════════════════════════
-   REMOVE COLORED TIMER OVERLAY
-   ══════════════════════════════════════════ */
-.progress-tooltip {
-  display: none !important;
 }
