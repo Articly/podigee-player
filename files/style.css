@@ -33,7 +33,6 @@
 .playlist-title,
 .panels-title,
 .time-reader,
-.main-player > .progress-bar,
 .close-menu-button, 
 .more-menu-button,
 .single-playlist-episode .waveform-icon,
@@ -269,6 +268,9 @@
 .progress-bar-played {
   background: var(--accent-lime) !important;
   height: 100% !important;
+  position: absolute !important;
+  left: 0 !important;
+  top: 0 !important;
   border-radius: 2px !important;
 }
 
