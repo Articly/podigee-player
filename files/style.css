@@ -185,6 +185,7 @@
   color: var(--bg-dark-base) !important;
   fill: var(--bg-dark-base) !important;
   stroke: var(--bg-dark-base) !important;
+  font-size: 24px !important;
 }
 
 .controls button.play-button:hover {
