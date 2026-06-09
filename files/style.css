@@ -75,11 +75,12 @@
   display: flex !important;
   padding: 24px !important;
   gap: 20px !important;
+  align-items: flex-start !important;
 }
 
 .cover-image-wrap {
-  width: 100px !important;
-  height: 100px !important;
+  width: 150px !important;
+  height: 150px !important;
   border-radius: 12px !important;
   overflow: hidden !important;
   flex-shrink: 0 !important;
@@ -101,7 +102,7 @@
 
 .episode-title h1 a, 
 .episode-title h1 {
-  font-size: 15px !important;
+  font-size: 17px !important;
   color: var(--text-main) !important;
   font-weight: 700 !important;
   text-decoration: none !important;
@@ -711,6 +712,22 @@
     justify-content: center !important;
     gap: 12px !important; /* Tighter padding gaps so all 5 buttons look balanced on narrow viewports */
     margin-top: 4px !important;
+  }
+
+  .episode-title h1 a, 
+  .episode-title h1 {
+    font-size: 15px !important;
+  }
+
+  .playlist-episode-title {
+    font-size: 11px !important;
+    white-space: normal !important;      /* Allows text to wrap to the next line */
+    word-break: break-word !important;   /* Safely breaks long words if necessary */
+    text-overflow: clip !important;      /* Removes the "..." truncation mark */
+  }
+  
+  .single-playlist-episode {
+    height: auto !important;             /* Ensures the row expands vertically for wrapped text */
   }
 }
 
