@@ -126,7 +126,7 @@
   gap: 28px !important;
   width: 100% !important;
   background: transparent !important;
-  margin: 0 0 0 -60px !important;
+  margin: 0 !important;
   padding: 0 !important;
 }
 
@@ -764,5 +764,11 @@ mobile safety check
     
     /* Reset the left shift on mobile so it stays centered when stacked */
     margin: 4px 0 0 0 !important; 
+  }
+}
+
+@media (min-width: 769px) {
+  .controls {
+    margin-left: -60px !important;    /* Shifts left to balance against the cover art on desktop */
   }
 }
