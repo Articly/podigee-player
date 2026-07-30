@@ -1,6 +1,7 @@
 /* ══════════════════════════════════════════
-   1. DESIGN SYSTEM VARIABLES — ARTICLY
+   DESIGN SYSTEM VARIABLE METRICS — ARTICLY
    ══════════════════════════════════════════ */
+/* DEFAULT: DARK MODE CONFIGURATION */
 :root {
   --bg-dark-base:    #000002;
   --bg-dark-surface: #1B282D;
@@ -12,22 +13,21 @@
   --ui-border:       rgba(255, 255, 255, 0.08);
 }
 
+/* AUTOMATIC SWAP: LIGHT MODE CONFIGURATION */
 @media (prefers-color-scheme: light) {
   :root {
-    --bg-dark-base:    #FFFFFF;
-    --bg-dark-surface: #F9FAFB;
-    --bg-dark-raised:  #E5E7EB;
-    --accent-lime:     #111827;
-    --text-main:       #111827;
-    --text-muted:      #4B5563;
-    --text-subtle:     #9CA3AF;
-    --ui-border:       rgba(0, 0, 0, 0.08);
+    --bg-dark-base:    #FFFFFF;                /* Clean white background */
+    --bg-dark-surface: #F9FAFB;                /* Soft light gray inner surface */
+    --bg-dark-raised:  #E5E7EB;                /* Light gray button backgrounds */
+    --accent-lime:     #111827;                /* Dark accent for solid high-visibility play triggers */
+    --text-main:       #111827;                /* Bold dark gray text */
+    --text-muted:      #4B5563;                /* Muted gray text */
+    --text-subtle:     #9CA3AF;                /* Low-contrast details */
+    --ui-border:       rgba(0, 0, 0, 0.08);    /* Soft dark divider lines */
   }
 }
 
-/* ══════════════════════════════════════════
-   2. GLOBAL UNSTYLED ELEMENT HIDE LIST
-   ══════════════════════════════════════════ */
+/* Eliminate native unstyled configuration flags and permanently hide default Share triggers */
 .splash-button, 
 .single-panel-title, 
 .playlist-title,
@@ -43,7 +43,7 @@
 }
 
 /* ══════════════════════════════════════════
-   3. CORE CONTAINMENT & LAYOUT RESETS
+   CORE CONTAINMENT RESETS (ROUNDED LAYOUT)
    ══════════════════════════════════════════ */
 .podcast-player-redesign,
 .podcast-player-redesign *,
@@ -53,13 +53,13 @@
 }
 
 .podcast-player-redesign {
-  background: transparent !important;
+  background: transparent !important; /* Removes the secondary outer background bleeding out */
   color: var(--text-main) !important;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif !important;
-  padding: 0 !important;
+  padding: 0 !important;             /* Wipes out the expanding 6px gap entirely */
   width: 100% !important;
   min-width: 100% !important;
-  border-radius: 20px !important;
+  border-radius: 20px !important;     /* Coordinates perfectly with the inner layout radius */
   overflow: hidden !important;
 }
 
@@ -68,7 +68,7 @@
   border: 1px solid var(--ui-border) !important;
   border-radius: 20px !important;
   overflow: hidden !important;
-  position: relative !important;
+  position: relative !important;     /* Core bounding box anchor for absolute child shifting */
 }
 
 .cover-image-player-wrap {
@@ -79,7 +79,7 @@
 }
 
 .cover-image-wrap {
-  width: 150px !important;  /* 50% enlarged desktop dimensions */
+  width: 150px !important;
   height: 150px !important;
   border-radius: 12px !important;
   overflow: hidden !important;
@@ -102,7 +102,7 @@
 
 .episode-title h1 a, 
 .episode-title h1 {
-  font-size: 17px !important; /* +2pt larger for desktop */
+  font-size: 17px !important;
   color: var(--text-main) !important;
   font-weight: 700 !important;
   text-decoration: none !important;
@@ -116,7 +116,7 @@
 }
 
 /* ══════════════════════════════════════════
-   4. CONTROL DECK & SAFARI ICON ENGINE
+   BUTTON ACTIONS DECK (RESETS ALL 5 BUTTONS)
    ══════════════════════════════════════════ */
 .controls {
   display: flex !important;
@@ -144,31 +144,32 @@
   align-items: center !important;
   justify-content: center !important;
   border-radius: 50% !important;
-  flex-shrink: 0 !important;
 }
 
 .controls button:hover {
   background: rgba(255, 255, 255, 0.05) !important;
 }
 
-/* Base icon font styling + Safari rendering defenses */
-.controls button::before {
-  font-family: "podigee-podcast-player" !important;
-  display: inline-block !important;
-  font-size: 22px !important;
-  line-height: 1 !important;
-  letter-spacing: 0 !important;
-  text-align: center !important;
-  width: 100% !important;
-  height: auto !important;
-  color: var(--text-muted) !important;
+.controls button svg {
+  display: block !important;
+  width: 18px !important;
+  height: 18px !important;
+  fill: var(--text-muted) !important;
 }
 
-.controls button:hover::before {
-  color: var(--text-main) !important;
+
+.controls button.play-button svg {
+  width: 22px !important;           /* Scales up the icon container */
+  height: 22px !important;
+  transform: scale(1.4) !important; /* Forces the inner vector shape to grow */
+  transform-origin: center !important;
 }
 
-/* Central High-Contrast Play Button */
+.controls button:hover svg {
+  fill: var(--text-main) !important;
+}
+
+/* HIGH-CONTRAST CENTER PLAY BUTTON ENGINE */
 .controls button.play-button {
   background: var(--accent-lime) !important;
   width: 44px !important;
@@ -176,9 +177,15 @@
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
 }
 
-.controls button.play-button::before {
-  font-size: 26px !important;
+/* Aggressively forces the inner arrow to be white in Light Mode, dark in Dark Mode */
+.controls button.play-button,
+.controls button.play-button *,
+.controls button.play-button::before,
+.controls button.play-button::after {
   color: var(--bg-dark-base) !important;
+  fill: var(--bg-dark-base) !important;
+  stroke: var(--bg-dark-base) !important;
+  font-size: 24px !important;
 }
 
 .controls button.play-button:hover {
@@ -190,7 +197,49 @@
 .playing .play-button svg.stop { display: block !important; }
 
 /* ══════════════════════════════════════════
-   5. TIMELINE MODULE & CHAPTER SEGMENTS
+   SCALE ALL OTHER CONTROL BUTTONS
+   ══════════════════════════════════════════ */
+.previous-button, 
+.backward-button, 
+.forward-button, 
+.next-button {
+  width: 40px !important;
+  height: 40px !important;
+  font-size: 28px !important; 
+  color: var(--text-muted) !important; 
+}
+
+/* Forces them to scale up if they are inline vector graphics */
+.previous-button svg, 
+.backward-button svg, 
+.forward-button svg, 
+.next-button svg {
+  width: 22px !important;
+  height: 22px !important;
+  fill: var(--text-muted) !important; 
+  stroke: var(--text-muted) !important; 
+}
+
+/* Enhances the hover effect for clarity */
+.previous-button:hover, 
+.backward-button:hover, 
+.forward-button:hover, 
+.next-button:hover {
+  background: rgba(255, 255, 255, 0.1) !important;
+  color: var(--text-main) !important; 
+}
+
+/* Brightens SVG icons to white on hover */
+.previous-button:hover svg, 
+.backward-button:hover svg, 
+.forward-button:hover svg, 
+.next-button:hover svg {
+  fill: var(--text-main) !important;
+  stroke: var(--text-main) !important;
+}
+
+/* ══════════════════════════════════════════
+   TIMELINE SECTOR MODULE (CLEANS HIGHLIGHT BOXES)
    ══════════════════════════════════════════ */
 .main-player > .progress-bar,
 .progress-bar-player {
@@ -199,6 +248,7 @@
   align-items: center !important;
   gap: 12px !important;
   background: transparent !important;
+  background-color: transparent !important;
   margin: 8px 0 !important;
   padding: 0 !important;
   height: auto !important;
@@ -207,14 +257,23 @@
   box-shadow: none !important;
 }
 
-.progress-bar-rail {
-  background: var(--bg-dark-raised) !important;
-  height: 4px !important;
-  border-radius: 2px !important;
-  position: relative !important;
-  flex: 1 !important;
-  order: 2 !important;
-  overflow: visible !important;
+/* Hide the extra chapter text panel completely */
+.panels .chaptermarks,
+.chaptermarks {
+  display: none !important;
+}
+
+/* Create clean vertical chapter gap dividers inside the seekbar rail */
+.progress-bar-rail .chapter-marker,
+.progress-bar-rail .progress-bar-chapter,
+.progress-bar-chapter-mark {
+  position: absolute !important;
+  top: 0 !important;
+  bottom: 0 !important;
+  width: 3px !important;
+  background-color: var(--bg-dark-surface) !important;
+  z-index: 10 !important;
+  pointer-events: none !important;
 }
 
 .progress-bar-played {
@@ -226,25 +285,13 @@
   border-radius: 2px !important;
 }
 
-/* Chapter gaps on seekbar rail */
-.progress-bar-rail .chapter-marker,
-.progress-bar-rail .progress-bar-chapter,
-.progress-bar-chapter-mark {
-  position: absolute !important;
-  top: 0 !important;
-  bottom: 0 !important;
-  width: 3px !important;
-  background-color: var(--bg-dark-surface) !important;
-  z-index: 5 !important;
-  pointer-events: none !important;
-}
-
-/* Timer texts */
+/* Complete reset of digital timers to remove high contrast background shapes */
 .progress-bar-time-played,
 .progress-bar .time-played,
 .progress-bar .time-remaining {
   color: var(--text-muted) !important;
   background: transparent !important;
+  background-color: transparent !important;
   font-size: 11px !important;
   font-weight: 500 !important;
   position: static !important;
@@ -272,7 +319,7 @@
 }
 
 /* ══════════════════════════════════════════
-   6. GERMAN LOCALIZATION OVERRIDES
+   PLAYLIST NAVIGATION TAB GERMAN OVERRIDES
    ══════════════════════════════════════════ */
 .panels-tabs-menu {
   background: rgba(0, 0, 0, 0.15) !important;
@@ -301,13 +348,19 @@
   transition: color 0.2s ease, border-color 0.2s ease !important;
 }
 
-.all-episodes-tab-button { font-size: 0 !important; }
+/* Hardcoded German Default: Alle Folgen */
+.all-episodes-tab-button {
+  font-size: 0 !important;
+}
 .all-episodes-tab-button::after {
   content: "Alle Folgen" !important;
   font-size: 12px !important;
 }
 
-.episode-info-tab-button { font-size: 0 !important; }
+/* Hardcoded German Default: Beschreibung */
+.episode-info-tab-button {
+  font-size: 0 !important;
+}
 .episode-info-tab-button::after {
   content: "Beschreibung" !important;
   font-size: 12px !important;
@@ -320,7 +373,7 @@
 }
 
 /* ══════════════════════════════════════════
-   7. PANELS VIEWPORT & ACTIVE CHAPTER STRIP
+   PANELS VIEWPORT & HEIGHT LOCKS
    ══════════════════════════════════════════ */
 .panels {
   background: var(--bg-dark-surface) !important;
@@ -354,7 +407,6 @@
 .single-panel.episode-info::-webkit-scrollbar { 
   width: 4px; 
 }
-
 .single-playlist-episode::-webkit-scrollbar-thumb,
 .single-panel.episode-info::-webkit-scrollbar-thumb { 
   background: var(--bg-dark-raised); 
@@ -375,65 +427,126 @@
   color: var(--accent-lime) !important;
 }
 
-/* Active Chapter Strip Module */
-.panels .chaptermarks {
-  display: none !important;
-}
-
-.panels .chaptermarks:has(.chaptermark.active) {
-  display: block !important;
-  background: var(--bg-dark-surface) !important;
-  padding: 0 24px 14px !important;
-  margin-top: -2px !important;
-}
-
-.chaptermarks h3,
-.chaptermark-image,
-.chaptermark-href,
-.chaptermark:not(.active) {
-  display: none !important;
-}
-
-.chaptermarks ul {
-  list-style: none !important;
-  margin: 0 !important;
-  padding: 0 !important;
-}
-
-.chaptermark.active {
+/* ══════════════════════════════════════════
+   PERMANENT FOOTER BLACK BOX GERMAN ALIGNMENT
+   ══════════════════════════════════════════ */
+.share-menu {
   display: flex !important;
-  align-items: center !important;
-  gap: 8px !important;
-  cursor: default !important;
+  position: absolute !important;
+  bottom: -54px !important;      /* FIXED BOUNDS: Locks perfectly inline inside the footer bar layout */
+  right: 24px !important;        
+  background: transparent !important; 
+  border: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  width: auto !important;
+  height: auto !important;
+  z-index: 999999 !important;    
 }
 
-.chaptermark.active::before {
-  content: "" !important;
-  flex-shrink: 0 !important;
-  width: 3px !important;
-  height: 12px !important;
-  border-radius: 2px !important;
+/* Wipe out layout clutter, embed lists, close icons and grids completely */
+.share-menu .copy-embed,
+.share-menu .share-buttons,
+.share-menu .start-at-wrap,
+.share-menu button.close-button {
+  display: none !important;      
+}
+
+.share-menu .copy-episode.flex-item {
+  border: none !important;
+  background: transparent !important;
+  padding: 0 !important;
+  margin: 0 !important; 
+  display: flex !important;
+}
+
+.share-menu button.share-copy-url-btn {
+  position: relative !important; 
   background: var(--accent-lime) !important;
+  color: var(--bg-dark-base) !important;
+  border: none !important;
+  border-radius: 20px !important;
+  padding: 6px 14px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  cursor: pointer !important;
+  text-transform: none !important;
+  box-shadow: none !important;
+  overflow: hidden !important;   
 }
 
-.chaptermark-start {
-  font-size: 10px !important;
-  font-weight: 500 !important;
-  color: var(--text-subtle) !important;
-  flex-shrink: 0 !important;
+/* Hide the native element vector graphics completely */
+.share-menu button.share-copy-url-btn svg,
+.share-menu button.share-copy-url-btn svg path {
+  display: none !important;
 }
 
-.chaptermark-title {
+/* FIXED: Razor Sharp Solid Black Link Vector Icon for Dark Mode Lime Button */
+.share-menu button.share-copy-url-btn::before {
+  content: "" !important;
+  display: inline-block !important;
+  width: 12px !important;
+  height: 12px !important;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000002' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71'%3E%3C/path%3E%3Cpath d='M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71'%3E%3C/path%3E%3C/svg%3E") !important;
+  background-repeat: no-repeat !important;
+  background-position: center !important;
+  background-size: contain !important;
+  vertical-align: middle !important;
+}
+
+/* CRITICAL CASCADE FIX: Sweeps light theme parameters down the line to render solid white graphic layout frames natively */
+@media (prefers-color-scheme: light) {
+  .share-menu button.share-copy-url-btn::before {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23FFFFFF' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71'%3E%3C/path%3E%3Cpath d='M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71'%3E%3C/path%3E%3C/svg%3E") !important;
+  }
+}
+
+/* Hardcoded German Default: Link kopieren */
+.share-menu button.share-copy-url-btn span {
+  font-size: 0 !important;
+  line-height: 0 !important;
+  display: inline-block !important;
+}
+.share-menu button.share-copy-url-btn span::after {
+  content: "Link kopieren" !important;
   font-size: 11px !important;
   font-weight: 600 !important;
-  color: var(--text-muted) !important;
-  white-space: nowrap !important;
-  overflow: hidden !important;
-  text-overflow: ellipsis !important;
+  line-height: 1.2 !important;
+  display: inline-block !important;
+}
+
+/* Hardcoded German Default Feedback: Kopiert! ✓ */
+.share-menu button.share-copy-url-btn::after {
+  content: "Kopiert! ✓" !important; 
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  background: #10B981 !important; 
+  color: #FFFFFF !important;
+  font-size: 11px !important;
+  font-weight: 700 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  transform: translateY(100%) !important; 
+  transition: opacity 0.2s ease 2s, transform 0.2s cubic-bezier(0.4, 0, 0.2, 1) 2s, visibility 0.2s ease 2s !important;
+}
+
+.share-menu button.share-copy-url-btn:active::after,
+.share-menu button.share-copy-url-btn:focus::after {
+  opacity: 1 !important;
+  visibility: visible !important;
+  transform: translateY(0) !important; 
+  transition: opacity 0s ease 0s, transform 0s ease 0s, visibility 0s ease 0s !important;
 }
 
 /* ══════════════════════════════════════════
-   8. PLAYLIST ROWS & LOAD MORE
+   PLAYLIST ROW FORMATTING (EDGE-TO-EDGE SECTOR)
    ══════════════════════════════════════════ */
 .single-playlist-episode {
   display: flex !important;
@@ -446,8 +559,13 @@
   transition: background 0.15s ease !important;
 }
 
-.single-playlist-episode.active { background: rgba(220, 255, 77, 0.04) !important; }
-.single-playlist-episode:hover { background: rgba(255, 255, 255, 0.02) !important; }
+.single-playlist-episode.active {
+  background: rgba(220, 255, 77, 0.04) !important;
+}
+
+.single-playlist-episode:hover {
+  background: rgba(255, 255, 255, 0.02) !important;
+}
 
 .playlist-episode-info {
   display: flex !important;
@@ -458,7 +576,9 @@
   min-width: 0 !important;
 }
 
-.playlist-episode-number { display: none !important; }
+.playlist-episode-number {
+  display: none !important;
+}
 
 .playlist-episode-title {
   color: var(--text-muted) !important;
@@ -487,10 +607,22 @@
   flex-shrink: 0 !important;
 }
 
-.single-playlist-episode.active .list-play-icon { background: var(--accent-lime) !important; }
-.list-play-icon svg { width: 11px !important; height: 11px !important; }
-.list-play-icon svg path { fill: var(--text-muted) !important; }
-.single-playlist-episode.active .list-play-icon svg path { fill: var(--bg-dark-base) !important; }
+.single-playlist-episode.active .list-play-icon {
+  background: var(--accent-lime) !important;
+}
+
+.list-play-icon svg { 
+  width: 11px !important; 
+  height: 11px !important; 
+}
+
+.list-play-icon svg path {
+  fill: var(--text-muted) !important;
+}
+
+.single-playlist-episode.active .list-play-icon svg path { 
+  fill: var(--bg-dark-base) !important; 
+}
 
 .playlist-episode-duration {
   color: var(--text-subtle) !important;
@@ -505,6 +637,9 @@
   font-weight: 600 !important;
 }
 
+/* ══════════════════════════════════════════
+   LOAD MORE GERMAN OVERRIDE CONTROL
+   ══════════════════════════════════════════ */
 .load-more,
 .load-more-button {
   display: block !important;
@@ -521,9 +656,10 @@
   transition: background 0.2s ease, color 0.2s ease !important;
   text-transform: none !important;
   box-shadow: none !important;
+  
+  /* Hardcoded German Default: Mehr Folgen laden */
   font-size: 0 !important;
 }
-
 .load-more::after,
 .load-more-button::after {
   content: "Mehr Folgen laden" !important;
@@ -538,7 +674,7 @@
 }
 
 /* ══════════════════════════════════════════
-   9. FOOTER & LINK COPY MODULE
+   FOOTER BLOCK DECK
    ══════════════════════════════════════════ */
 .footer {
   background: var(--bg-dark-base) !important;
@@ -556,118 +692,17 @@
   color: var(--text-main);
 }
 
-.share-menu {
-  display: flex !important;
-  position: absolute !important;
-  bottom: -54px !important;
-  right: 24px !important;
-  background: transparent !important;
-  border: none !important;
-  padding: 0 !important;
-  margin: 0 !important;
-  width: auto !important;
-  height: auto !important;
-  z-index: 999999 !important;
-}
-
-.share-menu .copy-embed,
-.share-menu .share-buttons,
-.share-menu .start-at-wrap,
-.share-menu button.close-button {
-  display: none !important;
-}
-
-.share-menu .copy-episode.flex-item {
-  border: none !important;
-  background: transparent !important;
-  padding: 0 !important;
-  margin: 0 !important;
-  display: flex !important;
-}
-
-.share-menu button.share-copy-url-btn {
-  position: relative !important;
-  background: var(--accent-lime) !important;
-  color: var(--bg-dark-base) !important;
-  border: none !important;
-  border-radius: 20px !important;
-  padding: 6px 14px !important;
-  display: inline-flex !important;
-  align-items: center !important;
-  gap: 6px !important;
-  cursor: pointer !important;
-  text-transform: none !important;
-  box-shadow: none !important;
-  overflow: hidden !important;
-}
-
-.share-menu button.share-copy-url-btn svg { display: none !important; }
-
-.share-menu button.share-copy-url-btn::before {
-  content: "" !important;
-  display: inline-block !important;
-  width: 12px !important;
-  height: 12px !important;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000002' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71'%3E%3C/path%3E%3Cpath d='M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71'%3E%3C/path%3E%3C/svg%3E") !important;
-  background-repeat: no-repeat !important;
-  background-position: center !important;
-  background-size: contain !important;
-  vertical-align: middle !important;
-}
-
-@media (prefers-color-scheme: light) {
-  .share-menu button.share-copy-url-btn::before {
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23FFFFFF' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71'%3E%3C/path%3E%3Cpath d='M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71'%3E%3C/path%3E%3C/svg%3E") !important;
-  }
-}
-
-.share-menu button.share-copy-url-btn span { font-size: 0 !important; line-height: 0 !important; display: inline-block !important; }
-.share-menu button.share-copy-url-btn span::after {
-  content: "Link kopieren" !important;
-  font-size: 11px !important;
-  font-weight: 600 !important;
-  line-height: 1.2 !important;
-  display: inline-block !important;
-}
-
-.share-menu button.share-copy-url-btn::after {
-  content: "Kopiert! ✓" !important;
-  position: absolute !important;
-  top: 0 !important; left: 0 !important; right: 0 !important; bottom: 0 !important;
-  background: #10B981 !important;
-  color: #FFFFFF !important;
-  font-size: 11px !important;
-  font-weight: 700 !important;
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  opacity: 0 !important;
-  visibility: hidden !important;
-  transform: translateY(100%) !important;
-  transition: opacity 0.2s ease 2s, transform 0.2s cubic-bezier(0.4, 0, 0.2, 1) 2s, visibility 0.2s ease 2s !important;
-}
-
-.share-menu button.share-copy-url-btn:active::after,
-.share-menu button.share-copy-url-btn:focus::after {
-  opacity: 1 !important;
-  visibility: visible !important;
-  transform: translateY(0) !important;
-  transition: opacity 0s ease 0s, transform 0s ease 0s, visibility 0s ease 0s !important;
-}
-
 /* ══════════════════════════════════════════
-   10. UNIFIED RESPONSIVE MEDIA QUERIES
+   MOBILE RESPONSIVE ZONE (VIEWPORT SNAPPING)
    ══════════════════════════════════════════ */
 
-/* DESKTOP ALIGNMENT SHIFT */
-@media (min-width: 769px) {
-  .controls {
-    margin-left: -60px !important; /* Optical center offset against cover art */
-  }
+/* Bulletproof fix: Stop the controls from ever squishing into ovals */
+.controls button {
+  flex-shrink: 0 !important;
 }
 
-/* MOBILE RESPONSIVE ENGINE */
 @media (max-width: 480px) {
+  /* Stack the cover image vertically above the text to open up horizontal space */
   .cover-image-player-wrap {
     flex-direction: column !important;
     align-items: center !important;
@@ -675,15 +710,18 @@
     gap: 16px !important;
   }
 
-  .cover-image-wrap {
-    width: 100px !important;  /* Responsive scaling for small screens */
-    height: 100px !important;
-  }
-
+  /* Center the title alignments for clean mobile presentation scales */
   .player-info-wrap {
     align-items: center !important;
     text-align: center !important;
     width: 100% !important;
+  }
+
+  /* Center the button tray completely across the newly opened width layer */
+  .controls {
+    justify-content: center !important;
+    gap: 12px !important; /* Tighter padding gaps so all 5 buttons look balanced on narrow viewports */
+    margin-top: 4px !important;
   }
 
   .episode-title h1 a, 
@@ -691,24 +729,56 @@
     font-size: 15px !important;
   }
 
+  .playlist-episode-title {
+    font-size: 11px !important;
+    white-space: normal !important;      /* Allows text to wrap to the next line */
+    word-break: break-word !important;   /* Safely breaks long words if necessary */
+    text-overflow: clip !important;      /* Removes the "..." truncation mark */
+  }
+  
+  .single-playlist-episode {
+    height: auto !important;             /* Ensures the row expands vertically for wrapped text */
+  }
+}
+
+/* ══════════════════════════════════════════
+   IOS / SAFARI ICON FONT DISTORTION FIX
+   ══════════════════════════════════════════ */
+
+/* Forces Safari to render the icon font glyphs without squishing or clipping */
+.controls button::before {
+  font-family: "podigee-podcast-player" !important;
+  display: inline-block !important; /* Crucial: stops iOS Safari from compressing font paths */
+  font-size: 26px !important;       /* Clean, highly visible scale for the side icons */
+  line-height: 1 !important;        /* Prevents vertical crushing */
+  letter-spacing: 0 !important;     /* Prevents horizontal crumbling */
+  text-align: center !important;
+  width: 100% !important;
+  height: auto !important;
+}
+
+/* Keeps the central play/pause icon slightly larger and perfectly balanced */
+.controls button.play-button::before {
+  font-size: 26px !important;       /* Crisp scale for the main action trigger */
+  line-height: 1 !important;
+}
+
+
+/**
+mobile safety check
+*/
+@media (max-width: 480px) {
   .controls {
     justify-content: center !important;
     gap: 12px !important;
-    margin: 4px 0 0 0 !important;
+    
+    /* Reset the left shift on mobile so it stays centered when stacked */
+    margin: 4px 0 0 0 !important; 
   }
+}
 
-  .playlist-episode-title {
-    font-size: 11px !important;
-    white-space: normal !important;
-    word-break: break-word !important;
-    text-overflow: clip !important;
-  }
-
-  .single-playlist-episode {
-    height: auto !important;
-  }
-
-  .panels .chaptermarks:has(.chaptermark.active) {
-    padding: 0 16px 12px !important;
+@media (min-width: 769px) {
+  .controls {
+    margin-left: -60px !important;    /* Shifts left to balance against the cover art on desktop */
   }
 }
