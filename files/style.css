@@ -443,10 +443,9 @@
 .share-menu {
   display: flex !important;
   position: absolute !important;
-  top: 50% !important;
-  transform: translateY(-50%) !important; /* Perfect vertical midpoint alignment */
-  bottom: -54px !important;      /* FIXED BOUNDS: Locks perfectly inline inside the footer bar layout */
-  right: 24px !important;        
+  top: auto !important;          /* Clears any top alignment */
+  bottom: 10px !important;       /* Locks neatly inside the black footer bar */
+  right: 24px !important;        /* Aligns with right padding */
   background: transparent !important; 
   border: none !important;
   padding: 0 !important;
@@ -695,7 +694,6 @@
   display: flex !important;
   justify-content: space-between !important;
   align-items: center !important;
-  position: relative !important; /* Establishes vertical centering anchor */
 }
 
 .articly-brand-label {
@@ -790,9 +788,8 @@ mobile safety check
   }
 
   .share-menu {
-    top: 50% !important;
-    transform: translateY(-50%) !important;
-    bottom: auto !important;
+    top: auto !important;
+    bottom: 10px !important;
     right: 16px !important;
   }
 }
