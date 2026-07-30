@@ -264,26 +264,6 @@
   position: relative !important;
   flex: 1 !important;
   order: 2 !important;
-  overflow: visible !important;
-}
-
-/* Hide the extra text panel strip entirely */
-.panels .chaptermarks,
-.chaptermarks {
-  display: none !important;
-}
-
-/* Draw clean vertical cutouts inside the seekbar line itself */
-.progress-bar-rail .chapter-marker,
-.progress-bar-rail .progress-bar-chapter,
-.progress-bar-chapter-mark {
-  position: absolute !important;
-  top: 0 !important;
-  bottom: 0 !important;
-  width: 3px !important;
-  background-color: var(--bg-dark-surface) !important;
-  z-index: 10 !important;
-  pointer-events: none !important;
 }
 
 .progress-bar-played {
@@ -443,9 +423,8 @@
 .share-menu {
   display: flex !important;
   position: absolute !important;
-  top: auto !important;          /* Clears any top alignment */
-  bottom: 10px !important;       /* Locks neatly inside the black footer bar */
-  right: 24px !important;        /* Aligns with right padding */
+  bottom: -54px !important;      /* FIXED BOUNDS: Locks perfectly inline inside the footer bar layout */
+  right: 24px !important;        
   background: transparent !important; 
   border: none !important;
   padding: 0 !important;
@@ -785,12 +764,6 @@ mobile safety check
     
     /* Reset the left shift on mobile so it stays centered when stacked */
     margin: 4px 0 0 0 !important; 
-  }
-
-  .share-menu {
-    top: auto !important;
-    bottom: 10px !important;
-    right: 16px !important;
   }
 }
 
