@@ -772,3 +772,88 @@ mobile safety check
     margin-left: -60px !important;    /* Shifts left to balance against the cover art on desktop */
   }
 }
+
+/* ══════════════════════════════════════════
+   CHAPTER FEATURE — CSS-only, append to theme.css
+   No theme JS required: Podigee's own core player script
+   already toggles `.active` on the current chapter as it plays.
+   This just reveals + restyles that existing (normally hidden)
+   element into a slim "now playing chapter" strip.
+   ══════════════════════════════════════════ */
+
+/* .panels is hidden by the player by default — open it back up */
+.panels {
+  display: block !important;
+  background: transparent !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* The chapter panel itself is also hidden by its own extension.
+   Only reveal it once a chapter is actually active — avoids an
+   empty strip flashing before playback starts. Requires :has()
+   support (all major browsers since 2023). */
+.panels .chaptermarks {
+  display: none !important;
+}
+
+.panels .chaptermarks:has(.chaptermark.active) {
+  display: block !important;
+  background: var(--bg-dark-surface) !important;
+  padding: 0 24px 14px !important;
+  margin-top: -2px !important; /* sits snug under the progress bar row */
+}
+
+/* Hide the panel title, the image variant, external-link icon,
+   and every chapter row except the currently active one */
+.chaptermarks h3,
+.chaptermark-image,
+.chaptermark-href,
+.chaptermark:not(.active) {
+  display: none !important;
+}
+
+.chaptermarks ul {
+  list-style: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.chaptermark.active {
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  cursor: default !important;
+}
+
+/* small accent bar, consistent with the lime accent used elsewhere */
+.chaptermark.active::before {
+  content: "" !important;
+  flex-shrink: 0 !important;
+  width: 3px !important;
+  height: 12px !important;
+  border-radius: 2px !important;
+  background: var(--accent-lime) !important;
+}
+
+.chaptermark-start {
+  font-size: 10px !important;
+  font-weight: 500 !important;
+  color: var(--text-subtle) !important;
+  flex-shrink: 0 !important;
+}
+
+.chaptermark-title {
+  font-size: 11px !important;
+  font-weight: 600 !important;
+  color: var(--text-muted) !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+}
+
+@media (max-width: 480px) {
+  .panels .chaptermarks:has(.chaptermark.active) {
+    padding: 0 16px 12px !important;
+  }
+}
