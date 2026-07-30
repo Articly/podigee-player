@@ -257,13 +257,23 @@
   box-shadow: none !important;
 }
 
-/* Hide the extra chapter text panel completely */
+.progress-bar-rail {
+  background: var(--bg-dark-raised) !important;
+  height: 4px !important;
+  border-radius: 2px !important;
+  position: relative !important;
+  flex: 1 !important;
+  order: 2 !important;
+  overflow: visible !important;
+}
+
+/* Hide the extra text panel strip entirely */
 .panels .chaptermarks,
 .chaptermarks {
   display: none !important;
 }
 
-/* Create clean vertical chapter gap dividers inside the seekbar rail */
+/* Draw clean vertical cutouts inside the seekbar line itself */
 .progress-bar-rail .chapter-marker,
 .progress-bar-rail .progress-bar-chapter,
 .progress-bar-chapter-mark {
@@ -433,6 +443,8 @@
 .share-menu {
   display: flex !important;
   position: absolute !important;
+  top: 50% !important;
+  transform: translateY(-50%) !important; /* Perfect vertical midpoint alignment */
   bottom: -54px !important;      /* FIXED BOUNDS: Locks perfectly inline inside the footer bar layout */
   right: 24px !important;        
   background: transparent !important; 
@@ -683,6 +695,7 @@
   display: flex !important;
   justify-content: space-between !important;
   align-items: center !important;
+  position: relative !important; /* Establishes vertical centering anchor */
 }
 
 .articly-brand-label {
@@ -774,6 +787,13 @@ mobile safety check
     
     /* Reset the left shift on mobile so it stays centered when stacked */
     margin: 4px 0 0 0 !important; 
+  }
+
+  .share-menu {
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    bottom: auto !important;
+    right: 16px !important;
   }
 }
 
