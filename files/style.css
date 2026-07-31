@@ -81,13 +81,13 @@
 .cover-image-player-wrap {
   display: flex !important;
   padding: 24px !important;
-  gap: 20px !important;
+  gap: 30px !important;
   align-items: flex-start !important;
 }
 
 .cover-image-wrap {
-  width: 150px !important;
-  height: 150px !important;
+  width: 144px !important;
+  height: 144px !important;
   border-radius: 12px !important;
   overflow: hidden !important;
   flex-shrink: 0 !important;
@@ -114,6 +114,7 @@
   font-weight: 700 !important;
   text-decoration: none !important;
   line-height: 1.4 !important;
+  text-align: -webkit-center !important; /* Ensures proper centering in Safari */
 }
 
 .episode-subtitle h2 {
@@ -130,11 +131,10 @@
   flex-direction: row !important;
   align-items: center !important;
   justify-content: center !important;
-  gap: 28px !important;
-  width: 100% !important;
+  gap: 30px !important;
   background: transparent !important;
-  margin: 0 !important;
-  padding: 0 !important;
+  bottom: 4px !important;
+  position: relative !important;
 }
 
 .controls button {
@@ -310,9 +310,10 @@
   color: var(--text-main) !important;
   border: 1px solid var(--ui-border) !important;
   border-radius: 6px !important;
-  font-size: 11px !important;
-  padding: 2px 6px !important;
+  font-size: 12px !important;
+  padding: 6px !important;
   cursor: pointer !important;
+  font-weight: 700;
 }
 
 /* ══════════════════════════════════════════
