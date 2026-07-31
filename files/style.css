@@ -427,14 +427,10 @@
 /* ══════════════════════════════════════════
    PERMANENT FOOTER BLACK BOX GERMAN ALIGNMENT
    ══════════════════════════════════════════ */
-.panels {
-  position: relative !important;    /* .share-menu's real, confirmed parent — anchor here directly */
-}
-
 .share-menu {
   display: flex !important;
   position: absolute !important;
-  bottom: 12px !important;
+  bottom: 16px !important;
   right: 24px !important;
   background: transparent !important; 
   border: none !important;
