@@ -262,6 +262,7 @@
   width: 100% !important;
   position: relative !important;
   box-shadow: none !important;
+  bottom: 2px !important;
 }
 
 .progress-bar-rail {
@@ -314,6 +315,7 @@
   padding: 6px !important;
   cursor: pointer !important;
   font-weight: 700;
+  width: 10%;
 }
 
 /* ══════════════════════════════════════════
