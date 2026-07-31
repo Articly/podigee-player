@@ -40,7 +40,9 @@
 .share-menu-button,
 .footer-right .buttons button,
 .all-episodes-tab-button,
-.episode-info-tab-button { 
+.episode-info-tab-button,
+.chaptermarks-tab-button,
+.chaptermarks-open-el { 
   display: none !important; 
 }
 
