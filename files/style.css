@@ -675,7 +675,6 @@
   display: flex !important;
   justify-content: space-between !important;
   align-items: center !important;
-  position: relative !important;     /* Stable anchor for .share-menu: fixed-height row, unaffected by tab/panel content changes */
 }
 
 .articly-brand-label {
