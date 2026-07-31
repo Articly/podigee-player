@@ -42,7 +42,9 @@
 .all-episodes-tab-button,
 .episode-info-tab-button,
 .chaptermarks-tab-button,
-.chaptermarks-open-el { 
+.chaptermarks-open-el,
+.panels-tabs,
+.panels { 
   display: none !important; 
 }
 
