@@ -44,7 +44,8 @@
 .chaptermarks-tab-button,
 .chaptermarks-open-el,
 .panels-tabs,
-.panels { 
+.single-panel.playlist,
+.single-panel.episode-info { 
   display: none !important; 
 }
 
