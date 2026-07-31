@@ -427,6 +427,11 @@
 /* ══════════════════════════════════════════
    PERMANENT FOOTER BLACK BOX GERMAN ALIGNMENT
    ══════════════════════════════════════════ */
+.panels,
+.single-panel {
+  transform: none !important;   /* Prevents base-player animation transforms from hijacking the containing block for .share-menu */
+}
+
 .share-menu {
   display: flex !important;
   position: absolute !important;
