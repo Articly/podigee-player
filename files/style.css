@@ -38,7 +38,9 @@
 .single-playlist-episode .waveform-icon,
 .progress-tooltip,
 .share-menu-button,
-.footer-right .buttons button { 
+.footer-right .buttons button,
+.all-episodes-tab-button,
+.episode-info-tab-button { 
   display: none !important; 
 }
 
@@ -673,6 +675,7 @@
   display: flex !important;
   justify-content: space-between !important;
   align-items: center !important;
+  position: relative !important;     /* Stable anchor for .share-menu: fixed-height row, unaffected by tab/panel content changes */
 }
 
 .articly-brand-label {
