@@ -630,6 +630,12 @@
 /* ══════════════════════════════════════════
    CHAPTER MARKS LIST (SINGLE-LINE ROWS)
    ══════════════════════════════════════════ */
+.single-panel.chaptermarks {
+  height: 230px !important;
+  max-height: 230px !important;
+  overflow-y: auto !important;
+}
+
 .single-panel.chaptermarks ul,
 .chaptermark-list {
   list-style: none !important;
