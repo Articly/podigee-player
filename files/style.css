@@ -38,14 +38,7 @@
 .single-playlist-episode .waveform-icon,
 .progress-tooltip,
 .share-menu-button,
-.footer-right .buttons button,
-.all-episodes-tab-button,
-.episode-info-tab-button,
-.chaptermarks-tab-button,
-.chaptermarks-open-el,
-.panels-tabs,
-.single-panel.playlist,
-.single-panel.episode-info { 
+.footer-right .buttons button { 
   display: none !important; 
 }
 
@@ -427,16 +420,11 @@
 /* ══════════════════════════════════════════
    PERMANENT FOOTER BLACK BOX GERMAN ALIGNMENT
    ══════════════════════════════════════════ */
-.panels,
-.single-panel {
-  transform: none !important;   /* Prevents base-player animation transforms from hijacking the containing block for .share-menu */
-}
-
 .share-menu {
   display: flex !important;
   position: absolute !important;
-  bottom: 16px !important;
-  right: 24px !important;
+  bottom: -54px !important;      /* FIXED BOUNDS: Locks perfectly inline inside the footer bar layout */
+  right: 24px !important;        
   background: transparent !important; 
   border: none !important;
   padding: 0 !important;
@@ -674,7 +662,7 @@
   min-width: 0 !important;
 }
 
-/* Only one icon should ever show per row — same overlap bug as the playlist, scope was missing here */
+/* Only one icon should ever show per row — same overlap issue as the playlist rows, this scope was missing */
 .chaptermark .waveform-icon {
   display: none !important;
 }
