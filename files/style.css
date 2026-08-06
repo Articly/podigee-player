@@ -38,7 +38,14 @@
 .single-playlist-episode .waveform-icon,
 .progress-tooltip,
 .share-menu-button,
-.footer-right .buttons button { 
+.footer-right .buttons button,
+.all-episodes-tab-button,
+.episode-info-tab-button,
+.chaptermarks-tab-button,
+.chaptermarks-open-el,
+.panels-tabs,
+.single-panel.playlist,
+.single-panel.episode-info { 
   display: none !important; 
 }
 
@@ -420,11 +427,16 @@
 /* ══════════════════════════════════════════
    PERMANENT FOOTER BLACK BOX GERMAN ALIGNMENT
    ══════════════════════════════════════════ */
+.panels,
+.single-panel {
+  transform: none !important;   /* Prevents base-player animation transforms from hijacking the containing block for .share-menu */
+}
+
 .share-menu {
   display: flex !important;
   position: absolute !important;
-  bottom: -54px !important;      /* FIXED BOUNDS: Locks perfectly inline inside the footer bar layout */
-  right: 24px !important;        
+  bottom: 16px !important;
+  right: 24px !important;
   background: transparent !important; 
   border: none !important;
   padding: 0 !important;
@@ -625,6 +637,66 @@
 .single-playlist-episode.active .playlist-episode-duration {
   color: var(--accent-lime) !important;
   font-weight: 600 !important;
+}
+
+/* ══════════════════════════════════════════
+   CHAPTER MARKS LIST (SINGLE-LINE ROWS)
+   ══════════════════════════════════════════ */
+.single-panel.chaptermarks ul,
+.chaptermark-list {
+  list-style: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.chaptermark {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  padding: 14px 24px !important;
+  border-bottom: 1px solid var(--ui-border) !important;
+  background: transparent !important;
+  cursor: pointer !important;
+  transition: background 0.15s ease !important;
+  list-style: none !important;
+}
+
+.chaptermark:hover {
+  background: rgba(255, 255, 255, 0.02) !important;
+}
+
+.chaptermark-info {
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  gap: 12px !important;
+  flex: 1 !important;
+  min-width: 0 !important;
+}
+
+/* Only one icon should ever show per row — same overlap bug as the playlist, scope was missing here */
+.chaptermark .waveform-icon {
+  display: none !important;
+}
+
+.chaptermark-title {
+  color: var(--text-muted) !important;
+  font-size: 13px !important;
+  font-weight: 400 !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  flex: 1 !important;
+  min-width: 0 !important;
+}
+
+.chaptermark-start {
+  color: var(--text-subtle) !important;
+  font-size: 11px !important;
+  font-weight: 500 !important;
+  margin-left: 12px !important;
+  flex-shrink: 0 !important;
+  white-space: nowrap !important;
 }
 
 /* ══════════════════════════════════════════
