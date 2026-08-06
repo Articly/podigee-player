@@ -369,8 +369,6 @@
   background: var(--bg-dark-surface) !important;
   margin: 0 !important;
   padding: 0 !important;
-  display: flex !important;
-  flex-direction: column !important;
 }
 
 @keyframes panelFadeIn {
@@ -424,14 +422,14 @@
    ══════════════════════════════════════════ */
 .share-menu {
   display: flex !important;
-  justify-content: flex-end !important;
-  position: static !important;
-  order: 999 !important;
+  position: absolute !important;
+  bottom: -54px !important;      /* FIXED BOUNDS: Locks perfectly inline inside the footer bar layout */
+  right: 24px !important;        
   background: transparent !important; 
-  border-top: 1px solid var(--ui-border) !important;
-  padding: 14px 24px !important;
+  border: none !important;
+  padding: 0 !important;
   margin: 0 !important;
-  width: 100% !important;
+  width: auto !important;
   height: auto !important;
   z-index: 999999 !important;    
 }
